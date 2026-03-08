@@ -1,0 +1,11 @@
+{
+    "name": "Seguranca",
+    "alias": "seguranca",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Seguranca\\Providers\\SegurancaServiceProvider"
+    ],
+    "files": []
+}
