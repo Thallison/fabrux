@@ -11,6 +11,8 @@ class SegurancaDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+         $this->call([
+            SegUsuarioSeeder::class,
+         ]);
     }
 }
