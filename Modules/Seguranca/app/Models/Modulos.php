@@ -49,7 +49,7 @@ class Modulos extends BaseModel
     public function atribbutesLabel()
     {
         return [
-            'mod_nome' => __('Nome do modulo'),
+            'mod_nome' => __('Nome do módulo'),
             'mod_icone' => __('Nome do icone'),
             'sis_nome' => __('Nome do sistema')
         ];

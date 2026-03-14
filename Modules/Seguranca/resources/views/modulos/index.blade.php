@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('page-title', 'Sistemas')
+@section('page-title', 'Módulos')
 
 @section('content')
 
@@ -14,14 +14,14 @@
     
 <div class="card card-default mb-5">
     <div class="card-header">
-        <h5 class="card-title">{{ __('Cadastrar Modulos') }}</h5>
+        <h5 class="card-title">{{ __('Cadastrar Módulos') }}</h5>
     </div>
     <form action="{{ route('seguranca::modulos.store') }}" method="POST" class="form-validate-jquery" novalidate="novalidate">
         <div class="card-body ">
             @csrf
             <div class="row">
                 <div class="col">
-                    <label>{{ __('Nome do Modulo:') }} <span class="text-danger">*</span></label>
+                    <label>{{ __('Nome do Módulo:') }} <span class="text-danger">*</span></label>
                     <input class="form-control @error('mod_nome') is-invalid @enderror" type="text" name="mod_nome" required  placeholder="{{ __('Nome do modulo:') }}" value="{{ old('mod_nome') }}" />
                     @error('mod_nome')
                         <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
 
 <div class="card card-default" >
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">{{ __('Lista de Modulos') }}</h5>
+        <h5 class="card-title">{{ __('Lista de Módulos') }}</h5>
     </div>
 
     <div class="card-body">
