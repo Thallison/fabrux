@@ -62,7 +62,6 @@ class BaseController extends Controller
         }
 
         $attributeView = array_merge($this->getAttributesView(), ['model' => $model]);
-
         return view($this->getRota().".index", $attributeView);
     }
 

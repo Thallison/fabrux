@@ -16,7 +16,7 @@
     <div class="card-header">
         <h5 class="card-title">{{ __('Cadastrar Módulos') }}</h5>
     </div>
-    <form action="{{ route('seguranca::modulos.store') }}" method="POST" class="form-validate-jquery" novalidate="novalidate">
+    <form action="{{ route('seguranca::modulos.store') }}" method="POST">
         <div class="card-body ">
             @csrf
             <div class="row">

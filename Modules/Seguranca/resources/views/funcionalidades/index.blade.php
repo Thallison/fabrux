@@ -1,48 +1,24 @@
 @extends('layouts.default')
 
-@section('page-title', 'Sistemas')
+@section('page-title', 'Funcionalidades')
 
 @section('content')
-    
-<div class="card card-default mb-5">
-    <div class="card-header">
-        <h5 class="card-title">{{ __('Cadastrar Sistema') }}</h5>
+
+@if (!$modulos))
+    <div class="alert alert-info alert-styled-left alert-dismissible alert-important">
+        <span class="font-weight-semibold">Aviso</span>
+            Para cadastrar uma funcionalidade é necessário ter pelo menos um modulo cadastrado,
+        <a href="{{ route('seguranca::modulos.index') }}" class="alert-link">Clique aqui para cadastrar um modulo.</a>
     </div>
-    <form action="{{ route('seguranca::sistemas.store') }}" method="POST">
-        <div class="card-body ">
-            @csrf
-            <div class="row">
-                <div class="col">
-                    <label>{{ __('Nome do sistema:') }} <span class="text-danger">*</span></label>
-                    <input class="form-control @error('sis_nome') is-invalid @enderror" type="text" name="sis_nome" required  placeholder="{{ __('Nome do sistema:') }}" value="{{ old('sis_nome') }}" />
-                    @error('sis_nome')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="col">
-                    <label>{{ __('Nome do icone:') }}</label>
-                    <input class="form-control @error('sis_icone') is-invalid @enderror type="text" name="sis_icone" placeholder="{{ __('Nome do icone:') }}" value="{{ old('sis_icone') }}" />
-                    @error('sis_icone')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-        <div class="card-footer text-end">
-            <button type="submit" class="btn btn-primary">{{ __('Cadastrar') }}
-                <i class="bi bi-floppy"></i>
-            </button>
-        </div>
-    </form>
-</div>
+@else
 
 <div class="card card-default" >
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">{{ __('Lista de Sistema') }}</h5>
+        <h5 class="card-title">{{ __('Lista de Funcionalidades') }}</h5>
+        <div class="text-end">
+            <a href="{{ route('seguranca::funcionalidades.create') }}" class="btn btn-info"><i class="bi bi-plus"></i> {{ __('Cadastrar Funcionalidade') }}</a>
+            <a class="list-icons-item" data-action="collapse"></a>
+        </div>
     </div>
 
     <div class="card-body">
@@ -63,20 +39,35 @@
                     data-show-toggle="{{ __(config('bootstraptable.show-toggle')) }}"
                     data-show-fullscreen="{{ __(config('bootstraptable.show-fullscreen')) }}"
                     data-show-refresh="{{ __(config('bootstraptable.show-refresh')) }}"
-                    data-url="{{ route('seguranca::sistemas.index') }}"
+                    data-url="{{ route('seguranca::funcionalidades.index') }}"
                     data-side-pagination="{{ __(config('bootstraptable.data-side-pagination')) }}" >
                     <thead>
                         <tr>
-                            <th data-field='sis_id'>
-                                #
+                            <th data-field='func_label' data-sortable="true">
+                                {{ $model->getAttributeLabel('func_label') }}
                             </th>
-                            <th data-field='sis_nome'>
-                                {{ $model->getAttributeLabel('sis_nome') }}
+                            <th data-field='mod_nome' data-sortable="true">
+                                {{ $model->getAttributeLabel('mod_id') }}
                             </th>
-                            <th data-field='sis_icone'>
-                                {{ $model->getAttributeLabel('sis_icone') }}
+                            <th data-field='func_controller' data-sortable="true">
+                                {{ $model->getAttributeLabel('func_controller') }}
                             </th>
-                            
+                            <th data-field='func_pai_label' data-sortable="true">
+                                {{ $model->getAttributeLabel('func_id_pai') }}
+                            </th>
+                            <th data-field='func_icon'>
+                                {{ $model->getAttributeLabel('func_icon') }}
+                            </th>
+                            <th data-field='func_tipo' data-sortable="true">
+                                {{ $model->getAttributeLabel('func_tipo') }}
+                            </th>
+                            <th data-field='func_rota_padrao' data-sortable="true">
+                                {{ $model->getAttributeLabel('func_rota_padrao') }}
+                            </th>
+                            <th data-field='func_acesso_menu' data-sortable="true"
+                                data-formatter="App.formatters.boolean" >
+                                {{ $model->getAttributeLabel('func_acesso_menu') }}
+                            </th>
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
@@ -87,6 +78,7 @@
         </div>
     </div>
 </div>
+@endif
 @endsection
 
 @push('scripts')
@@ -95,22 +87,22 @@
     function TableActions(value, row, index) {
 
         let editar = excluir = '';
-        let id = row['sis_id'];
+        let id = row['mod_id'];
 
-        let urlEdit = "{{ route('seguranca::sistemas.show', ['sistema' => ':id']) }}";
+        let urlEdit = "{{ route('seguranca::modulos.show', ['modulo' => ':id']) }}";
         urlEdit = urlEdit.replace(":id", id);
 
-        let urlDel = "{{ route('seguranca::sistemas.destroy', ['sistema' => ':id']) }}";
+        let urlDel = "{{ route('seguranca::modulos.destroy', ['modulo' => ':id']) }}";
         urlDel = urlDel.replace(":id", id);
 
         editar = '<a class="btn btn-outline-info btn-sm"'
-                    +'id="editarSis_'+ id +'" data-action="modal-editar-sistema" href="#" data-url="'+urlEdit+'" title="{{ __('Editar') }}" >'
+                    +'id="editarMod_'+ id +'" data-action="modal-editar-modulo" href="#" data-url="'+urlEdit+'" title="{{ __('Editar') }}" >'
                 +'<i class="bi bi-pencil-square"></i>'
                 +'</a> ';
         
         excluir = '<a class="btn btn-outline-danger btn-sm"'
                     +'data-method="DELETE"'
-                    +'id="deleteSis_'+ id +'" data-action="excluir-sistema" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
+                    +'id="deleteMod_'+ id +'" data-action="excluir-modulo" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
                 +'<i class="bi bi-trash3-fill"></i>'
                 +'</a>';
         
@@ -122,11 +114,6 @@
         ].join('');
 
     }
-   // document.addEventListener("DOMContentLoaded", function () {
-    
-       // alert('teste');
-    
-    //});
 
     function openEdit(action) {
         let url = action.dataset.url;
@@ -134,21 +121,21 @@
     }
 
     function editar(action) {
-        const form = document.querySelector('form[name="editSistema"]');
+        const form = document.querySelector('form[name="editModulo"]');
         const formData = new FormData(form);
 
         /*Submeer formulario do modal*/
         App.submitForm({
-            form: 'form[name="editSistema"]',
+            form: 'form[name="editModulo"]',
             modal: '#modal_default',
             table: 'gridTable'
         });
     }
 
-    function excluirSistema(action) {
+    function excluirModulo(action) {
         App.confirm({
-            title: "Excluir sistema",
-            message: "Deseja realmente excluir este sistema?",
+            title: "Excluir modulo",
+            message: "Deseja realmente excluir este modulo?",
             url: action.dataset.url,
             table: "gridTable"
         });
@@ -163,16 +150,16 @@
         const tipo = action.dataset.action;
 
         switch(tipo){
-            case "modal-editar-sistema":
+            case "modal-editar-modulo":
                 openEdit(action);
             break;
 
-            case "editar-sistema":
+            case "editar-modulo":
                 editar(action);
             break;
 
-            case "excluir-sistema":
-                excluirSistema(action);
+            case "excluir-modulo":
+                excluirModulo(action);
             break;
         }
     });

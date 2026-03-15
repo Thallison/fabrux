@@ -21,6 +21,9 @@ import './core/modal';
 import './core/submitForm';
 import './core/message';
 import './core/confirm';
+import './core/global';
+import './core/dynamicFields';
+import './core/formatters';
 
 document.addEventListener("DOMContentLoaded", function () {
     App.init();
