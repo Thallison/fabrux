@@ -69,11 +69,11 @@
     <!--begin::Script-->
     @stack('scripts')
     <script>
-        setTimeout(() => {
+       /* setTimeout(() => {
         document.querySelectorAll('.flash-msg').forEach(el => {
             el.remove();
         });
-    }, 4000);
+    }, 4000);*/
     </script>
     <!--end::Script-->
   </body>

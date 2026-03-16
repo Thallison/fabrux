@@ -24,7 +24,9 @@ import './core/confirm';
 import './core/global';
 import './core/dynamicFields';
 import './core/formatters';
+import './core/flashMessage';
 
 document.addEventListener("DOMContentLoaded", function () {
     App.init();
+    App.initFlash();
 });

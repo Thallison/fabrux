@@ -150,9 +150,6 @@
     }
 
     function editar(action) {
-        const form = document.querySelector('form[name="editModulo"]');
-        const formData = new FormData(form);
-
         /*Submeer formulario do modal*/
         App.submitForm({
             form: 'form[name="editModulo"]',

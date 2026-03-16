@@ -17,6 +17,8 @@ App.modal = function(url, modalId = "modal_default", container = "modal-default-
             new bootstrap.Modal(
                 document.getElementById(modalId)
             ).show();
+
+            document.dispatchEvent(new Event("modal:loaded"));
         }
     });
 };

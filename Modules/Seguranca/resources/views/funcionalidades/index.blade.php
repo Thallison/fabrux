@@ -87,22 +87,22 @@
     function TableActions(value, row, index) {
 
         let editar = excluir = '';
-        let id = row['mod_id'];
+        let id = row['func_id'];
 
-        let urlEdit = "{{ route('seguranca::modulos.show', ['modulo' => ':id']) }}";
+        let urlEdit = "{{ route('seguranca::funcionalidades.edit', ['funcionalidade' => ':id']) }}";
         urlEdit = urlEdit.replace(":id", id);
 
-        let urlDel = "{{ route('seguranca::modulos.destroy', ['modulo' => ':id']) }}";
+        let urlDel = "{{ route('seguranca::funcionalidades.destroy', ['funcionalidade' => ':id']) }}";
         urlDel = urlDel.replace(":id", id);
 
         editar = '<a class="btn btn-outline-info btn-sm"'
-                    +'id="editarMod_'+ id +'" data-action="modal-editar-modulo" href="#" data-url="'+urlEdit+'" title="{{ __('Editar') }}" >'
+                    +'id="editarFunc_'+ id +'" href="'+urlEdit+'" title="{{ __('Editar') }}" >'
                 +'<i class="bi bi-pencil-square"></i>'
                 +'</a> ';
         
         excluir = '<a class="btn btn-outline-danger btn-sm"'
                     +'data-method="DELETE"'
-                    +'id="deleteMod_'+ id +'" data-action="excluir-modulo" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
+                    +'id="deleteFunc_'+ id +'" data-action="excluir-funcionalidade" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'
                 +'<i class="bi bi-trash3-fill"></i>'
                 +'</a>';
         
@@ -115,27 +115,10 @@
 
     }
 
-    function openEdit(action) {
-        let url = action.dataset.url;
-        App.modal(url);//abrir modal com o formulário de edição
-    }
-
-    function editar(action) {
-        const form = document.querySelector('form[name="editModulo"]');
-        const formData = new FormData(form);
-
-        /*Submeer formulario do modal*/
-        App.submitForm({
-            form: 'form[name="editModulo"]',
-            modal: '#modal_default',
-            table: 'gridTable'
-        });
-    }
-
-    function excluirModulo(action) {
+    function excluirFuncionalidade(action) {
         App.confirm({
-            title: "Excluir modulo",
-            message: "Deseja realmente excluir este modulo?",
+            title: "Excluir funcionalidade",
+            message: "Deseja realmente excluir esta funcionalidade?",
             url: action.dataset.url,
             table: "gridTable"
         });
@@ -150,16 +133,8 @@
         const tipo = action.dataset.action;
 
         switch(tipo){
-            case "modal-editar-modulo":
-                openEdit(action);
-            break;
-
-            case "editar-modulo":
-                editar(action);
-            break;
-
-            case "excluir-modulo":
-                excluirModulo(action);
+            case "excluir-funcionalidade":
+                excluirFuncionalidade(action);
             break;
         }
     });

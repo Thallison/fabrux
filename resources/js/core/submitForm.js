@@ -9,15 +9,17 @@ App.submitForm = function(options = {}) {
     App.fetch({
         url: form.action,
         method: form.method || "POST",
-        data: Object.fromEntries(formData.entries()),
+        data: formData,
 
         success: function(response){
 
             if(response.type === "success"){
-
+                if(options.reload){
+                    App.flash(response.message, response.type);
+                    location.reload();
+                }
                 // fechar modal
                 if(options.modal){
-                    App.message(response.message, response.type);
                     const modal = document.querySelector(options.modal);
                     if(modal){
                         bootstrap.Modal.getInstance(modal).hide();
@@ -28,7 +30,6 @@ App.submitForm = function(options = {}) {
                 if(options.table){
                     $('#'+options.table).bootstrapTable('refresh');
                 }
-
             }
 
         }

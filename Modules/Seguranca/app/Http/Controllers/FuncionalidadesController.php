@@ -34,6 +34,26 @@ class FuncionalidadesController extends BaseController
             'text' => 'Cadastro realizado com sucesso'
         ]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $retEntity = $this->getModel()->findOrFail($id);
+        $this->validaRoles($request, $retEntity);
+
+        $dados = $request->all();
+        $retEntity->update($dados);
+
+        if(isset($dados['privilegios'])){
+            foreach($dados['privilegios'] as $priv){
+                $retEntity->privilegios()->create($priv);
+            }
+        }
+
+        return redirect()->route($this->getRota().'.index')->with('message', [
+            'type' => 'success',
+            'text' => 'Registro editado com sucesso.'
+        ]);
+    }
     
     /** Set atributos da view */
     protected function getAttributesView()

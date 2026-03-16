@@ -30,10 +30,14 @@ App.fetch = function(options){
         if(params){
             url += (url.includes("?") ? "&" : "?") + params;
         }
-
     }else
     {
-        fetchOptions.body = JSON.stringify(options.data);
+        if(options.data instanceof FormData){
+            delete fetchOptions.headers["Content-Type"];
+            fetchOptions.body = options.data;
+        }else{
+            fetchOptions.body = JSON.stringify(options.data);
+        }
     }
 
     fetch(url, fetchOptions)

@@ -92,7 +92,7 @@ class Funcionalidades extends BaseModel
      */
     public function privilegios()
     {
-        //return $this->hasMany(\Modules\Seguranca\Entities\Privilegios::class, 'func_id');
+        return $this->hasMany(\Modules\Seguranca\Models\Privilegios::class, 'func_id');
     }
 
     /** Utilizado para busca personalizada dos campos bootstrap-table */

@@ -9,5 +9,10 @@ Route::prefix('seguranca')->name('seguranca::')->group(function () {
         Route::resource('sistemas', Controllers\SistemasController::class);
         Route::resource('modulos', Controllers\ModulosController::class);
         Route::resource('funcionalidades', Controllers\FuncionalidadesController::class);
+        Route::resource('privilegios', Controllers\PrivilegiosController::class);
+
+        Route::prefix('privilegios')->name('privilegios.')->group( function(){
+            Route::delete('/destroydep/{dependencia}', [Controllers\PrivilegiosController::class, 'destroyDep'])->name('destroydep');
+        });
     });
 });

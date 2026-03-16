@@ -5,7 +5,8 @@ App.confirm = function(options = {}) {
         message: options.message || "Deseja realmente executar esta ação?",
         url: options.url || null,
         method: options.method || "DELETE",
-        table: options.table || null
+        table: options.table || null,
+        reload: options.reload || false
     };
 
     const modalHtml = `
@@ -46,6 +47,10 @@ App.confirm = function(options = {}) {
                 url: config.url,
                 method: config.method,
                 success: function(response){
+                    if(config.reload){
+                        App.flash(response.message, response.type);
+                        location.reload();
+                    }
                     if(response.message){
                         App.message(response.message, response.type || "success");
                     }
