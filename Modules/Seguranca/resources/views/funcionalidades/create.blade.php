@@ -15,6 +15,10 @@
 <div class="card card-default mb-5">
     <div class="card-header">
         <h5 class="card-title">{{ __('Cadastrar Funcionalidades') }}</h5>
+        <div class="text-end">
+            <a href="{{ route('seguranca::funcionalidades.index') }}" class="btn btn-info"><i class="bi bi-plus"></i> {{ __('Listar Funcionalidades') }}</a>
+            <a class="list-icons-item" data-action="collapse"></a>
+        </div>
     </div>
     <form action="{{ route('seguranca::funcionalidades.store') }}" method="POST">
         <div class="card-body ">

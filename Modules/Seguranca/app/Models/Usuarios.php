@@ -2,6 +2,7 @@
 
 namespace Modules\Seguranca\Models;
 
+use DateTime;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -28,8 +29,8 @@ class Usuarios extends Authenticatable
 
 
     protected $fillable = [
-        'usr_login', 'email', 'usr_nome', 'usr_status', 'password',
-        'usr_dt_ultimo_acesso', 'usr_dt_alteracao'
+        'usr_login', 'email', 'usr_name', 'usr_status', 'password',
+        'usr_dt_ultimo_acesso', 'usr_dt_alteracao', 'usr_dt_criacao'
     ];
 
     protected $hidden = [
@@ -49,7 +50,7 @@ class Usuarios extends Authenticatable
             'usr_login' => "required|max:50|unique:seg_usuarios,usr_login,{$this->usr_id},usr_id",
             'password' => 'max:255',
             'senha' => 'max:255',
-            'usr_nome' => 'required|max:100',
+            'usr_name' => 'required|max:100',
             'email' => "required|email|max:255|unique:seg_usuarios,email,{$this->usr_id},usr_id",
             'usr_status' => 'required'
         ];
@@ -59,9 +60,9 @@ class Usuarios extends Authenticatable
     {
         return [
             'usr_id' => __('#'),
-            'usr_login' => __('Login'),
+            'usr_login' => ('Login'),
             'password' => __('Senha'),
-            'usr_nome' => __('Nome'),
+            'usr_name' => __('Nome'),
             'email' => __('E-mail'),
             'usr_status' => __('Status'),
             'usr_dt_criacao' => __('Data criação'),
@@ -98,6 +99,56 @@ class Usuarios extends Authenticatable
 
         return ['total' => $total, 'rows' => $query->get()];
 
+    }
+
+    /**
+     * Utilizado para alterar o select utilizado na grid bootstrap table
+     *
+     * @param object $data
+     * @return void
+     */
+    protected function searchSelect($query, $search = null)
+    {
+        if (!$search || empty($this->searchable)) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($search) {
+            foreach ($this->searchable as $column) {
+                $q->orWhere($column, 'like', "%{$search}%");
+            }
+        });
+    }
+
+    /**
+     * Utilizado para alterar o join utilizado na grid bootstrap table
+     *
+     * @param object $query
+     * @return void
+     */
+    protected function searchJoin($query)
+    {
+    }
+
+    /**
+     * Utilizado para definir as restrições where
+     *
+     * @param object $query utilizado para a query da grid
+     * @return void
+     */
+    protected function searchWhere($query)
+    {
+    }
+
+    /**
+     * utilizado para ordenar os registros
+     *
+     * @param object $query
+     * @return void
+     */
+    protected function searchOrderby($query, $sort, $order)
+    {
+        return $query->orderBy($sort, $order);
     }
 
     /** Relação de muitos pra muitos entre papel e privilegio */
@@ -149,5 +200,46 @@ class Usuarios extends Authenticatable
         }
 
         return $arrSistema;
+    }
+
+    /**
+     * Cadastra usuario
+     *
+     * @param array $dados
+     * @return object
+     */
+    public function cadastraUsuario(array $dados)
+    {
+        $dados['usr_dt_criacao'] = new DateTime();
+        $usuario = $this->create($dados);
+        $usuario->papeisUsuario()->sync($dados['papeis']);
+        $usuario->sistemasUsuario()->sync($dados['sistemas']);
+
+        return $usuario;
+    }
+
+    /**Função para atualizar o usuário */
+    public function atualizaUsuario(array $dados)
+    {
+        if(!$this) return false;
+
+        $dados['usr_dt_alteracao'] = new \DateTime();
+        $this->update($dados);
+        $this->papeisUsuario()->sync($dados['papeis']);
+        $this->sistemasUsuario()->sync($dados['sistemas']);
+
+        return $this;
+    }
+
+    /**
+     * Metodo para retornar os dados da entidade a ser procurada
+     *
+     * Sobreescrever esse metodo no model para tratar dados apenas do gestor atual
+     * @param [type] $id
+     * @return void
+     */
+    public function findData($id)
+    {
+        return $this->findOrFail($id);
     }
 }

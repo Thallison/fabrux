@@ -48,6 +48,7 @@
             @if(session('message'))
             <div class="alert alert-{{ session('message.type') }} flash-msg">
                 {{ session('message.text') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
             @endif
 
