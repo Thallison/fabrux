@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Modules\Base\Http\Controllers\BaseController;
 use Modules\Seguranca\Models\Papeis;
 use Modules\Seguranca\Models\Usuarios;
-use Modules\Seguranca\Http\Traits\UsuariosTraits;
+use Modules\Seguranca\Traits\UsuariosTraits;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 

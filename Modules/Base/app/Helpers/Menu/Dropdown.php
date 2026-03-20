@@ -180,8 +180,9 @@ class Dropdown
     {
         $c = $this->getLiClass();
         $d = '';
-        if(session()->has('opmn')){
-            if(base64_decode(session()->get('opmn')) == $link['opmn'] ){
+        
+        if(session()->has('opmn') && isset($link['link']['opmn'])){
+            if(explode('-',base64_decode(session()->get('opmn')))[0] == $link['link']['opmn']  ){
                 $d = ' menu-open ';
             }
         }
@@ -207,8 +208,8 @@ class Dropdown
     private function mountHeadCloseUl($link)
     {
          $d = '';
-        if(session()->has('opmn')){
-            if(base64_decode(session()->get('opmn')) == $link['opmn'] ){
+        if(session()->has('opmn') && isset($link['link']['opmn'])){
+            if(explode('-',base64_decode(session()->get('opmn')))[0] == $link['link']['opmn']  ){
                 $d = ' menu-open ';
             }
         }
