@@ -21,7 +21,7 @@ class SegFuncionalidadesSeeder extends Seeder
                 'func_label' => 'Sistemas',
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
-                'func_icon' => null,
+                'func_icon' => 'bi bi-circle',
                 'func_rota_padrao' => 'seguranca::sistemas.index',
             ],
             [
@@ -32,7 +32,7 @@ class SegFuncionalidadesSeeder extends Seeder
                 'func_label' => 'Modulos',
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
-                'func_icon' => null,
+                'func_icon' => 'bi bi-circle',
                 'func_rota_padrao' => 'seguranca::modulos.index',
             ],
             [
@@ -43,7 +43,7 @@ class SegFuncionalidadesSeeder extends Seeder
                 'func_label' => 'Funcionalidades',
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
-                'func_icon' => null,
+                'func_icon' => 'bi bi-circle',
                 'func_rota_padrao' => 'seguranca::funcionalidades.index',
             ],
             [
@@ -54,7 +54,7 @@ class SegFuncionalidadesSeeder extends Seeder
                 'func_label' => 'Privilégios',
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 0,
-                'func_icon' => null,
+                'func_icon' => 'bi bi-circle',
                 'func_rota_padrao' => null,
             ],
             [
@@ -65,7 +65,7 @@ class SegFuncionalidadesSeeder extends Seeder
                 'func_label' => 'Perfil Usuário',
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
-                'func_icon' => null,
+                'func_icon' => 'bi bi-circle',
                 'func_rota_padrao' => 'seguranca::papeis.index',
             ],
             [
@@ -76,7 +76,7 @@ class SegFuncionalidadesSeeder extends Seeder
                 'func_label' => 'Usuarios',
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
-                'func_icon' => null,
+                'func_icon' => 'bi bi-circle',
                 'func_rota_padrao' => 'seguranca::usuarios.index',
             ],
         ]);

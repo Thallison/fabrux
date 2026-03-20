@@ -59,5 +59,51 @@ class FortifyServiceProvider extends ServiceProvider
 
             return Limit::perMinute(5)->by($throttleKey);
         });
+
+        Fortify::authenticateUsing(function ($request) {
+            $user = Usuarios::where('email', $request->email)->first();
+
+            if ($user &&
+                Hash::check($request->password, $user->password)
+            ) {
+
+                if($user->usr_status <> 1)
+                {
+                    throw ValidationException::withMessages([
+                        'email' => ['Usuário inativo ou bloqueado.'],
+                    ]);
+                }
+
+                $this->trataDadosSessao($user);
+
+                $user->update(['usr_dt_ultimo_acesso' => date('Y-m-d H:i:s')]);
+
+                //BaseLog::info($request, 'Usuario realizando Login no sistema usr_id: '.$user->usr_id);
+
+                return $user;
+            }
+
+            return null;
+        });
+    }
+
+    /**
+     * Realiza o tratamento para adicionar dados a sessão
+     *
+     * @param [type] $user
+     * @return void
+     */
+    private function trataDadosSessao($user)
+    {
+        $sistemas = $user->sistemasUsuario()->orderBy('sis_nome','ASC')->get();
+        if($sistemas->count()){
+            $sis = [
+                'sisId' => $sistemas[0]->sis_id,
+                'sisNome' => $sistemas[0]->sis_nome,
+                'sisIcone' => $sistemas[0]->sis_icone,
+                'sistemasUsuario' => $sistemas
+            ];
+            session()->put('sistemas', $sis);
+        }
     }
 }

@@ -19,7 +19,9 @@ Route::prefix('seguranca')->name('seguranca::')->group(function () {
 
         Route::prefix('usuarios')->name('usuarios.')->group( function(){
             Route::post('/validalogin',  [Controllers\UsuariosController::class, 'validaLogin'])->name('validaLogin');
-            //Route::post('/atualizaSenha', 'UsuariosController@atualizaSenha')->name('atualizaSenha');
+            Route::post('/atualizaSenha', [Controllers\UsuariosController::class, 'atualizaSenha'])->name('atualizaSenha');
         });
     });
+
+    Route::get('/configUsuario', [Controllers\UsuariosController::class, 'configuracaoShow'])->name('configUsuario');
 });

@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('page-title', 'Funcionalidades')
+@section('page-title', 'Grupo permissão')
 
 @section('content')
 

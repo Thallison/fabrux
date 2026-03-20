@@ -2,14 +2,13 @@
 
 namespace Modules\Seguranca\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Faker\Provider\Base;
 use Illuminate\Http\Request;
 use Modules\Base\Http\Controllers\BaseController;
 use Modules\Seguranca\Models\Papeis;
 use Modules\Seguranca\Models\Usuarios;
 use Modules\Seguranca\Http\Traits\UsuariosTraits;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UsuariosController extends BaseController
 {
@@ -115,6 +114,42 @@ class UsuariosController extends BaseController
         }
 
         return $this->getResponseJson(['message' => $mensagem, 'type' => $type]);
+    }
+
+    public function configuracaoShow()
+    {
+        return view($this->getRota().".config");
+    }
+
+    public function atualizaSenha(Request $request)
+    {
+        $usuario = Auth::user();
+        $dados = $request->all();
+
+        if(!Hash::check($dados['senhaAtual'], $usuario->password)){
+            return redirect()->back()->withInput($dados)->with('message', [
+                'type' => 'danger',
+                'text' => 'Senha atual não confere.'
+            ]);
+        }
+
+        if($this->validaSenha($dados['senha'], $dados['repeat_senha'])){
+            return redirect()->back()->withInput($dados)->with('message', [
+                'type' => 'danger',
+                'text' => 'Senhas não conferem.'
+            ]);
+        }
+
+        $usuario->update(
+            [
+                'password' => Hash::make($dados['senha'])
+            ]
+        );
+
+        return redirect()->back()->with('message', [
+            'type' => 'success',
+            'text' => 'Senha atualizada com sucesso.'
+        ]);;
     }
 
     protected function getAttributesView()

@@ -16,7 +16,7 @@ class SegModulosSeeder extends Seeder
             'mod_id' => 1,
             'sis_id' => 1,
             'mod_nome' => 'Acesso',
-            'mod_icone' => 'fa-solid fa-wrench',
+            'mod_icone' => 'bi bi-box-arrow-in-right',
             'created_at' => now(),
             'updated_at' => null,
         ]);
