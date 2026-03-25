@@ -2,16 +2,16 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
-          <a href="./index.html" class="brand-link">
+          <a href="{{ url('/') }}" class="brand-link">
             <!--begin::Brand Image-->
             <img
               src="{{ Vite::asset('resources/images/AdminLTELogo.png') }}"
-              alt="AdminLTE Logo"
+              alt="{{ config('app.name', 'Laravel') }} Logo"
               class="brand-image opacity-75 shadow"
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">AdminLTE 4</span>
+            <span class="brand-text fw-light">{{ config('app.name', 'Laravel') }}</span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
