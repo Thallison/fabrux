@@ -12,6 +12,7 @@ Route::prefix('seguranca')->name('seguranca::')->group(function () {
         Route::resource('privilegios', Controllers\PrivilegiosController::class);
         Route::resource('papeis', Controllers\PapeisController::class);
         Route::resource('usuarios', Controllers\UsuariosController::class);
+        Route::resource('logs',  Controllers\LogsController::class);
 
         Route::prefix('privilegios')->name('privilegios.')->group( function(){
             Route::delete('/destroydep/{dependencia}', [Controllers\PrivilegiosController::class, 'destroyDep'])->name('destroydep');

@@ -16,6 +16,7 @@ use Laravel\Fortify\Fortify;
 use Modules\Seguranca\Models\Usuarios;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
+use Modules\Seguranca\Logging\BaseLog;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -77,8 +78,6 @@ class FortifyServiceProvider extends ServiceProvider
                 $this->trataDadosSessao($user);
 
                 $user->update(['usr_dt_ultimo_acesso' => date('Y-m-d H:i:s')]);
-
-                //BaseLog::info($request, 'Usuario realizando Login no sistema usr_id: '.$user->usr_id);
 
                 return $user;
             }

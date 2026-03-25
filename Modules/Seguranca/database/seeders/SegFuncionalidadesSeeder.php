@@ -79,6 +79,17 @@ class SegFuncionalidadesSeeder extends Seeder
                 'func_icon' => 'bi bi-circle',
                 'func_rota_padrao' => 'seguranca::usuarios.index',
             ],
+            [
+                'func_id' => 7,
+                'mod_id' => 1,
+                'func_id_pai' => null,
+                'func_controller' => 'Modules\\Seguranca\\Http\\Controllers\\LogssController',
+                'func_label' => 'Logs',
+                'func_tipo' => 'Controller',
+                'func_acesso_menu' => 1,
+                'func_icon' => 'bi bi-circle',
+                'func_rota_padrao' => 'seguranca::logs.index',
+            ]
         ]);
     }
 }

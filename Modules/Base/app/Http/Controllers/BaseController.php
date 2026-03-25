@@ -5,6 +5,7 @@ namespace Modules\Base\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Modules\Seguranca\Logging\BaseLog;
 
 class BaseController extends Controller
 {
@@ -90,7 +91,8 @@ class BaseController extends Controller
         $this->validaRoles($request, $this->getModel());
         $this->getModel()->create($dados);
 
-        //BaseLog::info($request, json_encode($dados) );
+        BaseLog::info($request, json_encode($dados) );
+        
         return redirect()->route($this->getRota().'.index')->with('message', [
             'type' => 'success',
             'text' => 'Cadastro realizado com sucesso'
@@ -148,7 +150,7 @@ class BaseController extends Controller
             'Novo' => $request->all()
         ];
 
-        //BaseLog::info($request, json_encode($log) );
+        BaseLog::info($request, json_encode($log) );
 
         if($request->get('_dataType') == 'json'){
             return $this->getResponseJson([
@@ -177,7 +179,7 @@ class BaseController extends Controller
 
             $dados->delete();
 
-            //BaseLog::info($this->request, 'Realizando Exclusão ID: '.$id);
+            BaseLog::info($this->request, 'Realizando Exclusão ID: '.$id);
 
             $mensagem = 'Exclusão realizada com sucesso.';
             $type = 'success';

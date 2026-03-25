@@ -163,6 +163,12 @@ class Usuarios extends Authenticatable
         return $this->belongsToMany(\Modules\Seguranca\Models\Sistemas::class, 'seg_sistemas_usuarios', 'usr_id', 'sis_id');
     }
 
+    /** Relação de que um sistema possui varios logs 1:N */
+    public function logs()
+    {
+        return $this->hasMany(\Modules\Seguranca\Models\Logs::class, 'usr_id');
+    }
+
     /**
      * Este metodo atualiza os sistemas do usuario de acordo com os
      * papeis cadastrados pra ele

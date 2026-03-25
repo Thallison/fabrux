@@ -177,6 +177,12 @@ class SegPerfilPadraoSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => null,
             ],
+            [
+                'priv_id' => 25,
+                'papel_id' => 1,
+                'created_at' => now(),
+                'updated_at' => null,
+            ],
         ]);
 
         DB::table('seg_usuarios_papeis')->insert([

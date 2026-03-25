@@ -218,6 +218,16 @@ class SegPrivilegiosSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => null,
             ],
+
+            //Logs
+            [
+                'priv_id' => 25,
+                'func_id' => 4,
+                'priv_label' => 'Listar logs',
+                'priv_action' => 'index',
+                'created_at' => now(),
+                'updated_at' => null,
+            ],
         ]);
     }
 }

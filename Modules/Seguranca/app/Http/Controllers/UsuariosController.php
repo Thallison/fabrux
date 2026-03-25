@@ -9,6 +9,7 @@ use Modules\Seguranca\Models\Usuarios;
 use Modules\Seguranca\Traits\UsuariosTraits;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Modules\Seguranca\Logging\BaseLog;
 
 class UsuariosController extends BaseController
 {
@@ -41,7 +42,7 @@ class UsuariosController extends BaseController
 
         $this->getModel()->cadastraUsuario($dados);
 
-        //BaseLog::info($request, json_encode($dados) );
+        BaseLog::info($request, json_encode($dados) );
 
         return redirect()->route($this->getRota().'.index')->with('message', [
             'type' => 'success',
@@ -86,7 +87,7 @@ class UsuariosController extends BaseController
             'Novo' => $request->all()
         ];
 
-        //BaseLog::info($request, json_encode($log) );
+        BaseLog::info($request, json_encode($log) );
 
         return redirect()->route($this->getRota().'.index')->with('message', [
             'type' => 'success',
@@ -103,7 +104,7 @@ class UsuariosController extends BaseController
             $dados->sistemasUsuario()->detach();
             $dados->delete();
 
-            //BaseLog::info($this->request, 'Realizando Exclusão ID: '.$id);
+            BaseLog::info($this->request, 'Realizando Exclusão ID: '.$id);
 
             $mensagem = 'Exclusão realizada com sucesso.';
             $type = 'success';
