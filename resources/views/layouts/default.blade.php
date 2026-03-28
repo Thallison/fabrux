@@ -39,7 +39,7 @@
           <div id="content_area" class="container-fluid">
             
             @if(session('message'))
-            <div class="alert alert-{{ session('message.type') }} flash-msg">
+            <div class="alert alert-{{ session('message.type') }} alert-dismissible fade show flash-msg">
                 {{ session('message.text') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>

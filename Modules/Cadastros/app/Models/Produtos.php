@@ -36,6 +36,11 @@ class Produtos extends BaseModel
         'prod_tempo_estimado', 'created_at'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y H:i:s',
+        'updated_at' => 'datetime:d/m/Y H:i:s',
+    ];
+
     /**
      * Define as roles da entidade
      *

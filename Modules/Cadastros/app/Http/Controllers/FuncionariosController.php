@@ -3,15 +3,11 @@
 namespace Modules\Cadastros\Http\Controllers;
 
 use Modules\Base\Http\Controllers\BaseController;
-use Illuminate\Http\Request;
-use Modules\Seguranca\Logging\BaseLog;
-use Modules\Base\Traits;
 use Modules\Base\Traits\BaseUtils;
 
 class FuncionariosController extends BaseController
 {
     use BaseUtils;
-
     
     /**
      * Metodo para tratar dados que foram enviados via created
