@@ -1,0 +1,11 @@
+{
+    "name": "Procucao",
+    "alias": "procucao",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Procucao\\Providers\\ProcucaoServiceProvider"
+    ],
+    "files": []
+}
