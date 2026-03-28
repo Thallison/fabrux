@@ -86,8 +86,10 @@ class BaseController extends Controller
       */
     public function store(Request $request) 
     {
-        $dados = $this->processesDataStore($request->all());
         $this->validaRoles($request, $this->getModel());
+
+        $dados = $this->processesDataStore($request->all());
+        
         $this->getModel()->create($dados);
 
         BaseLog::info($request, json_encode($dados) );
