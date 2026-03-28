@@ -70,11 +70,11 @@
                                 data-formatter="App.formatters.boolean" >
                                 {{ $model->getAttributeLabel('func_acesso_menu') }}
                             </th>
-                            @can(['Editar funcionalidades', 'Excluir Funcionalidades'])
+                            @canany(['Editar funcionalidades', 'Excluir Funcionalidades'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
-                            @endcan
+                            @endcanany
                         </tr>
                     </thead>
                 </table>

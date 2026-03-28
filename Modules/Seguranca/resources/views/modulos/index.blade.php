@@ -98,11 +98,11 @@
                             <th data-field='mod_icone'>
                                 {{ $model->getAttributeLabel('mod_icone') }}
                             </th>
-                            @can(['Editar Módulos', 'Excluir Módulos'])
+                            @canany(['Editar Módulos', 'Excluir Módulos'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
-                            @endcan
+                            @endcanany
                         </tr>
                     </thead>
                 </table>

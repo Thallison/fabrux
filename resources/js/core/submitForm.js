@@ -30,6 +30,10 @@ App.submitForm = function(options = {}) {
                 if(options.table){
                     $('#'+options.table).bootstrapTable('refresh');
                 }
+
+                if(response.message){
+                    App.message(response.message, response.type || "success");
+                }
             }
 
         }

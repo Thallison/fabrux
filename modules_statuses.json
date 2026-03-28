@@ -1,4 +1,7 @@
 {
     "Base": true,
-    "Seguranca": true
+    "Seguranca": true,
+    "Cadastros": true,
+    "Procucao": true,
+    "Relatorios": true
 }

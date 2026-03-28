@@ -51,7 +51,7 @@
                             <th data-field='email' data-sortable="true">
                                 {{ $model->getAttributeLabel('email') }}
                             </th>
-                            <th data-field='usr_status' data-sortable="true" data-formatter="tipoMensagem">
+                            <th data-field='usr_status' data-sortable="true" data-formatter="App.tipoMensagem">
                                 {{ $model->getAttributeLabel('usr_status') }}
                             </th>
                             <th data-field='usr_dt_criacao'>
@@ -79,25 +79,6 @@
 
 @push('scripts')
 <script>
-
-    function tipoMensagem (value, row, index)
-    {
-        let msg;
-        switch (value) {
-            case 1:
-                msg = '<span class="badge bg-success">Ativo</span>';
-                break;
-            case 0:
-                msg = '<span class="badge bg-danger">Inativo</span>';
-                break;
-            default:
-                msg = '<span class="badge"> </span>';
-                break;
-        }
-
-        return msg;
-    }
-
     /*adicionar botões de ações*/
     function TableActions(value, row, index) {
 

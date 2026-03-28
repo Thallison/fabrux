@@ -86,8 +86,7 @@ class BaseController extends Controller
       */
     public function store(Request $request) 
     {
-        $dados = $request->all();
-
+        $dados = $this->processesDataStore($request->all());
         $this->validaRoles($request, $this->getModel());
         $this->getModel()->create($dados);
 
@@ -143,16 +142,18 @@ class BaseController extends Controller
 
         $this->validaRoles($request, $retEntity);
 
-        $retEntity->update($request->all());
+        $dados = $this->processesDataUpdate($request->all());
+
+        $retEntity->update($dados);
 
         $log = [
             'Atual' => $dadoAtual,
-            'Novo' => $request->all()
+            'Novo' => $dados
         ];
 
         BaseLog::info($request, json_encode($log) );
 
-        if($request->get('_dataType') == 'json'){
+        if($request->input('_dataType') == 'json'){
             return $this->getResponseJson([
                 'message' => 'Registro editado com sucesso.',
                 'type' => 'success'
@@ -334,5 +335,21 @@ class BaseController extends Controller
     protected function getAttributesView()
     {
         return [];
+    }
+
+    /**
+     * Este metodo tem por finalidade tratar quaisquer informação no objeto antes de salvar
+     */
+    protected function processesDataStore(array $data = [])
+    {
+        return $data;
+    }
+
+    /**
+     * Este metodo tem por finalidade tratar quaisquer informação no objeto antes de editar
+     */
+    protected function processesDataUpdate(array $data = [])
+    {
+        return $data;
     }
 }

@@ -57,11 +57,11 @@
                             <th data-field='updated_at' data-sortable="true">
                                 {{ $model->getAttributeLabel('papel_dt_alteracao') }}
                             </th>
-                            @can(['Editar Papeis', 'Excluir papeis'])
+                            @canany(['Editar Papeis', 'Excluir papeis'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
-                            @endcan
+                            @endcanany
                         </tr>
                     </thead>
                 </table>

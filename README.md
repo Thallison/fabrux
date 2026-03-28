@@ -1,4 +1,4 @@
-# Laravel-base-web
+# Fabrux
 
 ## Sobre projeto base feito em Laravel
 
