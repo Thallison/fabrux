@@ -162,7 +162,7 @@
                             <th data-field='created_at'>
                                 {{ $model->getAttributeLabel('created_at') }}
                             </th>
-                            @canany(['Editar Produções', 'Excluir Produções'])
+                            @canany(['Editar Produção', 'Excluir Produção'])
                             <th data-formatter="TableActions" class="w-10">
                                 {{ __('Ações') }}
                             </th>
@@ -180,7 +180,7 @@
 <script>
     function TableActions(value, row, index) {
         let editar = excluir = '';
-        let id = row['producao_id'];
+        let id = row['produ_id'];
 
         let urlEdit = "{{ route('producao::producoes.show', ['produco' => ':id']) }}";
         urlEdit = urlEdit.replace(":id", id);
@@ -188,14 +188,14 @@
         let urlDel = "{{ route('producao::producoes.destroy', ['produco' => ':id']) }}";
         urlDel = urlDel.replace(":id", id);
 
-        @can('Editar Produções')
+        @can('Editar Produção')
         editar = '<a class="btn btn-outline-info btn-sm"'
                     +'id="editarProd_' + id + '" data-action="modal-editar-producao" href="#" data-url="'+urlEdit+'" title="{{ __('Editar') }}" >'
                 +'<i class="bi bi-pencil-square"></i>'
                 +'</a> ';
         @endcan
 
-        @can('Excluir Produções')
+        @can('Excluir Produção')
         excluir = '<a class="btn btn-outline-danger btn-sm"'
                     +'data-method="DELETE"'
                     +'id="deleteProd_' + id + '" data-action="excluir-producao" data-table="gridTable" href="#" data-url="'+urlDel+'" title="{{ __('Excluir') }}" >'

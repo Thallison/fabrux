@@ -20,7 +20,20 @@ class ProducoesController extends BaseController
             'produtos' => Produtos::where('prod_ativo', true)->orderBy('prod_nome', 'ASC')->get(['prod_id', 'prod_nome']),
             'funcionarios' => Funcionarios::where('fun_ativo', true)->orderBy('fun_nome', 'ASC')->get(['fun_id', 'fun_nome']),
             'ranking' => $this->getRanking(),
+            'e' => $this
         );
+    }
+
+    public function update(Request $request, $id)
+    {
+        $retEntity = $this->getModel()->findData($id);
+
+        $request->merge([
+            'fun_id' => $retEntity->fun_id,
+            'prod_id' => $retEntity->prod_id,
+        ]);
+
+        return parent::update($request, $id);
     }
 
     public function searchProdutos(Request $request)
