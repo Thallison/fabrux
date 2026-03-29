@@ -2,6 +2,6 @@
     "Base": true,
     "Seguranca": true,
     "Cadastros": true,
-    "Procucao": true,
-    "Relatorios": true
+    "Relatorios": true,
+    "Producao": true
 }

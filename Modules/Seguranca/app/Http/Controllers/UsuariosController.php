@@ -124,6 +124,7 @@ class UsuariosController extends BaseController
 
     public function atualizaSenha(Request $request)
     {
+        /** @var \Modules\Seguranca\Models\Usuarios $usuario */
         $usuario = Auth::user();
         $dados = $request->all();
 

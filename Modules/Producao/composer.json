@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/procucao",
+    "name": "nwidart/producao",
     "description": "",
     "authors": [
         {
@@ -17,14 +17,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Procucao\\": "app/",
-            "Modules\\Procucao\\Database\\Factories\\": "database/factories/",
-            "Modules\\Procucao\\Database\\Seeders\\": "database/seeders/"
+            "Modules\\Producao\\": "app/",
+            "Modules\\Producao\\Database\\Factories\\": "database/factories/",
+            "Modules\\Producao\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Modules\\Procucao\\Tests\\": "tests/"
+            "Modules\\Producao\\Tests\\": "tests/"
         }
     }
 }

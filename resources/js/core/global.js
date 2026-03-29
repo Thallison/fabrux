@@ -27,6 +27,9 @@ App.tipoMensagem = function(value, row, index)
 }
 
 App.segundosParaTime = function(segundos) {
+    if(segundos == null)
+        return '-';
+
     const horas = Math.floor(segundos / 3600);
     const minutos = Math.floor((segundos % 3600) / 60);
 

@@ -1,21 +1,21 @@
 <?php
 
-namespace Modules\Procucao\Providers;
+namespace Modules\Producao\Providers;
 
 use Nwidart\Modules\Support\ModuleServiceProvider;
 use Illuminate\Console\Scheduling\Schedule;
 
-class ProcucaoServiceProvider extends ModuleServiceProvider
+class ProducaoServiceProvider extends ModuleServiceProvider
 {
     /**
      * The name of the module.
      */
-    protected string $name = 'Procucao';
+    protected string $name = 'Producao';
 
     /**
      * The lowercase version of the module name.
      */
-    protected string $nameLower = 'procucao';
+    protected string $nameLower = 'producao';
 
     /**
      * Command classes to register.

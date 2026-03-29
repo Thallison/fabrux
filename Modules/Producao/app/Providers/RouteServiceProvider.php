@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Procucao\Providers;
+namespace Modules\Producao\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    protected string $name = 'Procucao';
+    protected string $name = 'Producao';
 
     /**
      * Called before routes are registered.
