@@ -1,12 +1,12 @@
 <footer class="app-footer">
     <!--begin::To the end-->
-    <div class="float-end d-none d-sm-inline">Anything you want</div>
+    <div class="float-end d-none d-sm-inline">
+       <! -- qualquer coisa -->
+    </div>
     <!--end::To the end-->
     <!--begin::Copyright-->
     <strong>
-        Copyright &copy; 2014-2025&nbsp;
-        <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+        Todos os direitos reservados &copy; <a href="https://fabrux.com.br" class="text-decoration-none">Fabrux</a>.  2026-{{ date('Y') }}&nbsp;
     </strong>
-    All rights reserved.
     <!--end::Copyright-->
 </footer>

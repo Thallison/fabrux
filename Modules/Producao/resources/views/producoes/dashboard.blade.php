@@ -5,15 +5,7 @@
 @section('content')
 
 <div class="row mb-4">
-    <div class="col-md-12 d-flex justify-content-end">
-        <a href="{{ route('producao::producoes.index') }}" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i> Voltar para Produção
-        </a>
-    </div>
-</div>
-
-<div class="row mb-4">
-    <div class="col-lg-3 col-md-6 mb-3">
+    <div class="col-lg-3 col-md-6">
         <div class="small-box bg-primary">
             <div class="inner">
                 <h3>{{ number_format($totalToday, 0, ',', '.') }}</h3>
@@ -25,7 +17,7 @@
         </div>
     </div>
 
-    <div class="col-lg-3 col-md-6 mb-3">
+    <div class="col-lg-3 col-md-6">
         <div class="small-box bg-success">
             <div class="inner">
                 <h3>{{ number_format($todayAveragePerHour, 2, ',', '.') }}</h3>
@@ -152,7 +144,7 @@
             <div class="card-body">
                 <p><strong>Total acumulado:</strong> {{ number_format($totalMonth, 0, ',', '.') }}</p>
                 <p><strong>Média diária:</strong> {{ number_format($averageDailyMonth, 2, ',', '.') }}</p>
-                <p><strong>Dias restantes:</strong> {{ $daysRemaining }}</p>
+                <p><strong>Dias restantes:</strong> {{ number_format($daysRemaining, 0, ',', '.') }}</p>
                 <p><strong>Previsão de fim de mês:</strong> {{ number_format($projectedMonth, 0, ',', '.') }}</p>
                 <div class="progress mb-3" style="height: 1rem;">
                     <div class="progress-bar bg-success" role="progressbar" style="width: {{ $monthProgress }}%;" aria-valuenow="{{ $monthProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
