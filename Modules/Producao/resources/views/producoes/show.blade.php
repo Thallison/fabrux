@@ -74,7 +74,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label">{{ $model->getAttributeLabel('produ_tempo_gasto') }}</label>
-                                <input class="form-control" type="time" name="tempo_gasto" value="{{ $e->segundosParaTime($dados->produ_tempo_gasto) }}" />
+                                <input class="form-control" type="time" name="produ_tempo_gasto" value="{{ $e->segundosParaTime($dados->produ_tempo_gasto) }}" />
                             </div>
                         </div>
                     </div>

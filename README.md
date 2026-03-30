@@ -28,3 +28,34 @@ O modulo Seguranca trata as questões de segurança do sistemas, que são cadast
 - Toda Nome de controller e model criado deverão ser iguais e no plural 
 
 
+Explicação de cada gráfico
+1. Produção nos últimos 7 dias
+Tipo: gráfico de linha
+O que mostra: quantidade total de peças produzidas em cada dia dos últimos 7 dias
+Para que serve: identifica tendência de alta/baixa no curto prazo e mostra se a produção está consistente ou caiu em dias recentes
+2. Produção por hora
+Tipo: gráfico de barras
+O que mostra: quantidade produzida em cada hora do dia (0h a 23h), com base nos registros que têm produ_hora
+Para que serve: revela quais turnos ou horários são mais produtivos e onde há perda de ritmo durante o dia
+3. Produção mensal
+Tipo: gráfico de barras
+O que mostra: quantidade total produzida em cada mês dos últimos 6 meses
+Para que serve: compara a evolução da produção mensal, ajuda a detectar sazonalidade e avaliar se o desempenho geral está melhorando ou piorando
+4. Projeção do mês
+Não é um gráfico, mas é um painel importante
+O que calcula: média diária do mês atual e usa esse valor para estimar a produção até o final do mês
+Para que serve: dá uma previsão rápida de “onde chegaremos se mantivermos o ritmo atual”
+5. Tabela de eficiência de funcionários
+Também não é gráfico, mas é um indicador chave
+O que mostra: para cada funcionário com tempo registrado, a produção total, a taxa de produção por hora e o tempo médio por peça
+Para que serve: identifica quem está mais eficiente e quem está demorando mais por unidade produzida
+6. Ranking de hoje
+Também é um componente de lista
+O que mostra: os funcionários com maior quantidade produzida no dia
+Para que serve: destaca quem está liderando a produção no dia e quem está abaixo do esperado
+Esses gráficos juntos fornecem:
+
+visão imediata do dia atual (Principal)
+análise de ritmo horário (Ritmo)
+visão de tendência e comparação (Comparativo)
+projeção de meta mensal (Projeção)

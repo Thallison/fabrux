@@ -3021,16 +3021,16 @@
         },
         {
             "name": "laravel-lang/starter-kits",
-            "version": "1.10.2",
+            "version": "1.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/starter-kits.git",
-                "reference": "5206154ce102ec73116f79580677e4ffc7fcf80d"
+                "reference": "cc460c8295568a73a6525de624e09d5976d24fe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/starter-kits/zipball/5206154ce102ec73116f79580677e4ffc7fcf80d",
-                "reference": "5206154ce102ec73116f79580677e4ffc7fcf80d",
+                "url": "https://api.github.com/repos/Laravel-Lang/starter-kits/zipball/cc460c8295568a73a6525de624e09d5976d24fe8",
+                "reference": "cc460c8295568a73a6525de624e09d5976d24fe8",
                 "shasum": ""
             },
             "require": {
@@ -3082,7 +3082,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Laravel-Lang/starter-kits/issues",
-                "source": "https://github.com/Laravel-Lang/starter-kits/tree/1.10.2"
+                "source": "https://github.com/Laravel-Lang/starter-kits/tree/1.10.3"
             },
             "funding": [
                 {
@@ -3094,7 +3094,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2026-03-24T15:20:01+00:00"
+            "time": "2026-03-29T11:52:22+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -8465,16 +8465,16 @@
     "packages-dev": [
         {
             "name": "brianium/paratest",
-            "version": "v7.19.2",
+            "version": "v7.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9"
+                "reference": "81c80677c9ec0ed4ef16b246167f11dec81a6e3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9",
-                "reference": "66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/81c80677c9ec0ed4ef16b246167f11dec81a6e3d",
+                "reference": "81c80677c9ec0ed4ef16b246167f11dec81a6e3d",
                 "shasum": ""
             },
             "require": {
@@ -8498,7 +8498,7 @@
                 "ext-pcntl": "*",
                 "ext-pcov": "*",
                 "ext-posix": "*",
-                "phpstan/phpstan": "^2.1.40",
+                "phpstan/phpstan": "^2.1.44",
                 "phpstan/phpstan-deprecation-rules": "^2.0.4",
                 "phpstan/phpstan-phpunit": "^2.0.16",
                 "phpstan/phpstan-strict-rules": "^2.0.10",
@@ -8542,7 +8542,7 @@
             ],
             "support": {
                 "issues": "https://github.com/paratestphp/paratest/issues",
-                "source": "https://github.com/paratestphp/paratest/tree/v7.19.2"
+                "source": "https://github.com/paratestphp/paratest/tree/v7.20.0"
             },
             "funding": [
                 {
@@ -8554,7 +8554,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2026-03-09T14:33:17+00:00"
+            "time": "2026-03-29T15:46:14+00:00"
         },
         {
             "name": "doctrine/deprecations",

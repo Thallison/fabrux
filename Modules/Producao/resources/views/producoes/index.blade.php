@@ -6,7 +6,7 @@
 
 @can('Cadastrar Produção')
 <div class="card card-default mb-5">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title">{{ __('Registrar Produção') }}</h5>
     </div>
     <form action="{{ route('producao::producoes.store') }}" method="POST">
