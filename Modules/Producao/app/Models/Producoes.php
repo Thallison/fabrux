@@ -99,4 +99,9 @@ class Producoes extends BaseModel
                 ->orWhereRaw("DATE_FORMAT(pro_producoes.produ_data, '%d/%m/%Y') like ?", ["%{$search}%"]);
         });
     }
+
+    protected function searchOrderby($query, $sort, $order)
+    {
+        return $query->orderBy($sort, 'desc');
+    }
 }
