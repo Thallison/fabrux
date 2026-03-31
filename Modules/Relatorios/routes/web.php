@@ -6,7 +6,7 @@ use Modules\Relatorios\Http\Controllers\RelatoriosController;
 Route::prefix('relatorios')->name('relatorios::')->group(function () {
 
     //Rotas autenticadas mas e precisam de permissão
-    Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['auth', 'verified', 'acl'])->group(function () {
         Route::get('producao-diaria', [RelatoriosController::class, 'productionDaily'])
             ->name('producao.diaria');
 
