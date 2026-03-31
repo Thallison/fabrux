@@ -88,7 +88,7 @@
                                                                                     {{ $func1->func_label }}
                                                                                     </button>
 
-                                                                                    <div class="collapse mt-1" id="#collapsible-func1{{ $func1->func_id }}">
+                                                                                    <div class="collapse mt-1" id="collapsible-func1{{ $func1->func_id }}">
                                                                                         <div class="card card-body">
                                                                                         @forelse ($funcFilhasN2['func'][$func1->func_id] as $func2)
                                                                                         @php

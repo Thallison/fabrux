@@ -202,7 +202,7 @@ class Funcionalidades extends BaseModel
                     ->Where('seg_usuarios_papeis.usr_id', '=', $usrId)
                     ->Where('seg_funcionalidades.mod_id', '=', $modulo)
                     ->where('seg_funcionalidades.func_acesso_menu', '=', 1)
-                    ->whereNull('seg_funcionalidades.func_id_pai')
+                    //->whereNull('seg_funcionalidades.func_id_pai')
                     ->groupBy('seg_funcionalidades.func_id')
                     ->orderBy('seg_funcionalidades.func_label', 'ASC')
                     ->get();

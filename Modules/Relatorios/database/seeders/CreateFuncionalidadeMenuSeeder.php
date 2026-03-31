@@ -44,7 +44,7 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
                 'func_icon' => 'bi bi-circle',
-                'func_rota_padrao' => 'relatorios::productionDaily',
+                'func_rota_padrao' => 'relatorios::producao.diaria',
             ],
             [
                 'func_id' => 13,
@@ -55,7 +55,7 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
                 'func_icon' => 'bi bi-circle',
-                'func_rota_padrao' => 'relatorios::productivityEmployee',
+                'func_rota_padrao' => 'relatorios::produtividade.funcionario',
             ],
             [
                 'func_id' => 14,
@@ -66,7 +66,7 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
                 'func_icon' => 'bi bi-circle',
-                'func_rota_padrao' => 'relatorios::productionProduct',
+                'func_rota_padrao' => 'relatorios::producao.produto',
             ],
             [
                 'func_id' => 15,
@@ -77,7 +77,7 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
                 'func_icon' => 'bi bi-circle',
-                'func_rota_padrao' => 'relatorios::Comparativo',
+                'func_rota_padrao' => 'relatorios::comparativo',
             ],
             [
                 'func_id' => 16,
@@ -88,7 +88,7 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
                 'func_tipo' => 'Controller',
                 'func_acesso_menu' => 1,
                 'func_icon' => 'bi bi-circle',
-                'func_rota_padrao' => 'relatorios::projection',
+                'func_rota_padrao' => 'relatorios::projecao',
             ],
 
         ]);

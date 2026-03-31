@@ -10,8 +10,8 @@
             <p class="mb-0">Compare o desempenho atual com o período anterior.</p>
         </div>
         <div>
-            <a href="{{ route('relatorios::relatorios.comparativo', ['export' => 'pdf']) }}" class="btn btn-outline-secondary me-2">PDF</a>
-            <a href="{{ route('relatorios::relatorios.comparativo', ['export' => 'excel']) }}" class="btn btn-outline-secondary">Excel</a>
+            <a href="{{ route('relatorios::comparativo', ['export' => 'pdf']) }}" class="btn btn-outline-secondary me-2">PDF</a>
+            <a href="{{ route('relatorios::comparativo', ['export' => 'excel']) }}" class="btn btn-outline-secondary">Excel</a>
         </div>
     </div>
 </div>
@@ -20,7 +20,7 @@
     <div class="col-md-6">
         <div class="card h-100">
             <div class="card-body">
-                <h6 class="card-title">Semana</h6>
+                <h6 class="card-title">Semana</h6><br>
                 <p class="mb-1">Atual: <strong>{{ number_format($semanaAtual, 0, ',', '.') }}</strong></p>
                 <p class="mb-0">Anterior: <strong>{{ number_format($semanaAnterior, 0, ',', '.') }}</strong></p>
             </div>
@@ -29,7 +29,7 @@
     <div class="col-md-6">
         <div class="card h-100">
             <div class="card-body">
-                <h6 class="card-title">Mês</h6>
+                <h6 class="card-title">Mês</h6><br>
                 <p class="mb-1">Atual: <strong>{{ number_format($mesAtual, 0, ',', '.') }}</strong></p>
                 <p class="mb-0">Anterior: <strong>{{ number_format($mesAnterior, 0, ',', '.') }}</strong></p>
             </div>
