@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Base\Helpers\menu;
+namespace Modules\Base\Helpers\Menu;
 
 use Illuminate\Support\Facades\Auth;
 use Modules\Seguranca\Models\Funcionalidades;
