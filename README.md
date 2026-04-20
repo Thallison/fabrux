@@ -1,43 +1,72 @@
+
 # Fabrux
 
-## Sobre projeto base feito em Laravel
+Base Laravel para sistemas modulares.
 
-A ideia desse sistema é criar uma base simples para a implementação de outros sistemas utilizando o laravel. Versão atual 12
-Foi desenvolvido todo o controle para login de usuário (autenticação), criação de sistemas, modulos, funcionalidades, privilegios e perfil de usuário, além da implementação basica de log.
-Para este projeto foi utilizado o laravel modules [laravel modules](https://github.com/nWidart/laravel-modules) onde temos a pasta modules com dois modulos criados o Base e Seguranca.
-A ideia é tratar tudo que for de utilização de todos ou seja a base de funcionamento do sistema como por exemplo controller base, model base, entre outros... no modulo Base.
-O modulo Seguranca trata as questões de segurança do sistemas, que são cadastro de usuario, funcionalidade entre outros.
+## Índice
 
+- [Visão Geral](#visão-geral)
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Documentação](#documentação)
+- [Contribuindo](#contribuindo)
+- [Testes](#testes)
+- [Licença](#licença)
 
-## Instalação do projeto
+## Visão Geral
 
-- Após realizar o clone do projeto necessário configurar o arquivo .env com as conexões do banco.
-- Instalar e atualizar o projeto via composer, para que seja instalado as dependencias
-- Instalar e atualizar o projeto com node (npm install) para que seja instalado as dependencias
-- Executar as migration - php artisan module:migrate Seguranca
-- Executar os seeds - php artisan module:seed Seguranca
-- Por padrão já vem 1 usuário admin@email.com com a senha 123456
+Este sistema serve como base para implementação de outros sistemas em Laravel (versão 12), já incluindo autenticação, controle de módulos, funcionalidades, privilégios, perfis de usuário e log básico.
 
+Utiliza [laravel-modules](https://github.com/nWidart/laravel-modules) para modularização. Os módulos principais são:
+- **Base**: funcionalidades comuns e reutilizáveis (controller/model base, helpers, etc.)
+- **Seguranca**: autenticação, cadastro de usuários, permissões, etc.
 
-## Padrões para desenvolvimento
+## Instalação
 
-- Para criação de models, controller, utilizar os comandos de criação utilizando o [laravel modules](https://github.com/nWidart/laravel-modules)
-- Toda controller deverá extender da controler base Modules, pois nele já foi implementado uma serie de funções e padrões para criação das telas => 'Modules\Base\Http\Controllers\BaseController'
-- Toda entidade(model) deverá extender do model base, pois nele já foi implementado uma serie de funções e padrões para criação das telas => 'Modules\Base\Models\BaseModel'
-- Para a listagem dos dados no grid o projeto está utilizando o [bootstrap-table](https://examples.bootstrap-table.com/)
-- Toda Nome de controller e model criado deverão ser iguais e no plural 
+1. Clone o repositório.
+2. Configure o `.env` com as conexões do banco.
+3. Instale dependências PHP: `composer install`
+4. Instale dependências JS: `npm install`
+5. Execute as migrations: `php artisan module:migrate Seguranca`
+6. Execute os seeds: `php artisan module:seed Seguranca`
+7. Usuário padrão: `admin@email.com` / senha: `123456`
 
+## Uso
 
-Explicação de cada gráfico
-1. Produção nos últimos 7 dias
-Tipo: gráfico de linha
-O que mostra: quantidade total de peças produzidas em cada dia dos últimos 7 dias
-Para que serve: identifica tendência de alta/baixa no curto prazo e mostra se a produção está consistente ou caiu em dias recentes
-2. Produção por hora
-Tipo: gráfico de barras
-O que mostra: quantidade produzida em cada hora do dia (0h a 23h), com base nos registros que têm produ_hora
-Para que serve: revela quais turnos ou horários são mais produtivos e onde há perda de ritmo durante o dia
-3. Produção mensal
+Rode o servidor local:
+
+```
+php artisan serve
+```
+
+## Documentação
+
+Veja a pasta [docs/](docs/) para:
+- Arquitetura do sistema
+- Guia de contribuição
+- Guia de estilo
+- Onboarding
+- Testes
+- FAQ
+- Uso do GitHub Copilot
+
+## Contribuindo
+
+Consulte [docs/contribuindo.md](docs/contribuindo.md).
+
+## Testes
+
+Como rodar os testes:
+
+```
+php artisan test --compact
+```
+
+Mais detalhes em [docs/testes.md](docs/testes.md).
+
+## Licença
+
+Veja [LICENSE.md](LICENSE.md).
 Tipo: gráfico de barras
 O que mostra: quantidade total produzida em cada mês dos últimos 6 meses
 Para que serve: compara a evolução da produção mensal, ajuda a detectar sazonalidade e avaliar se o desempenho geral está melhorando ou piorando
