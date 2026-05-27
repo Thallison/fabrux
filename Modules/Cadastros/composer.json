@@ -19,6 +19,7 @@
         "psr-4": {
             "Modules\\Cadastros\\": "app/",
             "Modules\\Cadastros\\Database\\Factories\\": "database/factories/",
+            "Modules\\Cadastros\\Database\\Migrations\\": "database/migrations/",
             "Modules\\Cadastros\\Database\\Seeders\\": "database/seeders/"
         }
     },

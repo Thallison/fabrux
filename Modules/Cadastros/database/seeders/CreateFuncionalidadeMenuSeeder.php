@@ -61,7 +61,7 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
                 'func_acesso_menu' => 1,
                 'func_icon' => 'bi bi-circle',
                 'func_rota_padrao' => 'cadastros::produtos.index',
-            ]
+            ],
         ]);
 
         DB::table('seg_privilegios')->insert([
@@ -168,6 +168,6 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => null,
             ],
-         ]);
+        ]);
     }
 }

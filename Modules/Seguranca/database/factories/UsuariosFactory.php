@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Modules\Seguranca\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -10,7 +10,7 @@ use Modules\Seguranca\Models\Usuarios;
 /**
  * @extends Factory<Usuarios>
  */
-class UserFactory extends Factory
+class UsuariosFactory extends Factory
 {
     /**
      * The current password being used by the factory.

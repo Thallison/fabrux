@@ -3,17 +3,18 @@
 namespace Modules\Seguranca\Models;
 
 use DateTime;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Modules\Seguranca\Database\Factories\UsuariosFactory;
 
 class Usuarios extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     public $timestamps = false;
 
-     /**
+    /**
      * The table associated with the model.
      *
      * @var string
@@ -27,18 +28,17 @@ class Usuarios extends Authenticatable
      */
     protected $primaryKey = 'usr_id';
 
-
     protected $fillable = [
         'usr_login', 'email', 'usr_name', 'usr_status', 'password',
-        'usr_dt_ultimo_acesso', 'usr_dt_alteracao', 'usr_dt_criacao'
+        'usr_dt_ultimo_acesso', 'usr_dt_alteracao', 'usr_dt_criacao',
     ];
 
     protected $hidden = [
-        'password'
+        'password',
     ];
 
     protected $casts = [
-        //'birthday'  => 'date:Y-m-d',
+        // 'birthday'  => 'date:Y-m-d',
         'usr_dt_ultimo_acesso' => 'datetime:d/m/Y H:i:s',
         'usr_dt_alteracao' => 'datetime:d/m/Y H:i:s',
         'usr_dt_criacao' => 'datetime:d/m/Y H:i:s',
@@ -52,7 +52,7 @@ class Usuarios extends Authenticatable
             'senha' => 'max:255',
             'usr_name' => 'required|max:100',
             'email' => "required|email|max:255|unique:seg_usuarios,email,{$this->usr_id},usr_id",
-            'usr_status' => 'required'
+            'usr_status' => 'required',
         ];
     }
 
@@ -77,7 +77,7 @@ class Usuarios extends Authenticatable
      */
     public function getAttributeLabel($key)
     {
-        if(method_exists($this, 'atribbutesLabel')){
+        if (method_exists($this, 'atribbutesLabel')) {
             return $this->atribbutesLabel()[$key];
         }
     }
@@ -104,12 +104,12 @@ class Usuarios extends Authenticatable
     /**
      * Utilizado para alterar o select utilizado na grid bootstrap table
      *
-     * @param object $data
+     * @param  object  $data
      * @return void
      */
     protected function searchSelect($query, $search = null)
     {
-        if (!$search || empty($this->searchable)) {
+        if (! $search || empty($this->searchable)) {
             return $query;
         }
 
@@ -123,27 +123,23 @@ class Usuarios extends Authenticatable
     /**
      * Utilizado para alterar o join utilizado na grid bootstrap table
      *
-     * @param object $query
+     * @param  object  $query
      * @return void
      */
-    protected function searchJoin($query)
-    {
-    }
+    protected function searchJoin($query) {}
 
     /**
      * Utilizado para definir as restrições where
      *
-     * @param object $query utilizado para a query da grid
+     * @param  object  $query  utilizado para a query da grid
      * @return void
      */
-    protected function searchWhere($query)
-    {
-    }
+    protected function searchWhere($query) {}
 
     /**
      * utilizado para ordenar os registros
      *
-     * @param object $query
+     * @param  object  $query
      * @return void
      */
     protected function searchOrderby($query, $sort, $order)
@@ -154,41 +150,42 @@ class Usuarios extends Authenticatable
     /** Relação de muitos pra muitos entre papel e privilegio */
     public function papeisUsuario()
     {
-        return $this->belongsToMany(\Modules\Seguranca\Models\Papeis::class,'seg_usuarios_papeis', 'usr_id', 'papel_id');
+        return $this->belongsToMany(Papeis::class, 'seg_usuarios_papeis', 'usr_id', 'papel_id');
     }
 
     /** Relação de muitos pra muitos entre sistemas e usuario */
     public function sistemasUsuario()
     {
-        return $this->belongsToMany(\Modules\Seguranca\Models\Sistemas::class, 'seg_sistemas_usuarios', 'usr_id', 'sis_id');
+        return $this->belongsToMany(Sistemas::class, 'seg_sistemas_usuarios', 'usr_id', 'sis_id');
     }
 
     /** Relação de que um sistema possui varios logs 1:N */
     public function logs()
     {
-        return $this->hasMany(\Modules\Seguranca\Models\Logs::class, 'usr_id');
+        return $this->hasMany(Logs::class, 'usr_id');
     }
 
     /**
      * Este metodo atualiza os sistemas do usuario de acordo com os
      * papeis cadastrados pra ele
      *
-     * @return boolean
+     * @return bool
      */
     public function atualizaSistemasUsuario()
     {
-        if(!$this->usr_id){
+        if (! $this->usr_id) {
             return false;
         }
 
-        if($this->papeisUsuario()->get()->count()){
+        if ($this->papeisUsuario()->get()->count()) {
             $sistemas = [];
-            foreach ($this->papeisUsuario()->get() as $papel){
-                $sistemas[] = $papel->getSistemasPapeis();//papel é obrigado a ter sistemas
+            foreach ($this->papeisUsuario()->get() as $papel) {
+                $sistemas[] = $papel->getSistemasPapeis(); // papel é obrigado a ter sistemas
             }
             $this->sistemasUsuario()->sync($this->organizaSistema($sistemas));
+
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -197,9 +194,9 @@ class Usuarios extends Authenticatable
     private function organizaSistema(array $sistemas)
     {
         $arrSistema = [];
-        foreach($sistemas as $sistema){
-            foreach ($sistema as $sis){
-                if(!in_array($sis, $arrSistema)){
+        foreach ($sistemas as $sistema) {
+            foreach ($sistema as $sis) {
+                if (! in_array($sis, $arrSistema)) {
                     $arrSistema[] = $sis;
                 }
             }
@@ -211,12 +208,11 @@ class Usuarios extends Authenticatable
     /**
      * Cadastra usuario
      *
-     * @param array $dados
      * @return object
      */
     public function cadastraUsuario(array $dados)
     {
-        $dados['usr_dt_criacao'] = new DateTime();
+        $dados['usr_dt_criacao'] = new DateTime;
         $usuario = $this->create($dados);
         $usuario->papeisUsuario()->sync($dados['papeis']);
         $usuario->sistemasUsuario()->sync($dados['sistemas']);
@@ -227,9 +223,11 @@ class Usuarios extends Authenticatable
     /**Função para atualizar o usuário */
     public function atualizaUsuario(array $dados)
     {
-        if(!$this) return false;
+        if (! $this) {
+            return false;
+        }
 
-        $dados['usr_dt_alteracao'] = new \DateTime();
+        $dados['usr_dt_alteracao'] = new DateTime;
         $this->update($dados);
         $this->papeisUsuario()->sync($dados['papeis']);
         $this->sistemasUsuario()->sync($dados['sistemas']);
@@ -241,11 +239,20 @@ class Usuarios extends Authenticatable
      * Metodo para retornar os dados da entidade a ser procurada
      *
      * Sobreescrever esse metodo no model para tratar dados apenas do gestor atual
+     *
      * @param [type] $id
      * @return void
      */
     public function findData($id)
     {
         return $this->findOrFail($id);
+    }
+
+    /**
+     * Resolve a factory para o modelo
+     */
+    protected static function newFactory()
+    {
+        return UsuariosFactory::new();
     }
 }

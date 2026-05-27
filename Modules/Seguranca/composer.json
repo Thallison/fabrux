@@ -19,6 +19,7 @@
         "psr-4": {
             "Modules\\Seguranca\\": "app/",
             "Modules\\Seguranca\\Database\\Factories\\": "database/factories/",
+            "Modules\\Seguranca\\Database\\Migrations\\": "database/migrations/",
             "Modules\\Seguranca\\Database\\Seeders\\": "database/seeders/"
         }
     },

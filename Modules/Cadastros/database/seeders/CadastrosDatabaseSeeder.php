@@ -13,6 +13,7 @@ class CadastrosDatabaseSeeder extends Seeder
     {
         $this->call([
             CreateFuncionalidadeMenuSeeder::class,
+            CreateFuncionalidadeClientesMenuSeeder::class,
         ]);
     }
 }
