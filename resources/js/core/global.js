@@ -324,3 +324,54 @@ App.preencherEnderecoPorCep = function(cep, config = {}) {
 }
 
 App.defaultMessageDuration = 4000;
+
+App.maskMoney = function(value) {
+    const digits = String(value || '').replace(/\D/g, '');
+
+    if (!digits) {
+        return '';
+    }
+
+    const cents = Number.parseInt(digits, 10);
+
+    if (Number.isNaN(cents)) {
+        return '';
+    }
+
+    return (cents / 100).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+}
+
+App.bindMoneyMask = function() {
+    if (document.body.dataset.moneyMaskBound === '1') {
+        return;
+    }
+
+    document.body.dataset.moneyMaskBound = '1';
+
+    document.addEventListener('input', function(event) {
+        const input = event.target.closest('input[data-mask-money]');
+
+        if (!input) {
+            return;
+        }
+
+        input.value = App.maskMoney(input.value);
+    });
+
+    document.addEventListener('blur', function(event) {
+        const input = event.target.closest('input[data-mask-money]');
+
+        if (!input || !input.value.trim()) {
+            return;
+        }
+
+        input.value = App.maskMoney(input.value);
+    }, true);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    App.bindMoneyMask();
+});

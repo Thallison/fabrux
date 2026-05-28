@@ -52,19 +52,31 @@
 
                 <div class="col">
                     <div class='form-group'>
-                        <label class="form-label">{{ $model->getAttributeLabel('prod_ativo') }} <span class="text-danger">*</span></label>
-                        <select name="prod_ativo" class="form-select @error('prod_ativo') is-invalid @enderror" required>
-                            <option value="">{{ __('Selecione...') }}</option>
-                            <option value="1" {{ old('prod_ativo') == 1 ? 'selected' : '' }}>{{ __('Ativo') }}</option>
-                            <option value="0" {{ old('prod_ativo') === '0' ? 'selected' : '' }}>{{ __('Inativo') }}</option>
-                        </select>
-                        @error('prod_ativo')
+                        <label class="form-label">{{ $model->getAttributeLabel('prod_valor') }} <span class="text-danger">*</span></label>
+                        <input class="form-control @error('prod_valor') is-invalid @enderror" type="text" name="prod_valor" required placeholder="0,00" value="{{ old('prod_valor') }}" inputmode="decimal" data-mask-money />
+                        @error('prod_valor')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                 </div>
+
+                
+                <div class="col-6">
+                    <label class="form-label">{{ $model->getAttributeLabel('prod_ativo') }} <span class="text-danger">*</span></label>
+                    <select name="prod_ativo" class="form-select @error('prod_ativo') is-invalid @enderror" required>
+                        <option value="">{{ __('Selecione...') }}</option>
+                        <option value="1" {{ old('prod_ativo') == 1 ? 'selected' : '' }}>{{ __('Ativo') }}</option>
+                        <option value="0" {{ old('prod_ativo') === '0' ? 'selected' : '' }}>{{ __('Inativo') }}</option>
+                    </select>
+                    @error('prod_ativo')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                
             </div>
         </div>
         <div class="card-footer text-end">
@@ -115,6 +127,9 @@
                             <th data-field='prod_tempo_estimado' data-formatter="App.segundosParaTime">
                                 {{ $model->getAttributeLabel('prod_tempo_estimado') }}
                             </th>
+                            <th data-field='prod_valor' data-formatter="formatarValorProduto">
+                                {{ $model->getAttributeLabel('prod_valor') }}
+                            </th>
                             <th data-field='prod_ativo' data-formatter="App.tipoMensagem">
                                 {{ $model->getAttributeLabel('prod_ativo') }}
                             </th>
@@ -137,6 +152,19 @@
 
 @push('scripts')
 <script>
+    function formatarValorProduto(value) {
+        const numero = Number.parseFloat(value ?? 0);
+
+        if (Number.isNaN(numero)) {
+            return 'R$ 0,00';
+        }
+
+        return numero.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
+    }
+
     function TableActions(value, row, index) {
         let editar = excluir = '';
         let id = row['prod_id'];

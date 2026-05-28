@@ -2,10 +2,9 @@
 
 namespace Modules\Cadastros\Models;
 
-use Illuminate\Support\Facades\DB;
 use Modules\Base\Models\BaseModel;
 
-class Produtos extends BaseModel 
+class Produtos extends BaseModel
 {
     /**
      * The table associated with the model.
@@ -14,7 +13,7 @@ class Produtos extends BaseModel
      */
     protected $table = 'cad_produtos';
 
-     /**
+    /**
      * The primary key for the model.
      *
      * @var string
@@ -28,15 +27,16 @@ class Produtos extends BaseModel
      * @var array
      */
     protected $searchable = [
-        'prod_codigo','prod_nome',
+        'prod_codigo', 'prod_nome',
     ];
 
     protected $fillable = [
-        'prod_codigo','prod_nome', 
-        'prod_tempo_estimado', 'created_at'
+        'prod_codigo', 'prod_nome',
+        'prod_tempo_estimado', 'prod_valor', 'created_at',
     ];
 
     protected $casts = [
+        'prod_valor' => 'decimal:2',
         'created_at' => 'datetime:d/m/Y H:i:s',
         'updated_at' => 'datetime:d/m/Y H:i:s',
     ];
@@ -52,7 +52,8 @@ class Produtos extends BaseModel
             'prod_codigo' => "required|unique:cad_produtos,prod_codigo,{$this->prod_id},prod_id",
             'prod_nome' => 'required|max:255',
             'prod_tempo_estimado' => 'required',
-            'prod_ativo' => 'required'
+            'prod_valor' => ['required', 'regex:/^(\d{1,3}(\.\d{3})+|\d+)(,\d{1,2}|\.\d{1,2})?$/'],
+            'prod_ativo' => 'required',
         ];
     }
 
@@ -67,8 +68,9 @@ class Produtos extends BaseModel
             'prod_codigo' => __('Código'),
             'prod_nome' => __('Nome'),
             'prod_tempo_estimado' => __('Tempo estimado'),
+            'prod_valor' => __('Valor'),
             'prod_ativo' => __('Status'),
-            'created_at' => __('Data criação')
+            'created_at' => __('Data criação'),
         ];
     }
 }

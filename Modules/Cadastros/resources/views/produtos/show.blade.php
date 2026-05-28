@@ -52,6 +52,18 @@
 
                         <div class="col">
                             <div class='form-group'>
+                                <label class="form-label">{{ $model->getAttributeLabel('prod_valor') }} <span class="text-danger">*</span></label>
+                                <input class="form-control @error('prod_valor') is-invalid @enderror" type="text" name="prod_valor" required placeholder="0,00" value="{{ number_format((float) $dados->prod_valor, 2, ',', '.') }}" inputmode="decimal" data-mask-money />
+                                @error('prod_valor')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class='form-group'>
                                 <label class="form-label">{{ $model->getAttributeLabel('prod_ativo') }} <span class="text-danger">*</span></label>
                                 <select name="prod_ativo" class="form-select @error('prod_ativo') is-invalid @enderror" required>
                                     <option value="">{{ __('Selecione...') }}</option>
