@@ -171,6 +171,8 @@ Eventos registrados:
 - Numero de orcamento no formato ORC-ANO-SEQUENCIAL.
 - Status inicial: Rascunho.
 - Ao enviar por e-mail ou WhatsApp, status e atualizado para Enviado.
+- Link publico assinado do PDF expira no fim da validade do orçamento.
+- Se o orçamento ja estiver vencido, o envio por WhatsApp usa link de contingencia com duracao de 24 horas.
 
 ## Fluxo de Uso
 

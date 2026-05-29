@@ -347,6 +347,7 @@ class OrcamentosController extends Controller
     public function redirectWhatsapp(int $id)
     {
         $orcamento = Orcamento::query()->with(['cliente', 'itens'])->findOrFail($id);
+        $agora = now();
 
         $telefone = $orcamento->cliente?->cli_celular ?: $orcamento->cliente?->cli_telefone;
         $telefone = preg_replace('/\D/', '', (string) $telefone);
@@ -358,11 +359,23 @@ class OrcamentosController extends Controller
             ]);
         }
 
-        $urlPublica = URL::temporarySignedRoute('orcamento::orcamentos.public-pdf', now()->addDays(15), [
+        $expiracaoLink = $orcamento->orc_data_validade?->copy()->endOfDay() ?? $agora->copy()->addDay();
+        $linkContingencia = false;
+
+        if ($expiracaoLink->lessThanOrEqualTo($agora)) {
+            $expiracaoLink = $agora->copy()->addDay();
+            $linkContingencia = true;
+        }
+
+        $urlPublica = URL::temporarySignedRoute('orcamento::orcamentos.public-pdf', $expiracaoLink, [
             'id' => $orcamento->orc_id,
         ]);
 
         $mensagem = "Olá, segue o orçamento {$orcamento->orc_numero} no valor de {$this->formatarMoeda((float) $orcamento->orc_total)}. Link para visualização: {$urlPublica}";
+
+        if ($linkContingencia) {
+            $mensagem .= ' (Link disponível por 24 horas.)';
+        }
 
         $url = 'https://wa.me/'.$telefone.'?text='.rawurlencode($mensagem);
 
