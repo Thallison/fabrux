@@ -399,9 +399,19 @@ class OrcamentosController extends Controller
     {
         $subtotal = 0.0;
         $itensPreparados = [];
+        $produtosJaSelecionados = [];
 
-        foreach ($itens as $item) {
-            $produto = Produtos::query()->findOrFail((int) $item['prod_id']);
+        foreach ($itens as $indice => $item) {
+            $produtoId = (int) ($item['prod_id'] ?? 0);
+
+            if (in_array($produtoId, $produtosJaSelecionados, true)) {
+                throw ValidationException::withMessages([
+                    "itens.{$indice}.prod_id" => 'Nao repita o mesmo produto em mais de uma linha do orçamento.',
+                ]);
+            }
+
+            $produto = Produtos::query()->findOrFail($produtoId);
+            $produtosJaSelecionados[] = $produtoId;
 
             $quantidade = $this->normalizarDecimal((string) $item['oci_quantidade']);
             $valorUnitario = $this->normalizarDecimal((string) $item['oci_valor_unitario']);

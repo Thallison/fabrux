@@ -20,7 +20,7 @@ class StoreOrcamentoRequest extends FormRequest
             'orc_desconto_percentual' => ['nullable', 'regex:/^\d{1,3}(,\d{1,2}|\.\d{1,2})?$/'],
             'orc_observacoes' => ['nullable', 'string', 'max:2000'],
             'itens' => ['required', 'array', 'min:1'],
-            'itens.*.prod_id' => ['required', 'exists:cad_produtos,prod_id'],
+            'itens.*.prod_id' => ['required', 'distinct', 'exists:cad_produtos,prod_id'],
             'itens.*.oci_quantidade' => ['required', 'regex:/^\d+(,\d{1,3}|\.\d{1,3})?$/'],
             'itens.*.oci_valor_unitario' => ['required', 'regex:/^(\d{1,3}(\.\d{3})+|\d+)(,\d{1,2}|\.\d{1,2})?$/'],
         ];
@@ -31,6 +31,9 @@ class StoreOrcamentoRequest extends FormRequest
         return [
             'itens.required' => 'Adicione ao menos um item ao orcamento.',
             'itens.min' => 'Adicione ao menos um item ao orcamento.',
+            'itens.*.prod_id.required' => 'Selecione um produto valido para o item.',
+            'itens.*.prod_id.exists' => 'Selecione um produto valido para o item.',
+            'itens.*.prod_id.distinct' => 'Nao repita o mesmo produto em mais de uma linha do orçamento.',
             'orc_data_validade.after_or_equal' => 'A validade deve ser maior ou igual a data de criação.',
         ];
     }

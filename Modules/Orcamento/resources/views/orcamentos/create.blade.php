@@ -135,7 +135,6 @@
     </div>
 </form>
 
-<datalist id="orcamento-produtos-list"></datalist>
 @endsection
 
 @php
@@ -179,6 +178,28 @@
         });
     }
 
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    function buildProductOptions(selectedId = '') {
+        const currentValue = String(selectedId || '');
+
+        const options = produtosOrcamento.map((produto) => {
+            const value = String(produto.id);
+            const selected = value === currentValue ? 'selected' : '';
+
+            return `<option value="${escapeHtml(value)}" ${selected}>${escapeHtml(produto.label)}</option>`;
+        });
+
+        return [`<option value="">Selecione um produto</option>`, ...options].join('');
+    }
+
     function createItemRow(index, item = null) {
         const tr = document.createElement('tr');
 
@@ -187,16 +208,15 @@
 
         tr.innerHTML = `
             <td>
-                <input type="hidden" name="itens[${index}][prod_id]" class="produto-id" value="${item?.prod_id || ''}">
-                <input
-                    type="text"
-                    name="itens[${index}][produto_label]"
-                    class="form-control produto-label"
-                    list="orcamento-produtos-list"
-                    value="${item?.produto_label || ''}"
-                    placeholder="Digite para buscar produto"
+                <select
+                    name="itens[${index}][prod_id]"
+                    class="form-select produto-select"
+                    data-tom-select="true"
+                    data-tom-select-placeholder="Selecione um produto"
                     required
                 >
+                    ${buildProductOptions(item?.prod_id || '')}
+                </select>
                 <div class="invalid-feedback d-block" data-item-error="prod_id"></div>
             </td>
             <td>
@@ -218,6 +238,123 @@
         `;
 
         return tr;
+    }
+
+    function initProdutoSelect(linha) {
+        const select = linha.querySelector('select.produto-select');
+
+        if (!select || select.tomselect) {
+            return;
+        }
+
+        new window.TomSelect(select, {
+            create: false,
+            persist: false,
+            closeAfterSelect: true,
+            allowEmptyOption: true,
+            maxOptions: 500,
+            dropdownParent: 'body',
+            placeholder: select.dataset.tomSelectPlaceholder || 'Selecione um produto',
+            searchField: ['text'],
+        });
+    }
+
+    function limparErroCampo(campo) {
+        campo.classList.remove('is-invalid');
+
+        const wrapper = campo.closest('td')?.querySelector('[data-item-error]');
+
+        if (wrapper) {
+            wrapper.textContent = '';
+        }
+    }
+
+    function marcarErroCampo(campo, mensagem) {
+        campo.classList.add('is-invalid');
+
+        const wrapper = campo.closest('td')?.querySelector('[data-item-error]');
+
+        if (wrapper) {
+            wrapper.textContent = mensagem;
+        }
+    }
+
+    function aplicarProdutoSelecionado(linha) {
+        const select = linha.querySelector('select.produto-select');
+        const valorInput = linha.querySelector('.item-valor');
+        const produtoSelecionado = produtosOrcamento.find((produto) => String(produto.id) === String(select.value || ''));
+
+        limparErroCampo(select);
+
+        if (!produtoSelecionado) {
+            return;
+        }
+
+        if (!valorInput.value.trim() || valorInput.dataset.autoFilled === 'true') {
+            valorInput.value = App.maskMoney(String(Math.round(produtoSelecionado.valor * 100)));
+            valorInput.dataset.autoFilled = 'true';
+        }
+
+        atualizarTotais();
+    }
+
+    function sincronizarOpcoesDeProdutos() {
+        const selects = Array.from(document.querySelectorAll('select.produto-select'));
+        const selecionados = selects
+            .map((select) => String(select.value || ''))
+            .filter((value) => value !== '');
+
+        selects.forEach((select) => {
+            const valorAtual = String(select.value || '');
+
+            Array.from(select.options).forEach((option) => {
+                if (!option.value) {
+                    option.disabled = false;
+
+                    return;
+                }
+
+                option.disabled = option.value !== valorAtual && selecionados.includes(option.value);
+            });
+
+            if (select.tomselect) {
+                select.tomselect.sync();
+                select.tomselect.refreshOptions(false);
+            }
+        });
+    }
+
+    function validarProdutosDuplicadosNaTela() {
+        const selects = Array.from(document.querySelectorAll('select.produto-select'));
+        const contagem = new Map();
+        let possuiDuplicidade = false;
+
+        selects.forEach((select) => {
+            limparErroCampo(select);
+
+            const valor = String(select.value || '');
+
+            if (!valor) {
+                return;
+            }
+
+            contagem.set(valor, (contagem.get(valor) || 0) + 1);
+        });
+
+        selects.forEach((select) => {
+            const valor = String(select.value || '');
+
+            if (!valor) {
+                return;
+            }
+
+            if ((contagem.get(valor) || 0) > 1) {
+                marcarErroCampo(select, 'Este produto ja foi adicionado ao orçamento.');
+                possuiDuplicidade = true;
+            }
+        });
+
+        return !possuiDuplicidade;
     }
 
     function atualizarTotais() {
@@ -247,37 +384,6 @@
         document.getElementById('totalValor').textContent = formatMoney(total);
     }
 
-    function preencherProdutoPorLabel(inputLabel) {
-        const linha = inputLabel.closest('tr');
-        const hiddenId = linha.querySelector('.produto-id');
-        const valorInput = linha.querySelector('.item-valor');
-
-        const encontrado = produtosOrcamento.find((produto) => produto.label === inputLabel.value);
-
-        if (!encontrado) {
-            hiddenId.value = '';
-            return;
-        }
-
-        hiddenId.value = encontrado.id;
-
-        if (!valorInput.value.trim()) {
-            valorInput.value = App.maskMoney(String(Math.round(encontrado.valor * 100)));
-        }
-
-        atualizarTotais();
-    }
-
-    function popularDatalistProdutos() {
-        const dataList = document.getElementById('orcamento-produtos-list');
-
-        produtosOrcamento.forEach((produto) => {
-            const option = document.createElement('option');
-            option.value = produto.label;
-            dataList.appendChild(option);
-        });
-    }
-
     function popularErrosDeItens() {
         const errors = @json($errors->toArray());
 
@@ -302,17 +408,36 @@
         });
     }
 
-    function adicionarLinha(item = null) {
+    function adicionarLinha(item = null, options = {}) {
         const tbody = document.querySelector('#tabelaItens tbody');
         const index = tbody.querySelectorAll('tr').length;
         const linha = createItemRow(index, item);
         tbody.appendChild(linha);
+        initProdutoSelect(linha);
+        aplicarProdutoSelecionado(linha);
+        sincronizarOpcoesDeProdutos();
+        validarProdutosDuplicadosNaTela();
         atualizarTotais();
+
+        if (options.focusSelect) {
+            linha.classList.add('table-primary');
+
+            window.setTimeout(() => {
+                linha.classList.remove('table-primary');
+            }, 1500);
+
+            const select = linha.querySelector('select.produto-select');
+
+            if (select?.tomselect) {
+                select.tomselect.focus();
+                select.tomselect.open();
+            } else {
+                select?.focus();
+            }
+        }
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        popularDatalistProdutos();
-
         if (oldItems.length) {
             oldItems.forEach((item) => {
                 adicionarLinha(item);
@@ -324,7 +449,7 @@
         popularErrosDeItens();
 
         document.getElementById('btnAdicionarItem').addEventListener('click', function () {
-            adicionarLinha();
+            adicionarLinha(null, { focusSelect: true });
         });
 
         document.getElementById('orc_desconto_percentual').addEventListener('input', atualizarTotais);
@@ -336,26 +461,28 @@
                 return;
             }
 
-            if (event.target.classList.contains('produto-label')) {
-                preencherProdutoPorLabel(event.target);
-            }
-
             if (event.target.classList.contains('item-quantidade') || event.target.classList.contains('item-valor')) {
+                if (event.target.classList.contains('item-valor')) {
+                    event.target.dataset.autoFilled = 'false';
+                }
+
                 atualizarTotais();
             }
         });
 
-        document.addEventListener('blur', function (event) {
+        document.addEventListener('change', function (event) {
             const linha = event.target.closest('#tabelaItens tbody tr');
 
             if (!linha) {
                 return;
             }
 
-            if (event.target.classList.contains('produto-label')) {
-                preencherProdutoPorLabel(event.target);
+            if (event.target.classList.contains('produto-select')) {
+                aplicarProdutoSelecionado(linha);
+                sincronizarOpcoesDeProdutos();
+                validarProdutosDuplicadosNaTela();
             }
-        }, true);
+        });
 
         document.addEventListener('click', function (event) {
             const botaoRemover = event.target.closest('.btn-remover-item');
@@ -370,8 +497,23 @@
                 return;
             }
 
-            botaoRemover.closest('tr').remove();
+            const linha = botaoRemover.closest('tr');
+            const select = linha.querySelector('.produto-select');
+
+            if (select?.tomselect) {
+                select.tomselect.destroy();
+            }
+
+            linha.remove();
+            sincronizarOpcoesDeProdutos();
+            validarProdutosDuplicadosNaTela();
             atualizarTotais();
+        });
+
+        document.getElementById('formOrcamento').addEventListener('submit', function (event) {
+            if (!validarProdutosDuplicadosNaTela()) {
+                event.preventDefault();
+            }
         });
     });
 </script>

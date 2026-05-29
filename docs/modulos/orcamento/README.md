@@ -9,6 +9,7 @@ Gerenciar a criacao, consulta, envio e exportacao de orcamentos comerciais com b
 - Criar orcamento com multiplos itens.
 - Selecionar cliente com busca no formulario.
 - Selecionar cliente e status com padrao global de select pesquisavel quando aplicavel.
+- Selecionar produtos por linha com select pesquisavel em vez de entrada textual livre.
 - Carregar valor do produto automaticamente (com possibilidade de edicao manual no item).
 - Aplicar desconto percentual no cabecalho do orcamento.
 - Calcular subtotal, valor de desconto e total.
@@ -148,6 +149,7 @@ Eventos registrados:
 
 - Campo de cliente com busca na criacao/edicao.
 - Filtros de listagem com select pesquisavel para cliente e status.
+- Itens do orcamento com select pesquisavel de produto por linha, aberto de forma visivel fora do overflow da tabela.
 - Campos de data com abertura direta do calendario nativo do navegador.
 - Tela de detalhes com troca de status, duplicacao e historico na mesma pagina.
 - Textos e labels padronizados em portugues tecnico consistente com PDF e acoes da UI.
@@ -156,6 +158,8 @@ Eventos registrados:
 
 - Validade deve ser maior ou igual a data de criacao.
 - Orcamento deve possuir pelo menos 1 item.
+- Um mesmo produto nao pode ser repetido em mais de uma linha do mesmo orcamento.
+- O item so pode referenciar produto existente e ativo carregado no formulario.
 - Quantidade e valor unitario sao validados com suporte a formato decimal pt-BR.
 - Desconto percentual e limitado entre 0 e 100.
 - Total do item = quantidade x valor unitario.
@@ -172,7 +176,7 @@ Eventos registrados:
 	- Opcionalmente filtrar por texto, status, cliente, periodo de criacao e periodo de validade.
 2. Abrir Novo Orcamento.
 3. Selecionar cliente e preencher datas.
-4. Adicionar itens e ajustar valores quando necessario.
+4. Adicionar itens escolhendo produtos na busca da linha e ajustar valores quando necessario.
 5. Definir desconto percentual.
 6. Salvar orcamento.
 7. Ajustar itens e dados pelo fluxo de edicao quando necessario.

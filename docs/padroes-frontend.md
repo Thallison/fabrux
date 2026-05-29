@@ -69,6 +69,16 @@ Mesmo nesses casos:
 
 - preferir complementar o padrao global em vez de substitui-lo
 - nao duplicar inicializacao ja coberta por `app.js`
+- quando o select estiver dentro de tabelas responsivas, cards com overflow ou containers rolaveis, renderizar o dropdown fora do container com `dropdownParent: 'body'`
+
+### Caso comum: selects dinamicos em tabelas
+
+Quando uma linha e criada dinamicamente dentro de uma tabela com `table-responsive`, o dropdown do Tom Select pode ficar cortado pelo overflow do container. Nesses casos:
+
+- inicializar o select apenas no elemento `select` original
+- usar `dropdownParent: 'body'` para o menu ficar visivel fora da tabela
+- evitar seletores genericos que tambem atinjam elementos auxiliares criados pelo plugin
+- se a linha for criada por botao, preferir focar e abrir o select logo apos a insercao para reforcar o feedback visual ao usuario
 
 ## Padrao de Linguagem da UI
 
@@ -119,4 +129,5 @@ D:\laragon\bin\nodejs\node-v22\node.exe node_modules\vite\bin\vite.js build
 - select enriquecido usa `data-tom-select`
 - placeholder faz sentido para o contexto do campo
 - nao ha inicializacao duplicada do mesmo plugin
+- dropdowns continuam visiveis mesmo dentro de containers com overflow
 - textos visiveis seguem terminologia consistente
