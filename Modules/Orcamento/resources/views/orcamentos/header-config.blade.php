@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-12">
                     <label class="form-label">Rodape</label>
-                    <textarea name="orc_cab_rodape" rows="4" class="form-control @error('orc_cab_rodape') is-invalid @enderror" placeholder="Mensagem final, observacoes comerciais, dados bancarios, etc.">{{ old('orc_cab_rodape', $cabecalho?->orc_cab_rodape) }}</textarea>
+                    <textarea name="orc_cab_rodape" rows="4" class="form-control @error('orc_cab_rodape') is-invalid @enderror" placeholder="Mensagem final, observações comerciais, dados bancários, etc.">{{ old('orc_cab_rodape', $cabecalho?->orc_cab_rodape) }}</textarea>
                     @error('orc_cab_rodape')
                     <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                     @enderror

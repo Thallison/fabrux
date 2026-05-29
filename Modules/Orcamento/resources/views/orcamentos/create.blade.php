@@ -1,13 +1,13 @@
 @extends('layouts.default')
 
-@section('page-title', isset($orcamento) && $orcamento ? 'Editar Orcamento' : 'Novo Orcamento')
+@section('page-title', isset($orcamento) && $orcamento ? 'Editar Orçamento' : 'Novo Orçamento')
 
 @section('content')
 <div class="card border-0 shadow-sm mb-4" style="background: linear-gradient(135deg, #0d6efd0d, #20c99714);">
     <div class="card-body">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
             <div>
-                <h3 class="mb-1">{{ isset($orcamento) && $orcamento ? 'Editar Orcamento' : 'Criar Orcamento' }}</h3>
+                <h3 class="mb-1">{{ isset($orcamento) && $orcamento ? 'Editar Orçamento' : 'Criar Orçamento' }}</h3>
                 <p class="text-muted mb-0">Selecione seu cliente, monte os itens, aplique desconto e finalize em segundos.</p>
             </div>
             <a href="{{ route('orcamento::orcamentos.index') }}" class="btn btn-outline-secondary">
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <label class="form-label">Data de Criacao <span class="text-danger">*</span></label>
+                    <label class="form-label">Data de Criação <span class="text-danger">*</span></label>
                     <input type="date" name="orc_data_emissao" class="form-control @error('orc_data_emissao') is-invalid @enderror" value="{{ old('orc_data_emissao', $dataCriacaoPadrao) }}" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()" required>
                     @error('orc_data_emissao')
                     <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="col-12">
-                    <label class="form-label">Observacoes</label>
+                    <label class="form-label">Observações</label>
                     <textarea name="orc_observacoes" rows="3" class="form-control @error('orc_observacoes') is-invalid @enderror" placeholder="Condições comerciais, prazo de entrega, garantia, etc.">{{ old('orc_observacoes', $orcamento?->orc_observacoes) }}</textarea>
                     @error('orc_observacoes')
                     <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
@@ -86,7 +86,7 @@
 
     <div class="card card-default mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Itens do Orcamento</h5>
+            <h5 class="mb-0">Itens do Orçamento</h5>
             <button type="button" id="btnAdicionarItem" class="btn btn-sm btn-primary">
                 <i class="bi bi-plus-lg"></i> Adicionar Item
             </button>
@@ -102,9 +102,9 @@
                         <tr>
                             <th style="width: 38%;">Produto</th>
                             <th style="width: 14%;">Quantidade</th>
-                            <th style="width: 18%;">Valor Unitario</th>
+                            <th style="width: 18%;">Valor Unitário</th>
                             <th style="width: 18%;">Total</th>
-                            <th style="width: 12%;" class="text-end">Acao</th>
+                            <th style="width: 12%;" class="text-end">Ação</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -135,7 +135,7 @@
         </div>
         <div class="card-footer text-end">
             <button type="submit" class="btn btn-success">
-                <i class="bi bi-check-circle"></i> {{ isset($orcamento) && $orcamento ? 'Atualizar Orcamento' : 'Salvar Orcamento' }}
+                <i class="bi bi-check-circle"></i> {{ isset($orcamento) && $orcamento ? 'Atualizar Orçamento' : 'Salvar Orçamento' }}
             </button>
         </div>
     </div>

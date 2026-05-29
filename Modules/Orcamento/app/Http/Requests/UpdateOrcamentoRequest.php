@@ -31,7 +31,7 @@ class UpdateOrcamentoRequest extends FormRequest
         return [
             'itens.required' => 'Adicione ao menos um item ao orcamento.',
             'itens.min' => 'Adicione ao menos um item ao orcamento.',
-            'orc_data_validade.after_or_equal' => 'A validade deve ser maior ou igual a data de criacao.',
+            'orc_data_validade.after_or_equal' => 'A validade deve ser maior ou igual a data de criação.',
         ];
     }
 }

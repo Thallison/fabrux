@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('page-title', 'Detalhes do Orcamento')
+@section('page-title', 'Detalhes do Orçamento')
 
 @section('content')
 <div class="card border-0 shadow-sm mb-4" style="background: linear-gradient(135deg, #f3f8ff, #f6fff8);">
@@ -52,7 +52,7 @@
             <div class="card-body">
                 <div class="row g-3">
                     <div class="col-md-6">
-                        <label class="text-muted small">Data de Criacao</label>
+                        <label class="text-muted small">Data de Criação</label>
                         <div class="fw-semibold">{{ optional($orcamento->orc_data_emissao)->format('d/m/Y') }}</div>
                     </div>
                     <div class="col-md-6">
@@ -68,7 +68,7 @@
                         <div class="fw-semibold">{{ number_format((float) $orcamento->orc_desconto_percentual, 2, ',', '.') }}%</div>
                     </div>
                     <div class="col-12">
-                        <label class="text-muted small">Observacoes</label>
+                        <label class="text-muted small">Observações</label>
                         <div>{{ $orcamento->orc_observacoes ?: '-' }}</div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@
                     <th>Codigo</th>
                     <th>Produto</th>
                     <th class="text-end">Qtd</th>
-                    <th class="text-end">Valor Unitario</th>
+                    <th class="text-end">Valor Unitário</th>
                     <th class="text-end">Total</th>
                 </tr>
             </thead>
@@ -203,15 +203,15 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label">Assunto</label>
-                <input type="text" name="assunto" class="form-control" value="{{ old('assunto', 'Orcamento '.$orcamento->orc_numero) }}">
+                <input type="text" name="assunto" class="form-control" value="{{ old('assunto', 'Orçamento '.$orcamento->orc_numero) }}">
             </div>
             <div class="col-12">
                 <label class="form-label">Mensagem</label>
-                <textarea name="mensagem" rows="3" class="form-control">{{ old('mensagem', 'Segue em anexo o orcamento '.$orcamento->orc_numero.'.') }}</textarea>
+                <textarea name="mensagem" rows="3" class="form-control">{{ old('mensagem', 'Segue em anexo o orçamento '.$orcamento->orc_numero.'.') }}</textarea>
             </div>
             <div class="col-12 text-end">
                 <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-envelope"></i> Enviar Orcamento por E-mail
+                    <i class="bi bi-envelope"></i> Enviar Orçamento por E-mail
                 </button>
             </div>
         </form>

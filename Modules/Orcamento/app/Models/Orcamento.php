@@ -59,7 +59,7 @@ class Orcamento extends BaseModel
         return [
             'orc_numero' => __('Numero'),
             'cli_id' => __('Cliente'),
-            'orc_data_emissao' => __('Data de criacao'),
+            'orc_data_emissao' => __('Data de criação'),
             'orc_data_validade' => __('Validade'),
             'orc_desconto_percentual' => __('Desconto (%)'),
             'orc_subtotal' => __('Subtotal'),

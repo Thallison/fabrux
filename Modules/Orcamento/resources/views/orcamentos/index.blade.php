@@ -1,12 +1,10 @@
 @extends('layouts.default')
 
-@section('page-title', 'Orcamentos')
-
 @section('content')
 <div class="card border-0 shadow-sm mb-4" style="background: linear-gradient(145deg, #f8fafc, #eef5ff);">
     <div class="card-body d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 py-4">
         <div>
-            <h3 class="mb-1">Orcamentos</h3>
+            <h3 class="mb-1">Orçamentos</h3>
             <p class="text-muted mb-0">Monte propostas com desconto, PDF profissional e envio rapido para seus clientes.</p>
         </div>
         <div class="d-flex gap-2">
@@ -18,7 +16,7 @@
 
             @can('Cadastrar Orcamentos')
             <a href="{{ route('orcamento::orcamentos.create') }}" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Novo Orcamento
+                <i class="bi bi-plus-circle"></i> Novo Orçamento
             </a>
             @endcan
         </div>
@@ -35,7 +33,7 @@
                     name="busca"
                     value="{{ $busca }}"
                     class="form-control"
-                    placeholder="Buscar por numero do orcamento ou nome do cliente"
+                    placeholder="Buscar por numero do orçamento ou nome do cliente"
                 >
             </div>
             <div class="col-12 col-md-6 col-lg-3">
@@ -104,7 +102,7 @@
                         <th>Validade</th>
                         <th>Status</th>
                         <th class="text-end">Total</th>
-                        <th class="text-end">Acoes</th>
+                        <th class="text-end">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -166,7 +164,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="text-center text-muted py-4">Nenhum orcamento encontrado.</td>
+                        <td colspan="7" class="text-center text-muted py-4">Nenhum orçamento encontrado.</td>
                     </tr>
                     @endforelse
                 </tbody>

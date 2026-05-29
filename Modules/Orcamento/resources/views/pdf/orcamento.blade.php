@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Orcamento {{ $orcamento->orc_numero }}</title>
+    <title>Orçamento {{ $orcamento->orc_numero }}</title>
     <style>
         body {
             font-family: DejaVu Sans, Arial, sans-serif;
@@ -76,7 +76,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>{{ $cabecalho?->orc_cab_nome ?: 'Orcamento Comercial' }}</h1>
+        <h1>{{ $cabecalho?->orc_cab_nome ?: 'Orçamento Comercial' }}</h1>
         @if($cabecalho?->orc_cab_documento)
             <div class="muted">Documento: {{ $cabecalho->orc_cab_documento }}</div>
         @endif
@@ -98,8 +98,8 @@
     </div>
 
     <div class="box">
-        <strong>Orcamento:</strong> {{ $orcamento->orc_numero }}<br>
-        <strong>Data de criacao:</strong> {{ optional($orcamento->orc_data_emissao)->format('d/m/Y') }}<br>
+        <strong>Orçamento:</strong> {{ $orcamento->orc_numero }}<br>
+        <strong>Data de criação:</strong> {{ optional($orcamento->orc_data_emissao)->format('d/m/Y') }}<br>
         <strong>Validade:</strong> {{ optional($orcamento->orc_data_validade)->format('d/m/Y') }}<br>
         <strong>Cliente:</strong> {{ $orcamento->cliente?->cli_nome }}<br>
         @if($orcamento->cliente?->cli_email)
@@ -116,7 +116,7 @@
                 <th>Codigo</th>
                 <th>Produto</th>
                 <th class="text-right">Qtd</th>
-                <th class="text-right">Valor Unitario</th>
+                <th class="text-right">Valor Unitário</th>
                 <th class="text-right">Total</th>
             </tr>
         </thead>
@@ -150,7 +150,7 @@
 
     @if($orcamento->orc_observacoes)
     <div class="box" style="margin-top: 18px;">
-        <strong>Observacoes</strong><br>
+        <strong>Observações</strong><br>
         {{ $orcamento->orc_observacoes }}
     </div>
     @endif
