@@ -1,4 +1,4 @@
- <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+ <aside class="app-sidebar bg-body-secondary shadow fabrux-sidebar" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
@@ -11,7 +11,7 @@
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">{{ config('app.name', 'Laravel') }}</span>
+            <span class="brand-text fw-semibold">{{ config('app.name', 'Laravel') }}</span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->

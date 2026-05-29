@@ -12,6 +12,7 @@ Centralizar autenticacao, autorizacao e auditoria do sistema.
 - Consulta de logs.
 - Componentes reutilizaveis para selects de sistema, modulo e perfil.
 - Fluxos de formulario padronizados com selects pesquisaveis e linguagem consistente.
+- Telas de autenticacao e administracao alinhadas ao tema global do backoffice, incluindo formularios, tabelas e modais.
 
 ## Rotas
 
@@ -42,6 +43,7 @@ Prefixo: seguranca
 - Selects reutilizaveis de sistema, modulo e perfil usam o padrao global `data-tom-select`.
 - Telas de administracao devem manter mensagens e labels consistentes entre grid, modal e formulario.
 - Modais de edicao devem ser compativeis com o evento global `modal:loaded` para inicializacao de componentes.
+- Formularios de usuario, senha, sistemas e modulos devem aproveitar a camada global de UX para loading, foco visivel e consistencia de acoes.
 
 ## Testes Recomendados
 

@@ -3,6 +3,7 @@
 @section('page-title', 'Projeção de Produção')
 
 @section('content')
+<div class="fabrux-production-dashboard">
 <div class="row mb-4">
     <div class="col-md-12 d-flex justify-content-between align-items-center">
         <div>
@@ -18,7 +19,7 @@
 
 <div class="row mb-4">
     <div class="col-md-3 mb-3">
-        <div class="small-box bg-primary">
+        <div class="small-box fabrux-kpi-box fabrux-kpi-box-primary">
             <div class="inner">
                 <h3>{{ number_format($totalMes, 0, ',', '.') }}</h3>
                 <p>Total acumulado</p>
@@ -26,7 +27,7 @@
         </div>
     </div>
     <div class="col-md-3 mb-3">
-        <div class="small-box bg-success">
+        <div class="small-box fabrux-kpi-box fabrux-kpi-box-success">
             <div class="inner">
                 <h3>{{ number_format($mediaDiaria, 2, ',', '.') }}</h3>
                 <p>Média diária</p>
@@ -34,7 +35,7 @@
         </div>
     </div>
     <div class="col-md-3 mb-3">
-        <div class="small-box bg-warning">
+        <div class="small-box fabrux-kpi-box fabrux-kpi-box-warning">
             <div class="inner">
                 <h3>{{ $diasRestantes }}</h3>
                 <p>Dias restantes</p>
@@ -42,7 +43,7 @@
         </div>
     </div>
     <div class="col-md-3 mb-3">
-        <div class="small-box bg-info">
+        <div class="small-box fabrux-kpi-box fabrux-kpi-box-info">
             <div class="inner">
                 <h3>{{ number_format($projecao, 0, ',', '.') }}</h3>
                 <p>Projeção final</p>
@@ -115,4 +116,5 @@
         </div>
     </div>
 </div>
+ </div>
 @endsection

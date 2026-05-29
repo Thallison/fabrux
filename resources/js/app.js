@@ -29,6 +29,7 @@ import './core/global';
 import './core/dynamicFields';
 import './core/formatters';
 import './core/flashMessage';
+import './core/ux';
 
 function initTomSelectFields(root = document) {
     if (!window.TomSelect) {
@@ -59,10 +60,16 @@ function initTomSelectFields(root = document) {
 document.addEventListener("DOMContentLoaded", function () {
     App.init();
     App.initFlash();
+    App.initUx();
     initTomSelectFields(document);
 });
 
 document.addEventListener('modal:loaded', function (event) {
     const root = event?.detail?.modal || document;
+    App.initFormVisuals(root);
+    App.normalizeFormStructure(root);
+    App.initDataTableUx(root);
+    App.applyEntranceAnimations(root);
+    App.enableKeyboardA11y(root);
     initTomSelectFields(root);
 });

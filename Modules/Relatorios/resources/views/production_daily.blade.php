@@ -3,6 +3,7 @@
 @section('page-title', 'Produção Diária')
 
 @section('content')
+<div class="fabrux-production-dashboard">
 <div class="row mb-4">
     <div class="col-md-12 d-flex justify-content-between align-items-center">
         <div>
@@ -36,7 +37,7 @@
 
 <div class="row mb-3">
     <div class="col-md-6">
-        <div class="small-box bg-info">
+        <div class="small-box fabrux-kpi-box fabrux-kpi-box-info">
             <div class="inner">
                 <h3>{{ number_format($quantidadeTotal, 0, ',', '.') }}</h3>
                 <p>Total produzido</p>
@@ -44,7 +45,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        <div class="small-box bg-secondary">
+        <div class="small-box fabrux-kpi-box fabrux-kpi-box-success">
             <div class="inner">
                 <h3>{{ $tempoTotal ? gmdate('H:i:s', $tempoTotal) : '00:00:00' }}</h3>
                 <p>Tempo total registrado</p>
@@ -86,5 +87,6 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 @endsection

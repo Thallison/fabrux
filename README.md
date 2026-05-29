@@ -17,6 +17,8 @@ Base Laravel 12 para um sistema MES modular com ACL, cadastros mestres, producao
 
 Este sistema serve como base para implementacao de sistemas modulares em Laravel 12, ja incluindo autenticacao, controle de modulos, funcionalidades, privilegios, perfis de usuario e log basico.
 
+O frontend do backoffice foi padronizado com uma camada visual compartilhada para layout, formularios, tabelas, dashboards e relatorios, reduzindo divergencia entre modulos e facilitando evolucao incremental da interface.
+
 Utiliza [laravel-modules](https://github.com/nWidart/laravel-modules) para modularização. Os módulos principais são:
 - **Base**: funcionalidades comuns e reutilizáveis (controller/model base, helpers, etc.)
 - **Seguranca**: autenticação, cadastro de usuários, permissões, etc.
@@ -95,24 +97,3 @@ D:\laragon\bin\nodejs\node-v22\node.exe node_modules\vite\bin\vite.js build
 ## Licença
 
 Veja [LICENSE.md](LICENSE.md).
-Tipo: gráfico de barras
-O que mostra: quantidade total produzida em cada mês dos últimos 6 meses
-Para que serve: compara a evolução da produção mensal, ajuda a detectar sazonalidade e avaliar se o desempenho geral está melhorando ou piorando
-4. Projeção do mês
-Não é um gráfico, mas é um painel importante
-O que calcula: média diária do mês atual e usa esse valor para estimar a produção até o final do mês
-Para que serve: dá uma previsão rápida de “onde chegaremos se mantivermos o ritmo atual”
-5. Tabela de eficiência de funcionários
-Também não é gráfico, mas é um indicador chave
-O que mostra: para cada funcionário com tempo registrado, a produção total, a taxa de produção por hora e o tempo médio por peça
-Para que serve: identifica quem está mais eficiente e quem está demorando mais por unidade produzida
-6. Ranking de hoje
-Também é um componente de lista
-O que mostra: os funcionários com maior quantidade produzida no dia
-Para que serve: destaca quem está liderando a produção no dia e quem está abaixo do esperado
-Esses gráficos juntos fornecem:
-
-visão imediata do dia atual (Principal)
-análise de ritmo horário (Ritmo)
-visão de tendência e comparação (Comparativo)
-projeção de meta mensal (Projeção)

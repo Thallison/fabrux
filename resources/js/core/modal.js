@@ -1,4 +1,6 @@
 App.modal = function(url, modalId = "modal_default", container = "modal-default-sistema"){
+    App.showModalLoading(container);
+
     App.fetch({
         url: url,
         method: "GET",

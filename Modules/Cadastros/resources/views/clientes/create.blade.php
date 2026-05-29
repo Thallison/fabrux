@@ -63,7 +63,7 @@
 
                 <div class="col-md-6">
                     <label for="cli_im" class="form-label">{{ __('Inscrição Municipal') }}</label>
-                    <input type="text" id="cli_im" name="cli_im" class="form-control" placeholder="Ex: 1234567" placeholder="Ex: 1234567" value="{{ old('cli_im') }}">
+                    <input type="text" id="cli_im" name="cli_im" class="form-control" placeholder="Ex: 1234567" value="{{ old('cli_im') }}">
                 </div>
             </div>
 
@@ -94,7 +94,7 @@
 
                 <div class="col-md-6">
                     <label for="cli_celular" class="form-label">{{ __('Celular') }}</label>
-                    <input type="text" id="cli_celular" name="cli_celular" class="form-control" placeholder="(11) 99000-0000" placeholder="(11) 99000-0000" value="{{ old('cli_celular') }}">
+                    <input type="text" id="cli_celular" name="cli_celular" class="form-control" placeholder="(11) 99000-0000" value="{{ old('cli_celular') }}">
                 </div>
             </div>
 
@@ -124,7 +124,7 @@
 
                 <div class="col-md-8">
                     <label for="cli_logradouro" class="form-label">{{ __('Logradouro') }} <span class="text-danger">*</span></label>
-                    <input type="text" id="cli_logradouro" name="cli_logradouro" class="form-control {{ $errors->has('cli_logradouro') ? 'is-invalid' : '' }}" placeholder="Rua, Avenida, etc." placeholder="Rua, Avenida, etc." value="{{ old('cli_logradouro') }}" required>
+                    <input type="text" id="cli_logradouro" name="cli_logradouro" class="form-control {{ $errors->has('cli_logradouro') ? 'is-invalid' : '' }}" placeholder="Rua, Avenida, etc." value="{{ old('cli_logradouro') }}" required>
                     @if ($errors->has('cli_logradouro'))
                         <div class="invalid-feedback" style="display: block;">{{ $errors->first('cli_logradouro') }}</div>
                     @endif
@@ -142,7 +142,7 @@
 
                 <div class="col-md-9">
                     <label for="cli_complemento" class="form-label">{{ __('Complemento') }}</label>
-                    <input type="text" id="cli_complemento" name="cli_complemento" class="form-control" placeholder="Apt, sala, etc." placeholder="Apt, sala, etc." value="{{ old('cli_complemento') }}">
+                    <input type="text" id="cli_complemento" name="cli_complemento" class="form-control" placeholder="Apt, sala, etc." value="{{ old('cli_complemento') }}">
                 </div>
             </div>
 

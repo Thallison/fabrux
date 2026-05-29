@@ -41,12 +41,16 @@ App.confirm = function(options = {}) {
     modal.show();
 
     document.getElementById("confirmYes").addEventListener("click", function(){
+        const confirmButton = document.getElementById("confirmYes");
+        App.setButtonLoading(confirmButton, true, 'Processando...');
 
         if(config.url){
             App.fetch({
                 url: config.url,
                 method: config.method,
                 success: function(response){
+                    App.setButtonLoading(confirmButton, false);
+
                     if(config.reload){
                         App.flash(response.message, response.type);
                         location.reload();
@@ -58,8 +62,23 @@ App.confirm = function(options = {}) {
                     if(config.table){
                         $('#'+config.table).bootstrapTable('refresh');
                     }
+
+                    modal.hide();
+                    modalEl.remove();
+                },
+                error: function(err){
+                    App.setButtonLoading(confirmButton, false);
+
+                    if(err && err.data && err.data.message){
+                        App.message(err.data.message, 'danger');
+                        return;
+                    }
+
+                    App.message('Não foi possível concluir a ação.', 'danger');
                 }
             });
+
+            return;
         }
 
         modal.hide();

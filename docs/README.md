@@ -83,3 +83,4 @@ Toda feature relevante deve ter, no minimo:
 - Selects pesquisaveis devem usar o padrao global documentado em padroes-frontend.md.
 - Mudancas de modulo devem refletir o README correspondente em docs/modulos.
 - Quando o ambiente nao expuser `node` no PATH, a documentacao deve registrar o comando alternativo usado pelo time.
+- Mudancas de interface devem considerar a camada global de UX e tema compartilhado antes de adicionar CSS ou JS local por tela.

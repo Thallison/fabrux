@@ -5,7 +5,7 @@
 @section('content')
 
 @can('Cadastrar Produção')
-<div class="card card-default mb-5">
+<div class="card card-default mb-5 fabrux-form">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title">{{ __('Registrar Produção') }}</h5>
     </div>
@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label class="form-label">{{ $model->getAttributeLabel('produ_tempo_gasto') }}</label>
                         <input class="form-control @error('produ_tempo_gasto') is-invalid @enderror" type="time" name="produ_tempo_gasto" value="{{ old('produ_tempo_gasto') }}" />
-                        @error('temprodu_tempo_gastopo_gasto')
+                        @error('produ_tempo_gasto')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer text-end">
+        <div class="card-footer text-end fabrux-form-actions">
             <button type="submit" class="btn btn-primary">{{ __('Registrar produção') }}
                 <i class="bi bi-floppy"></i>
             </button>
@@ -111,7 +111,7 @@
 </div>
 
 @endcan
-<div class="card card-default" >
+<div class="card card-default fabrux-data-table-card" >
     <div class="card-header header-elements-inline">
         <h5 class="card-title">{{ __('Lista de Funcionários') }}</h5>
     </div>

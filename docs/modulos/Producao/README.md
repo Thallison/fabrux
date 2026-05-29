@@ -10,6 +10,7 @@ Controlar operacao de producao e acompanhar indicadores do processo produtivo.
 - Busca de produtos para composicao de producao.
 - Dashboard de producao.
 - Formularios com selecao pesquisavel de funcionario e produto.
+- Dashboard com KPI boxes, blocos de contexto e graficos padronizados pelo tema global do backoffice.
 
 ## Rotas
 
@@ -29,6 +30,7 @@ Prefixo: producao
 - Integracao com dados de funcionarios e produtos.
 - Fluxos devem preservar consistencia de tempos e status operacionais.
 - Selects principais da tela de registro seguem o padrao global documentado em docs/padroes-frontend.md.
+- Indicadores do dashboard devem preferir os componentes visuais compartilhados (`fabrux-kpi-box`, `fabrux-dashboard-intro` e cards analiticos) para manter consistencia com relatorios.
 
 ## Testes Recomendados
 

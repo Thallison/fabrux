@@ -3,6 +3,7 @@
 @section('page-title', 'Produtividade por Funcionário')
 
 @section('content')
+<div class="fabrux-production-dashboard">
 <div class="row mb-4">
     <div class="col-md-12 d-flex justify-content-between align-items-center">
         <div>
@@ -12,6 +13,16 @@
         <div>
             <a href="{{ route('relatorios::produtividade.funcionario', ['start_date' => $dataInicio->format('Y-m-d'), 'end_date' => $dataFim->format('Y-m-d'), 'export' => 'pdf']) }}" class="btn btn-outline-secondary me-2">PDF</a>
             <a href="{{ route('relatorios::produtividade.funcionario', ['start_date' => $dataInicio->format('Y-m-d'), 'end_date' => $dataFim->format('Y-m-d'), 'export' => 'excel']) }}" class="btn btn-outline-secondary">Excel</a>
+        </div>
+    </div>
+</div>
+
+<div class="card fabrux-dashboard-intro mb-4">
+    <div class="card-body d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+        <div>
+            <span class="fabrux-dashboard-eyebrow">Eficiência operacional</span>
+            <h4 class="mb-2">Entenda quem entrega mais volume com melhor aproveitamento de tempo.</h4>
+            <p class="mb-0 text-muted">Use o período selecionado para comparar quantidade, tempo total e produtividade por hora entre os funcionários.</p>
         </div>
     </div>
 </div>
@@ -34,7 +45,11 @@
     </div>
 </div>
 
-<div class="card">
+<div class="card fabrux-data-table-card">
+    <div class="card-header">
+        <h5 class="card-title mb-1">Desempenho por funcionário</h5>
+        <p class="fabrux-card-subtitle mb-0">Volume, tempo acumulado e ritmo de produção por colaborador.</p>
+    </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-striped mb-0">
@@ -65,5 +80,6 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 @endsection

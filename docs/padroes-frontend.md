@@ -27,6 +27,42 @@ Responsabilidades atuais:
 - inicializar selects enriquecidos via atributo `data-tom-select`
 - reinicializar componentes em conteudo carregado por modal via evento `modal:loaded`
 
+## Camada Global de UX
+
+Arquivo principal da camada de experiencia compartilhada:
+
+- resources/js/core/ux.js
+
+Responsabilidades atuais:
+
+- aplicar loading state em botoes de submit e confirmacao
+- exibir placeholder de carregamento para modais assincronos
+- normalizar estrutura visual de formularios sem refatoracao manual por view
+- criar empty state para grids baseadas em Bootstrap Table
+- aplicar foco visivel, animacoes de entrada e suporte basico para navegacao por teclado
+
+### Regra
+
+- antes de criar JS local para loading, empty state, hover, focus ou microinteracao, verificar se a necessidade pode ser atendida pela camada global existente
+
+## Sistema Visual Compartilhado
+
+O backoffice agora usa um conjunto de classes e estilos globais para manter consistencia entre modulos.
+
+Principais blocos:
+
+- `fabrux-backoffice`: contexto visual do layout autenticado
+- `fabrux-topbar` e `fabrux-sidebar`: navegacao principal
+- `fabrux-form` e `fabrux-form-actions`: padrao visual de formularios
+- `fabrux-kpi-box`: cards de indicadores usados em dashboards e relatorios
+- `fabrux-dashboard-intro`: bloco introdutorio de telas analiticas
+- `fabrux-data-table-card`: acabamento compartilhado para cards com tabelas/listagens
+
+### Regra
+
+- para dashboards e relatorios, preferir reutilizar `fabrux-kpi-box`, `fabrux-dashboard-intro` e subtitulos de card antes de criar estilos locais
+- para listagens, preferir o acabamento global do Bootstrap Table e dos cards ja definido em `resources/scss/app.scss`
+
 ## Padrao para Selects com Busca
 
 Todo select que precise de busca, autocomplete visual ou UX de dropdown aprimorada deve usar o padrao global abaixo:
@@ -141,6 +177,7 @@ D:\laragon\bin\nodejs\node-v22\node.exe node_modules\vite\bin\vite.js build
 - Cadastros
 - Producao
 - Seguranca
+- Relatorios
 
 ## Checklist de PR para Frontend
 
@@ -152,3 +189,5 @@ D:\laragon\bin\nodejs\node-v22\node.exe node_modules\vite\bin\vite.js build
 - botoes com icone mantem espacamento visual consistente (icone + texto)
 - grupos de acoes no topo de tela ficam alinhados a direita no desktop
 - textos visiveis seguem terminologia consistente
+- dashboards e relatorios reutilizam os cards KPI e o intro panel compartilhado quando aplicavel
+- interacoes simples de loading, empty state e foco usam a camada global antes de scripts locais

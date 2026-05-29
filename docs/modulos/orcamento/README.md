@@ -155,6 +155,8 @@ Eventos registrados:
 - Grupos de botoes de acao alinhados a direita no desktop em listagem e detalhe.
 - Botoes com icone e texto usando espacamento visual consistente (icone com `me-1`).
 - Textos e labels padronizados em portugues tecnico consistente com PDF e acoes da UI.
+- Criacao, edicao e configuracao de cabecalho seguem o tema global de formularios do backoffice.
+- O formulario principal de orcamento usa a camada global de UX para consistencia visual de campos, acoes e feedbacks, mantendo scripts locais apenas para regras especificas de itens e totais.
 
 ## Regras de Negocio
 

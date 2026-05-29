@@ -11,6 +11,7 @@ Gerenciar entidades mestres usadas por outros fluxos: funcionarios, produtos e c
 - CRUD de clientes.
 - Busca de CEP com preenchimento automatico de endereco no cadastro de clientes.
 - Formularios com padrao visual unificado e selects de status com componente pesquisavel.
+- Listagens e formularios alinhados ao tema global do backoffice, com foco em consistencia entre grids, acoes e feedback visual.
 
 ## Rotas
 
@@ -37,12 +38,14 @@ Permissoes mapeadas por seed:
 - Clientes suportam mascara e validacao de CPF/CNPJ conforme tipo de pessoa.
 - Busca de CEP deve preencher logradouro, bairro, cidade e estado quando o endpoint responder com sucesso.
 - Selects de status usam o padrao global documentado em docs/padroes-frontend.md.
+- Formularios devem preferir a camada global de UX para loading, validacao visual e consistencia de estrutura.
 
 ## Experiencia de Uso
 
 - Clientes: formulario completo com validacao progressiva, mascara, CEP e status.
 - Funcionarios: cadastro e edicao via modal com status padronizado.
 - Produtos: cadastro e edicao via modal com status padronizado e valor monetario formatado.
+- As listagens usam acabamento compartilhado para toolbar, empty state, paginacao e botoes de acao.
 
 ## Testes Recomendados
 

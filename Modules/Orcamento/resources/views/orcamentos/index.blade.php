@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('page-title', 'Orçamentos')
 @section('content')
 <div class="card border-0 shadow-sm mb-4" style="background: linear-gradient(145deg, #f8fafc, #eef5ff);">
     <div class="card-body d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 py-4">

@@ -10,32 +10,6 @@
             <a href="#contato" class="rounded-xl bg-yellow-400 px-4 py-2 font-semibold text-blue-900 hover:bg-yellow-500">Solicite uma demonstração</a>
             <a href="/login" class="rounded-xl border border-white/30 bg-white/10 px-4 py-2 font-semibold text-white hover:bg-white/20">Entrar</a>
         </nav>
-        <!-- ...existing code... -->
-        
-        <script>
-        // WhatsApp integration
-        document.getElementById('whatsappBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            const form = document.getElementById('demoForm');
-            const nome = form.nome.value;
-            const email = form.email.value;
-            const whatsapp = form.whatsapp.value;
-            const mensagem = form.mensagem.value;
-            let text = `Olá! Gostaria de solicitar uma demonstração do Fabrux.%0A`;
-            text += `Nome: ${nome}%0A`;
-            text += `E-mail: ${email}%0A`;
-            if (whatsapp) text += `WhatsApp: ${whatsapp}%0A`;
-            if (mensagem) text += `Mensagem: ${mensagem}%0A`;
-            const url = `https://wa.me/SEUNUMERO?text=${text}`;
-            window.open(url, '_blank');
-        });
-        // Sucesso fake para envio por e-mail
-        document.getElementById('demoForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            document.getElementById('successMsg').classList.remove('hidden');
-            this.reset();
-        });
-        </script>
     </header>
 
     <main class="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6">
@@ -183,7 +157,7 @@
                     </div>
                     <div class="flex flex-col md:flex-row gap-4 mt-2">
                         <button type="submit" class="flex-1 rounded-xl bg-yellow-400 px-4 py-3 font-bold text-blue-900 text-lg hover:bg-yellow-500 transition">Enviar por e-mail</button>
-                        <a id="whatsappBtn" href="#" target="_blank" class="flex-1 rounded-xl bg-green-500 px-4 py-3 font-bold text-white text-lg hover:bg-green-600 text-center transition">Enviar pelo WhatsApp</a>
+                        <a id="whatsappBtn" href="#" data-whatsapp-number="SEUNUMERO" target="_blank" class="flex-1 rounded-xl bg-green-500 px-4 py-3 font-bold text-white text-lg hover:bg-green-600 text-center transition">Enviar pelo WhatsApp</a>
                     </div>
                 </form>
                 <div id="successMsg" class="hidden mt-4 rounded-xl bg-green-100 px-4 py-2 text-green-800 text-center font-semibold">Solicitação enviada! Em breve entraremos em contato.</div>
@@ -195,4 +169,47 @@
         &copy; {{ date('Y') }} Fabrux. Todos os direitos reservados.
     </footer>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('demoForm');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const successMsg = document.getElementById('successMsg');
+
+        if (whatsappBtn && form) {
+            whatsappBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const nome = form.nome?.value || '';
+                const email = form.email?.value || '';
+                const whatsapp = form.whatsapp?.value || '';
+                const mensagem = form.mensagem?.value || '';
+                const destinationNumber = whatsappBtn.dataset.whatsappNumber || '';
+
+                let text = 'Olá! Gostaria de solicitar uma demonstração do Fabrux.\n';
+                text += `Nome: ${nome}\n`;
+                text += `E-mail: ${email}\n`;
+
+                if (whatsapp) {
+                    text += `WhatsApp: ${whatsapp}\n`;
+                }
+
+                if (mensagem) {
+                    text += `Mensagem: ${mensagem}\n`;
+                }
+
+                const url = `https://wa.me/${destinationNumber}?text=${encodeURIComponent(text)}`;
+                window.open(url, '_blank');
+            });
+        }
+
+        if (form && successMsg) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                successMsg.classList.remove('hidden');
+                form.reset();
+            });
+        }
+    });
+</script>
 @endsection

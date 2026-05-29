@@ -1,4 +1,4 @@
- <nav class="app-header navbar navbar-expand bg-body">
+ <nav class="app-header navbar navbar-expand bg-body fabrux-topbar border-bottom-0 shadow-sm">
         <!--begin::Container-->
         <div class="container-fluid">
           <!--begin::Start Navbar Links-->
@@ -8,7 +8,7 @@
                 <i class="bi bi-list"></i>
               </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item d-none d-md-block"><a href="/" class="nav-link">Painel</a></li>
           </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
@@ -23,12 +23,13 @@
             <!--end::Fullscreen Toggle-->
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              <a href="#" class="nav-link dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+                <span class="fabrux-user-avatar" aria-hidden="true">{{ mb_substr(Auth::user()->usr_name, 0, 1) }}</span>
                 <span class="d-none d-md-inline">{{ Auth::user()->usr_name }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
-                <li class="user-header text-bg-primary">
+                <li class="user-header text-bg-primary fabrux-user-header">
                   <p>
                     {{ Auth::user()->usr_name }}
                     <small>Membro desde {{ucfirst(Auth::user()->usr_dt_criacao->translatedFormat('F Y')) }}</small>

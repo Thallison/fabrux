@@ -5,21 +5,25 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
     
     <meta name="title" content="{{ config('app.name', 'Laravel') }}" />
     <meta name="author" content="TMSystem" />
     
-    <meta name="supported-color-schemes" content="light dark" />
+    <meta name="supported-color-schemes" content="light" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
     
   </head>
   
-  <body class="layout-fixed sidebar-expand-lg sidebar-open bg-body-tertiary sidebar-mini">
+  <body class="layout-fixed sidebar-expand-lg sidebar-open bg-body-tertiary sidebar-mini fabrux-backoffice">
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
@@ -29,7 +33,7 @@
      @include('parts.sidebar')
       <!--end::Sidebar-->
       <!--begin::App Main-->
-      <main class="app-main">
+      <main class="app-main fabrux-main">
         <!--begin::App Content Header-->
         @include('parts.content-header')
         <!--end::App Content Header-->

@@ -5,15 +5,15 @@
 @section('content')
 
 @if (!$sistemas)
-    <div class="alert alert-info alert-styled-left alert-dismissible alert-important">
-        <span class="font-weight-semibold">Aviso</span>
-            Para cadastrar um módulo é necessário ter pelo menos um sistema cadastrado,
+    <div class="alert alert-info alert-dismissible fade show fabrux-alert-card" role="alert">
+        <span class="fw-semibold">Aviso:</span>
+            Para cadastrar um módulo é necessário ter pelo menos um sistema cadastrado.
         <a href="{{ route('seguranca::sistemas.index') }}" class="alert-link">Clique aqui para cadastrar um sistema.</a>
     </div>
 @else
   
 @can('Cadastrar Módulos') 
-<div class="card card-default mb-5">
+<div class="card card-default mb-5 fabrux-form">
     <div class="card-header">
         <h5 class="card-title">{{ __('Cadastrar Módulos') }}</h5>
     </div>
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer text-end">
+        <div class="card-footer text-end fabrux-form-actions">
             <button type="submit" class="btn btn-primary">{{ __('Cadastrar') }}
                 <i class="bi bi-floppy"></i>
             </button>

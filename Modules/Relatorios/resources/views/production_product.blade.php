@@ -3,6 +3,7 @@
 @section('page-title', 'Produção por Produto')
 
 @section('content')
+<div class="fabrux-production-dashboard">
 <div class="row mb-4">
     <div class="col-md-12 d-flex justify-content-between align-items-center">
         <div>
@@ -12,6 +13,16 @@
         <div>
             <a href="{{ route('relatorios::producao.produto', ['start_date' => $dataInicio->format('Y-m-d'), 'end_date' => $dataFim->format('Y-m-d'), 'export' => 'pdf']) }}" class="btn btn-outline-secondary me-2">PDF</a>
             <a href="{{ route('relatorios::producao.produto', ['start_date' => $dataInicio->format('Y-m-d'), 'end_date' => $dataFim->format('Y-m-d'), 'export' => 'excel']) }}" class="btn btn-outline-secondary">Excel</a>
+        </div>
+    </div>
+</div>
+
+<div class="card fabrux-dashboard-intro mb-4">
+    <div class="card-body d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+        <div>
+            <span class="fabrux-dashboard-eyebrow">Análise de portfólio</span>
+            <h4 class="mb-2">Veja quais produtos concentram volume e demandam mais tempo de produção.</h4>
+            <p class="mb-0 text-muted">O comparativo ajuda a identificar gargalos, mix de produção e itens com maior esforço operacional.</p>
         </div>
     </div>
 </div>
@@ -34,7 +45,11 @@
     </div>
 </div>
 
-<div class="card">
+<div class="card fabrux-data-table-card">
+    <div class="card-header">
+        <h5 class="card-title mb-1">Resumo por produto</h5>
+        <p class="fabrux-card-subtitle mb-0">Quantidade total produzida e tempo médio por peça no período.</p>
+    </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-striped mb-0">
@@ -63,5 +78,6 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 @endsection

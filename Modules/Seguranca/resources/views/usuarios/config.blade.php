@@ -3,16 +3,15 @@
 @section('page-title', 'Usuários')
 
 @section('content')
-    
 <div class="card card-default mb-5">
     <div class="card-header">
         <h5 class="card-title">{{ __('Configuração Usuário') }}</h5>
     </div>
     <form action="{{ route('seguranca::usuarios.atualizaSenha') }}" method="POST" name="formUser">
-        <div class="card-body ">
+        <div class="card-body">
             @csrf
 
-            <h6>Alterar senha</h6>
+            <h6 class="text-uppercase text-muted fw-semibold mb-3">Alterar senha</h6>
             <hr />
 
             <div class="row mb-3">
@@ -28,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb3">
+            <div class="row mb-3">
                 <div class="col-md-4">
                     <div class='form-group'>
                         <label class="form-label">{{ __('Nova Senha') }} : <span class="text-danger">*</span> </label>
@@ -60,6 +59,10 @@
                         </button>
                     </div>
                 </div>
+            </div>
+
+            <div class="alert alert-info mb-0">
+                {{ __('Use esta tela para alterar a senha do seu próprio usuário com segurança.') }}
             </div>
 
         </div>

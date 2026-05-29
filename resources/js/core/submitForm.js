@@ -56,11 +56,16 @@ App.submitForm = function(options = {}) {
         });
     };
 
+    const submitButton = form.querySelector('[type="submit"]');
+    App.setButtonLoading(submitButton, true, 'Salvando...');
+
     App.fetch({
         url: form.action,
         method: form.method || "POST",
         data: formData,
         success: function(response){
+            App.setButtonLoading(submitButton, false);
+
             if(response.type === "success"){
                 if(options.reload){
                     App.flash(response.message, response.type);
@@ -70,7 +75,11 @@ App.submitForm = function(options = {}) {
                 if(options.modal){
                     const modal = document.querySelector(options.modal);
                     if(modal){
-                        bootstrap.Modal.getInstance(modal).hide();
+                        const instance = bootstrap.Modal.getInstance(modal);
+
+                        if(instance){
+                            instance.hide();
+                        }
                     }
                 }
 
@@ -85,6 +94,8 @@ App.submitForm = function(options = {}) {
             }
         },
         error: function(err){
+            App.setButtonLoading(submitButton, false);
+
             if(form){
                 clearValidationErrors(form);
             }
