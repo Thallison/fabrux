@@ -75,27 +75,28 @@
             </div>
 
             @can('Alterar Status Orcamentos')
-            <hr>
-            <form method="POST" action="{{ route('orcamento::orcamentos.update-status', $orcamento->orc_id) }}" class="row g-2 align-items-end">
-                @csrf
-                <div class="col-md-7">
-                    <label class="form-label">Alterar Status</label>
-                    <select name="orc_status" class="form-select" required>
-                        @foreach($statusPermitidos as $status)
-                            <option value="{{ $status }}" {{ $orcamento->orc_status === $status ? 'selected' : '' }}>{{ $status }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Motivo</label>
-                    <input type="text" name="motivo_status" class="form-control" maxlength="500" placeholder="Opcional">
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-outline-primary w-100">
-                        <i class="bi bi-arrow-repeat"></i> Atualizar Status
-                    </button>
-                </div>
-            </form>
+            <div class="card-footer pt-3 pb-4">
+                <form method="POST" action="{{ route('orcamento::orcamentos.update-status', $orcamento->orc_id) }}" class="row g-2 g-md-3 align-items-end mx-0">
+                    @csrf
+                    <div class="col-md-7 px-0 px-md-2">
+                        <label class="form-label">Alterar Status</label>
+                        <select name="orc_status" class="form-select" required>
+                            @foreach($statusPermitidos as $status)
+                                <option value="{{ $status }}" {{ $orcamento->orc_status === $status ? 'selected' : '' }}>{{ $status }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-3 px-0 px-md-2">
+                        <label class="form-label">Motivo</label>
+                        <input type="text" name="motivo_status" class="form-control" maxlength="500" placeholder="Opcional">
+                    </div>
+                    <div class="col-md-2 px-0 px-md-2">
+                        <button type="submit" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-arrow-repeat"></i> Atualizar Status
+                        </button>
+                    </div>
+                </form>
+            </div>
             @endcan
         </div>
     </div>
