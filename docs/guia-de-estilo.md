@@ -22,6 +22,8 @@
 - Para selects com busca, usar `data-tom-select="true"` e placeholders contextuais.
 - Preferir convencoes globais em `resources/js/app.js` em vez de instanciar plugins manualmente em cada view.
 - Manter textos visiveis em portugues tecnico consistente entre telas, modais, PDFs e confirmacoes.
+- Em botoes com icone e texto, aplicar espacamento no icone (ex.: `me-1`) para melhorar legibilidade.
+- Em blocos de acoes de cabecalho, alinhar o grupo a direita no desktop (`ms-lg-auto` + `justify-content-lg-end`) preservando comportamento responsivo.
 
 ## Banco e Seeds
 

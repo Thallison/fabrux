@@ -10,34 +10,34 @@
             <p class="text-muted mb-0">Cliente: {{ $orcamento->cliente?->cli_nome ?? '-' }}</p>
         </div>
 
-        <div class="d-flex flex-wrap gap-2">
+        <div class="d-flex flex-wrap gap-2 ms-lg-auto justify-content-lg-end">
             @can('Visualizar Orcamentos')
             <a href="{{ route('orcamento::orcamentos.preview-pdf', $orcamento->orc_id) }}" target="_blank" class="btn btn-outline-dark d-inline-flex align-items-center">
-                <i class="bi bi-eye"></i> Visualizar PDF
+                <i class="bi bi-eye me-1"></i> Visualizar PDF
             </a>
             <a href="{{ route('orcamento::orcamentos.download-pdf', $orcamento->orc_id) }}" class="btn btn-outline-primary d-inline-flex align-items-center">
-                <i class="bi bi-download"></i> Baixar PDF
+                <i class="bi bi-download me-1"></i> Baixar PDF
             </a>
             @can('Editar Orcamentos')
             <a href="{{ route('orcamento::orcamentos.edit', $orcamento->orc_id) }}" class="btn btn-outline-info d-inline-flex align-items-center">
-                <i class="bi bi-pencil-square"></i> Editar
+                <i class="bi bi-pencil-square me-1"></i> Editar
             </a>
             @endcan
             @can('Duplicar Orcamentos')
             <form method="POST" action="{{ route('orcamento::orcamentos.duplicate', $orcamento->orc_id) }}" class="d-inline-flex">
                 @csrf
                 <button type="submit" class="btn btn-outline-secondary d-inline-flex align-items-center">
-                    <i class="bi bi-files"></i> Duplicar
+                    <i class="bi bi-files me-1"></i> Duplicar
                 </button>
             </form>
             @endcan
             <a href="{{ route('orcamento::orcamentos.send-whatsapp', $orcamento->orc_id) }}" target="_blank" class="btn btn-outline-success d-inline-flex align-items-center">
-                <i class="bi bi-whatsapp"></i> Enviar WhatsApp
+                <i class="bi bi-whatsapp me-1"></i> Enviar WhatsApp
             </a>
             @endcan
 
             <a href="{{ route('orcamento::orcamentos.index') }}" class="btn btn-secondary d-inline-flex align-items-center">
-                <i class="bi bi-arrow-left"></i> Voltar
+                <i class="bi bi-arrow-left me-1"></i> Voltar
             </a>
         </div>
     </div>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-md-2 px-0 px-md-2">
                         <button type="submit" class="btn btn-outline-primary w-100">
-                            <i class="bi bi-arrow-repeat"></i> Atualizar Status
+                            <i class="bi bi-arrow-repeat me-1"></i> Atualizar Status
                         </button>
                     </div>
                 </form>
@@ -211,7 +211,7 @@
             </div>
             <div class="col-12 text-end">
                 <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-envelope"></i> Enviar Orçamento por E-mail
+                    <i class="bi bi-envelope me-1"></i> Enviar Orçamento por E-mail
                 </button>
             </div>
         </form>

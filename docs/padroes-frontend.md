@@ -94,6 +94,25 @@ Exemplos esperados:
 - `Usuario` -> `Usuário`
 - `Ate` -> `Até`
 
+## Padrao para Botoes de Acao
+
+Para manter consistencia entre listagens, telas de detalhe e acoes de formulario:
+
+- quando o botao tiver icone e texto, adicionar espacamento no icone com utilitario Bootstrap (`me-1`)
+- em grupos de acoes no cabecalho de cards/telas, alinhar o conjunto a direita no desktop com `ms-lg-auto` e `justify-content-lg-end`
+- manter `flex-wrap` no grupo para nao quebrar layout em telas menores
+- manter os botoes com `d-inline-flex align-items-center` quando houver icone para garantir alinhamento vertical uniforme
+
+Exemplo recomendado para grupo de acoes:
+
+```html
+<div class="d-flex flex-wrap gap-2 ms-lg-auto justify-content-lg-end">
+  <a class="btn btn-outline-primary d-inline-flex align-items-center" href="#">
+    <i class="bi bi-download me-1"></i> Baixar PDF
+  </a>
+</div>
+```
+
 ## Validacao Recomendada para Mudancas Frontend
 
 1. validar diagnosticos do editor nos arquivos alterados
@@ -130,4 +149,6 @@ D:\laragon\bin\nodejs\node-v22\node.exe node_modules\vite\bin\vite.js build
 - placeholder faz sentido para o contexto do campo
 - nao ha inicializacao duplicada do mesmo plugin
 - dropdowns continuam visiveis mesmo dentro de containers com overflow
+- botoes com icone mantem espacamento visual consistente (icone + texto)
+- grupos de acoes no topo de tela ficam alinhados a direita no desktop
 - textos visiveis seguem terminologia consistente

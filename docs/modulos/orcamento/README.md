@@ -152,6 +152,8 @@ Eventos registrados:
 - Itens do orcamento com select pesquisavel de produto por linha, aberto de forma visivel fora do overflow da tabela.
 - Campos de data com abertura direta do calendario nativo do navegador.
 - Tela de detalhes com troca de status, duplicacao e historico na mesma pagina.
+- Grupos de botoes de acao alinhados a direita no desktop em listagem e detalhe.
+- Botoes com icone e texto usando espacamento visual consistente (icone com `me-1`).
 - Textos e labels padronizados em portugues tecnico consistente com PDF e acoes da UI.
 
 ## Regras de Negocio
