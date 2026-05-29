@@ -5,7 +5,7 @@
     <div class="card-body d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 py-4">
         <div>
             <h3 class="mb-1">Orçamentos</h3>
-            <p class="text-muted mb-0">Monte propostas com desconto, PDF profissional e envio rapido para seus clientes.</p>
+            <p class="text-muted mb-0">Monte propostas com desconto, PDF profissional e envio rápido para seus clientes.</p>
         </div>
         <div class="d-flex gap-2">
             @can('Configurar Cabecalho Orcamentos')
@@ -33,12 +33,12 @@
                     name="busca"
                     value="{{ $busca }}"
                     class="form-control"
-                    placeholder="Buscar por numero do orçamento ou nome do cliente"
+                    placeholder="Buscar por número do orçamento ou nome do cliente"
                 >
             </div>
             <div class="col-12 col-md-6 col-lg-3">
                 <label class="form-label mb-1">Cliente</label>
-                <select name="cli_id" class="form-select">
+                <select name="cli_id" id="cli_id_filtro" class="form-select" data-tom-select="true" data-tom-select-placeholder="Todos os clientes">
                     <option value="">Todos os clientes</option>
                     @foreach($clientesFiltro as $clienteFiltro)
                     <option value="{{ $clienteFiltro->cli_id }}" @selected(((int) ($filtros['cli_id'] ?? 0)) === (int) $clienteFiltro->cli_id)>{{ $clienteFiltro->cli_nome }}</option>
@@ -47,7 +47,7 @@
             </div>
             <div class="col-12 col-md-6 col-lg-3">
                 <label class="form-label mb-1">Status</label>
-                <select name="status" class="form-select">
+                <select name="status" id="status_filtro" class="form-select" data-tom-select="true" data-tom-select-placeholder="Todos os status">
                     <option value="">Todos os status</option>
                     @foreach($statusOpcoes as $statusOpcao)
                     <option value="{{ $statusOpcao }}" @selected(($filtros['status'] ?? '') === $statusOpcao)>{{ $statusOpcao }}</option>
@@ -61,15 +61,15 @@
 
             <div class="col-12 col-lg-6">
                 <div class="border rounded-3 p-3 h-100" style="background-color: #f8fafc;">
-                    <div class="small fw-semibold text-muted mb-2">Periodo de Criacao</div>
+                    <div class="small fw-semibold text-muted mb-2">Período de Criação</div>
                     <div class="row g-2">
                         <div class="col-6">
                             <label class="form-label mb-1">De</label>
-                            <input type="date" name="data_inicio" class="form-control" value="{{ $filtros['data_inicio'] ?? '' }}" title="Data inicial de criacao" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()">
+                            <input type="date" name="data_inicio" class="form-control" value="{{ $filtros['data_inicio'] ?? '' }}" title="Data inicial de criação" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()">
                         </div>
                         <div class="col-6">
-                            <label class="form-label mb-1">Ate</label>
-                            <input type="date" name="data_fim" class="form-control" value="{{ $filtros['data_fim'] ?? '' }}" title="Data final de criacao" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()">
+                            <label class="form-label mb-1">Até</label>
+                            <input type="date" name="data_fim" class="form-control" value="{{ $filtros['data_fim'] ?? '' }}" title="Data final de criação" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()">
                         </div>
                     </div>
                 </div>
@@ -77,14 +77,14 @@
 
             <div class="col-12 col-lg-6">
                 <div class="border rounded-3 p-3 h-100" style="background-color: #f8fafc;">
-                    <div class="small fw-semibold text-muted mb-2">Periodo de Validade</div>
+                    <div class="small fw-semibold text-muted mb-2">Período de Validade</div>
                     <div class="row g-2">
                         <div class="col-6">
                             <label class="form-label mb-1">De</label>
                             <input type="date" name="data_validade_inicio" class="form-control" value="{{ $filtros['data_validade_inicio'] ?? '' }}" title="Data inicial de validade" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()">
                         </div>
                         <div class="col-6">
-                            <label class="form-label mb-1">Ate</label>
+                            <label class="form-label mb-1">Até</label>
                             <input type="date" name="data_validade_fim" class="form-control" value="{{ $filtros['data_validade_fim'] ?? '' }}" title="Data final de validade" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()">
                         </div>
                     </div>
@@ -96,9 +96,9 @@
             <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th>Numero</th>
+                        <th>Número</th>
                         <th>Cliente</th>
-                        <th>Criacao</th>
+                        <th>Criação</th>
                         <th>Validade</th>
                         <th>Status</th>
                         <th class="text-end">Total</th>
@@ -152,7 +152,7 @@
                             @endcan
 
                             @can('Excluir Orcamentos')
-                            <form action="{{ route('orcamento::orcamentos.destroy', $orcamento->orc_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja excluir este orcamento?');">
+                            <form action="{{ route('orcamento::orcamentos.destroy', $orcamento->orc_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Deseja excluir este orçamento?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-outline-danger" title="Excluir">
@@ -177,3 +177,5 @@
     </div>
 </div>
 @endsection
+
+

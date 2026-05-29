@@ -113,7 +113,7 @@
     <table>
         <thead>
             <tr>
-                <th>Codigo</th>
+                <th>Código</th>
                 <th>Produto</th>
                 <th class="text-right">Qtd</th>
                 <th class="text-right">Valor Unitário</th>

@@ -1,13 +1,13 @@
 @extends('layouts.default')
 
-@section('page-title', 'Grupo permissão')
+@section('page-title', 'Grupos de Permissão')
 
 @section('content')
 
 @if (!$privilegios)
     <div class="alert alert-info alert-styled-left alert-dismissible alert-important">
         <span class="font-weight-semibold">Aviso</span>
-            Para cadastrar um papel é necessário ter pelo menos uma funcionalidade com privilégio cadastrado,
+            Para cadastrar um grupo é necessário ter pelo menos uma funcionalidade com privilégio cadastrado,
         <a href="{{ route('seguranca::funcionalidades.index') }}" class="alert-link">Clique aqui para cadastrar uma funcionalidade.</a>
     </div>
 @else

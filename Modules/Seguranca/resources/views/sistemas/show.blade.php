@@ -22,8 +22,8 @@
                             @enderror
                         </div>
                         <div class="box2 col-md-6">
-                            <label>{{ __('Nome do icone:') }}</label>
-                            <input class="filter form-control @error('sis_icone') is-invalid @enderror type="text" name="sis_icone" placeholder="{{ __('Nome do icone:') }}" value="{{ $dados->sis_icone }}" />
+                            <label>{{ __('Nome do ícone:') }}</label>
+                            <input class="filter form-control @error('sis_icone') is-invalid @enderror" type="text" name="sis_icone" placeholder="{{ __('Nome do ícone:') }}" value="{{ $dados->sis_icone }}" />
                             @error('sis_icone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

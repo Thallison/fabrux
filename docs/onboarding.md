@@ -20,13 +20,16 @@ Permitir que uma pessoa nova no projeto rode o sistema localmente e entregue mud
 5. Assets:
 	- npm run dev (desenvolvimento)
 	- npm run build (producao/local final)
+	- se `node` ou `npm` nao estiverem no PATH no Windows/Laragon, usar o binario local do Node.js
+	- exemplo: `D:\laragon\bin\nodejs\node-v22\node.exe node_modules\vite\bin\vite.js build`
 
 ## Primeiros Passos no Codigo
 
 1. Ler arquitetura.md
 2. Ler docs/modulos/README.md
 3. Ler README do modulo em que vai atuar
-4. Executar testes basicos:
+4. Ler padroes-frontend.md quando houver telas, componentes ou JS envolvidos
+5. Executar testes basicos:
 	- php artisan test --compact
 
 ## Fluxo Diario Recomendado
@@ -50,3 +53,4 @@ Permitir que uma pessoa nova no projeto rode o sistema localmente e entregue mud
 - Rotas principais carregam.
 - Permissoes de teste estao funcionando.
 - Entende onde ficam rotas, views, models e seeds do modulo alvo.
+- Sabe como compilar assets mesmo quando o ambiente local nao expoe `node` no PATH.

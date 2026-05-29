@@ -8,10 +8,13 @@ Gerenciar a criacao, consulta, envio e exportacao de orcamentos comerciais com b
 
 - Criar orcamento com multiplos itens.
 - Selecionar cliente com busca no formulario.
+- Selecionar cliente e status com padrao global de select pesquisavel quando aplicavel.
 - Carregar valor do produto automaticamente (com possibilidade de edicao manual no item).
 - Aplicar desconto percentual no cabecalho do orcamento.
 - Calcular subtotal, valor de desconto e total.
 - Visualizar orcamento e detalhamento de itens.
+- Duplicar orcamentos a partir da listagem e da tela de detalhes.
+- Registrar historico de status do ciclo do orcamento.
 - Gerar PDF para visualizacao e download.
 - Enviar orcamento por e-mail com PDF anexado.
 - Compartilhar orcamento por WhatsApp com link assinado para PDF publico.
@@ -141,6 +144,14 @@ Eventos registrados:
 - envio por WhatsApp (status Enviado)
 - duplicacao (status inicial do novo orcamento)
 
+## Padroes de Interface
+
+- Campo de cliente com busca na criacao/edicao.
+- Filtros de listagem com select pesquisavel para cliente e status.
+- Campos de data com abertura direta do calendario nativo do navegador.
+- Tela de detalhes com troca de status, duplicacao e historico na mesma pagina.
+- Textos e labels padronizados em portugues tecnico consistente com PDF e acoes da UI.
+
 ## Regras de Negocio
 
 - Validade deve ser maior ou igual a data de criacao.
@@ -201,6 +212,12 @@ Limpar e recompilar caches apos mudancas em view/rotas:
 - php artisan optimize:clear
 - php artisan view:cache
 
+Compilar assets quando houver mudanca de frontend:
+
+- npm run build
+- ou, em Windows/Laragon sem node no PATH:
+- D:\laragon\bin\nodejs\node-v22\node.exe node_modules\vite\bin\vite.js build
+
 ## Riscos e Pontos de Atencao
 
 - Alteracoes em actions de controller exigem ajuste de ACL (privilegios e dependencias).
@@ -211,8 +228,7 @@ Limpar e recompilar caches apos mudancas em view/rotas:
 
 ## Checklist de Evolucao Recomendada
 
-- Implementar edicao de orcamento (update de cabecalho e itens).
-- Adicionar status Aprovado, Rejeitado e Expirado.
-- Registrar trilha de auditoria de envio e visualizacao publica.
-- Criar testes de feature para create, sendEmail, previewPdf e ACL.
-- Adicionar politica de bloqueio para exclusao de orcamentos enviados/aprovados.
+- Criar testes de feature para create, duplicate, updateStatus, sendEmail e ACL.
+- Registrar visualizacao publica do PDF em trilha de auditoria quando isso virar requisito funcional.
+- Avaliar politica de bloqueio para exclusao de orcamentos enviados/aprovados.
+- Formalizar contrato de templates PDF por empresa/unidade quando o cabecalho evoluir.

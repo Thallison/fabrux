@@ -16,6 +16,7 @@ O Fabrux e um sistema modular de MES baseado em Laravel 12, com responsabilidade
 - MVC por modulo: controllers, models, views e rotas isoladas.
 - Convencao orientada a BaseController/BaseModel para reduzir codigo repetido.
 - ACL por privilegios e acoes de controller.
+- Frontend progressivamente orientado a padroes globais de JS, reduzindo inicializacao inline por tela.
 
 ## Estrutura Principal
 
@@ -40,12 +41,15 @@ O Fabrux e um sistema modular de MES baseado em Laravel 12, com responsabilidade
 - Rotas de modulo agrupadas por prefixo e middleware.
 - Validacao centralizada nos models via rules().
 - Campos de status com padrao 1/0 para ativo/inativo.
+- Selects enriquecidos com busca devem usar inicializacao global por atributo `data-tom-select`.
+- Views devem manter terminologia consistente e linguagem funcional alinhada entre modulo, PDF e acoes da UI.
 
 ## Riscos Tecnicos Conhecidos
 
 - Seeds com IDs fixos exigem governanca entre modulos.
 - Mudancas em ACL exigem sincronia entre rotas, privilegios e dependencias.
 - Alteracoes em JS global podem impactar multiplas telas.
+- Padroes de frontend nao documentados tendem a gerar inicializacoes duplicadas e regressao visual entre modulos.
 
 ## Evolucao Recomendada
 

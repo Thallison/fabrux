@@ -12,6 +12,12 @@ Mapear endpoints relevantes para integracoes e uso interno.
 - Origem: modulo Base (CepController)
 - Uso: preenchimento automatico de endereco em formularios.
 
+### Orcamento PDF Publico Assinado
+
+- GET /orcamento/orcamentos/publico/{id}/pdf
+- Origem: modulo Orcamento
+- Uso: compartilhamento de PDF por link assinado, normalmente iniciado por fluxo de WhatsApp.
+
 ## Endpoints Modulares (Web)
 
 As rotas principais dos modulos estao em:
@@ -35,3 +41,4 @@ As rotas principais dos modulos estao em:
 
 - Criar secao por modulo com tabela de endpoints e exemplos de payload.
 - Definir contratos JSON para respostas padronizadas de erro/sucesso.
+

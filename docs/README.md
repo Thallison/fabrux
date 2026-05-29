@@ -10,6 +10,7 @@ Centralizar a documentacao funcional e tecnica do projeto para acelerar onboardi
 - onboarding.md: setup e primeiros passos.
 - contribuindo.md: fluxo de contribuicao e checklist de PR.
 - guia-de-estilo.md: padroes de codigo e organizacao.
+- padroes-frontend.md: convencoes de componentes de interface e JS reutilizavel.
 - testes.md: estrategia e comandos de teste.
 - ia-copilot.md: boas praticas para uso de Copilot.
 - perguntas-frequentes.md: respostas operacionais comuns.
@@ -42,8 +43,9 @@ Centralizar a documentacao funcional e tecnica do projeto para acelerar onboardi
 
 1. [Documentacao por Modulo](docs/modulos/README.md)
 2. [Guia de Estilo](docs/guia-de-estilo.md)
-3. [API e Endpoints](docs/api.md)
-4. [Perguntas Frequentes](docs/perguntas-frequentes.md)
+3. [Padroes Frontend](docs/padroes-frontend.md)
+4. [API e Endpoints](docs/api.md)
+5. [Perguntas Frequentes](docs/perguntas-frequentes.md)
 
 ### QA
 
@@ -75,3 +77,9 @@ Toda feature relevante deve ter, no minimo:
 - impacto em rotas/permissoes
 - testes relacionados
 - observacoes para IA/Copilot quando aplicavel
+
+## Ultimas Convencoes Relevantes
+
+- Selects pesquisaveis devem usar o padrao global documentado em padroes-frontend.md.
+- Mudancas de modulo devem refletir o README correspondente em docs/modulos.
+- Quando o ambiente nao expuser `node` no PATH, a documentacao deve registrar o comando alternativo usado pelo time.

@@ -9,6 +9,10 @@ window.$ = window.jQuery = $;
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
+import TomSelect from 'tom-select';
+import 'tom-select/dist/css/tom-select.bootstrap5.min.css';
+window.TomSelect = TomSelect;
+
 import 'admin-lte';
 import 'bootstrap-table';
 
@@ -26,7 +30,39 @@ import './core/dynamicFields';
 import './core/formatters';
 import './core/flashMessage';
 
+function initTomSelectFields(root = document) {
+    if (!window.TomSelect) {
+        return;
+    }
+
+    const selects = root.querySelectorAll('select[data-tom-select="true"]');
+
+    selects.forEach((select) => {
+        if (select.tomselect) {
+            return;
+        }
+
+        const placeholder = select.dataset.tomSelectPlaceholder || 'Selecione...';
+        const maxOptions = Number(select.dataset.tomSelectMaxOptions || 500);
+
+        new window.TomSelect(select, {
+            create: false,
+            persist: false,
+            closeAfterSelect: true,
+            allowEmptyOption: true,
+            placeholder,
+            maxOptions,
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     App.init();
     App.initFlash();
+    initTomSelectFields(document);
+});
+
+document.addEventListener('modal:loaded', function (event) {
+    const root = event?.detail?.modal || document;
+    initTomSelectFields(root);
 });

@@ -19,6 +19,9 @@
 - Manter consistencia de layout e componentes Bootstrap/AdminLTE.
 - Evitar JavaScript duplicado entre telas; preferir utilitarios globais.
 - Para grids, usar formatters padronizados no App (JS global).
+- Para selects com busca, usar `data-tom-select="true"` e placeholders contextuais.
+- Preferir convencoes globais em `resources/js/app.js` em vez de instanciar plugins manualmente em cada view.
+- Manter textos visiveis em portugues tecnico consistente entre telas, modais, PDFs e confirmacoes.
 
 ## Banco e Seeds
 
@@ -37,3 +40,4 @@
 - Atualizar docs ao alterar comportamento funcional.
 - Priorizar clareza e exemplos de uso real.
 - Manter terminologia consistente entre modulos.
+- Registrar padroes transversais (como componentes frontend reutilizaveis) em documento proprio para evitar divergencia entre modulos.

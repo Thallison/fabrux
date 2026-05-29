@@ -1,4 +1,4 @@
-<select name="mod_id" {{ $attributes->merge(['class' => 'form-select']) }}  @error('mod_id') is-invalid @enderror>
+<select name="mod_id" {{ $attributes->merge(['class' => 'form-select', 'data-tom-select' => 'true', 'data-tom-select-placeholder' => __('Selecione um módulo')]) }}  @error('mod_id') is-invalid @enderror>
 <option value="">{{ __('Selecione um módulo') }}</option>
 @foreach($modulos as $id => $nome)
 

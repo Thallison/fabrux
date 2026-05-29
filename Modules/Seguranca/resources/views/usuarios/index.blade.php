@@ -6,7 +6,7 @@
     
 <div class="card card-default" >
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">{{ __('Lista de Sistema') }}</h5>
+        <h5 class="card-title">{{ __('Lista de Usuários') }}</h5>
 
         <div class="text-end">
             @can('Cadastrar usuário')
@@ -123,7 +123,7 @@
     function editar(action) {
         /*Submeer formulario do modal*/
         App.submitForm({
-            form: 'form[name="editSistema"]',
+            form: 'form[name="formUser"]',
             modal: '#modal_default',
             table: 'gridTable'
         });
@@ -147,11 +147,11 @@
         const tipo = action.dataset.action;
 
         switch(tipo){
-            case "modal-editar-sistema":
+            case "modal-editar-usuario":
                 openEdit(action);
             break;
 
-            case "editar-sistema":
+            case "editar-usuario":
                 editar(action);
             break;
 

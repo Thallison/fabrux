@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">{{ __($model->getAttributeLabel('usr_status')) }} : <span class="text-danger">*</span> </label>
-                    <select name="usr_status" class="form-select" required  @error('usr_status') is-invalid @enderror>
+                    <select name="usr_status" id="usr_status" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione um status" required  @error('usr_status') is-invalid @enderror>
                         <option value="">{{ __('Selecione...') }}</option>
                         <option value="1"
                             {{ old('usr_status') == 1 ? 'selected' : '' }}>
@@ -158,6 +158,8 @@
 @push('scripts')
 <script>
 
+    let arr_perfil = [];
+
     document.querySelectorAll('.gerarPassword').forEach(btn => {
         btn.addEventListener('click', () => {
             
@@ -224,8 +226,6 @@
             }
 
         });
-
-        let arr_perfil = [];
 
         App.dynamicFields({
             addButton: '#adicionar_perfil',

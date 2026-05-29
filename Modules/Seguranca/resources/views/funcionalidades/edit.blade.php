@@ -58,6 +58,7 @@
                     <x-seguranca::select-modulos
                         :modulos="$modulos"
                         :selected="$dados->mod_id"
+                        id="mod_id"
                         class="filter"
                         required
                     />
@@ -65,7 +66,7 @@
                 <div class="col-md-4">
                     <label class="form-label">{{ __($model->getAttributeLabel('func_id_pai')) }} : </label>
 
-                    <select name="func_id_pai" class="form-select"  @error('func_id_pai') is-invalid @enderror>
+                    <select name="func_id_pai" id="func_id_pai" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione a funcionalidade pai"  @error('func_id_pai') is-invalid @enderror>
                     <option value="">{{ __('Selecione...') }}</option>
                     @foreach($funcAll as $id => $nome)
 
@@ -98,7 +99,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label class="form-label">{{ __($model->getAttributeLabel('func_acesso_menu')) }} : <span class="text-danger">*</span> </label>
-                    <select name="func_acesso_menu" class="form-select"  @error('func_acesso_menu') is-invalid @enderror>
+                    <select name="func_acesso_menu" id="func_acesso_menu" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione uma opção"  @error('func_acesso_menu') is-invalid @enderror>
                         <option value="">{{ __('Selecione...') }}</option>
                         <option value="1"
                             {{ $dados->func_acesso_menu == 1 ? 'selected' : '' }}>
@@ -117,7 +118,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">{{ __($model->getAttributeLabel('func_tipo')) }} : <span class="text-danger">*</span> </label>
-                    <select name="func_tipo" class="form-select"  @error('func_tipo') is-invalid @enderror>
+                    <select name="func_tipo" id="func_tipo" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione um tipo"  @error('func_tipo') is-invalid @enderror>
                         <option value="">{{ __('Selecione...') }}</option>
                         <option value="Controller"
                             {{ $dados->func_tipo == 'Controller' ? 'selected' : '' }}>
@@ -147,7 +148,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nome do Privilégio</th>
-                            <th>Action do Privilégio</th>
+                            <th>Ação do Privilégio</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -160,11 +161,11 @@
                             <td>
                                 <div class="icons-list">
                                     <a class="btn btn-outline-info btn-sm" data-action="edit-priv" data-url="{{ route('seguranca::privilegios.show', ['privilegio' => $priv->priv_id]) }}"
-                                        href="#" title="{{ __('Editar privilegio') }}">
+                                        href="#" title="{{ __('Editar privilégio') }}">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <a class="btn btn-outline-danger btn-sm" data-action="delete-priv" data-url="{{ route('seguranca::privilegios.destroy', ['privilegio' => $priv->priv_id]) }}"
-                                        data-method="DELETE" href="#" title="{{ __('Excluir privilegio') }}">
+                                        data-method="DELETE" href="#" title="{{ __('Excluir privilégio') }}">
                                         <i class="bi bi-trash3-fill"></i>
                                     </a>
                                 </div>
@@ -172,7 +173,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center">Nenhum privilegio encontrado!</td>
+                            <td colspan="4" class="text-center">Nenhum privilégio encontrado!</td>
                         </tr>
                     @endforelse
                     </tbody>
@@ -200,7 +201,7 @@
 
 @push('scripts')
 <script>
-    //Adicionar botões de ações quando carregar o modal para editar o privilegio
+    //Adicionar botões de ações quando carregar o modal para editar o privilégio
     document.addEventListener("modal:loaded", function(){
         App.dynamicFields({
             addButton: "#adicionar_dep_privilegios",
@@ -221,7 +222,7 @@
                         <input type="text"
                             id="depPrivAction_${index}"
                             name="depPrivilegios[${index}][dep_priv_action]"
-                            placeholder="Action da Dependência"
+                            placeholder="Ação da Dependência"
                             class="form-control"
                             required>
                     </div>
@@ -257,7 +258,7 @@
                         <input type="text"
                             id="privAction_${index}"
                             name="privilegios[${index}][priv_action]"
-                            placeholder="Action do Privilégio"
+                            placeholder="Ação do Privilégio"
                             class="form-control"
                             required>
                     </div>
@@ -283,7 +284,7 @@
         if (rows.length === 1) {
 
             App.message(
-                'Não é possivel excluir o privilégio. A funcionalidade deve possuir no mínimo 1 privilégio.',
+                'Não é possível excluir o privilégio. A funcionalidade deve possuir no mínimo 1 privilégio.',
                 'warning'
             );
 

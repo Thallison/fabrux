@@ -31,8 +31,8 @@
                             />
                         </div>
                         <div class="box2 col-md-4">
-                            <label>{{ __('Nome do icone:') }}</label>
-                            <input class="filter form-control @error('mod_icone') is-invalid @enderror type="text" name="mod_icone" placeholder="{{ __('Nome do icone:') }}" value="{{ $dados->mod_icone }}" />
+                            <label>{{ __('Nome do ícone:') }}</label>
+                            <input class="filter form-control @error('mod_icone') is-invalid @enderror" type="text" name="mod_icone" placeholder="{{ __('Nome do ícone:') }}" value="{{ $dados->mod_icone }}" />
                             @error('mod_icone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

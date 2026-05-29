@@ -27,6 +27,7 @@ Sempre contextualize:
 - Sem regressao em CRUD principal.
 - Seeds sem colisao de IDs.
 - Docs atualizadas no modulo correspondente.
+- Padroes globais de frontend preservados (sem duplicar inicializacao local desnecessaria).
 
 ## Prompts Uteis
 
@@ -47,4 +48,5 @@ Antes de pedir codigo para IA:
 
 1. Consulte docs/modulos/README.md.
 2. Consulte o README do modulo alvo em docs/modulos/<modulo>/README.md.
-3. Defina explicitamente qual regra/documento deve ser seguido.
+3. Consulte docs/padroes-frontend.md quando a tarefa envolver views, JS, filtros ou componentes de formulario.
+4. Defina explicitamente qual regra/documento deve ser seguido.

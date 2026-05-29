@@ -175,7 +175,7 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="cli_ativo" class="form-label">{{ __('Status') }} <span class="text-danger">*</span></label>
-                    <select id="cli_ativo" name="cli_ativo" class="form-select {{ $errors->has('cli_ativo') ? 'is-invalid' : '' }}" required>
+                    <select id="cli_ativo" name="cli_ativo" class="form-select {{ $errors->has('cli_ativo') ? 'is-invalid' : '' }}" data-tom-select="true" data-tom-select-placeholder="Selecione um status" required>
                         <option value="">{{ __('Selecione...') }}</option>
                         <option value="1" {{ old('cli_ativo', '1') === '1' ? 'selected' : '' }}>{{ __('Ativo') }}</option>
                         <option value="0" {{ old('cli_ativo') === '0' ? 'selected' : '' }}>{{ __('Inativo') }}</option>

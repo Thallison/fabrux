@@ -65,7 +65,7 @@
                 
                 <div class="col-6">
                     <label class="form-label">{{ $model->getAttributeLabel('prod_ativo') }} <span class="text-danger">*</span></label>
-                    <select name="prod_ativo" class="form-select @error('prod_ativo') is-invalid @enderror" required>
+                    <select name="prod_ativo" id="prod_ativo_create" class="form-select @error('prod_ativo') is-invalid @enderror" data-tom-select="true" data-tom-select-placeholder="Selecione um status" required>
                         <option value="">{{ __('Selecione...') }}</option>
                         <option value="1" {{ old('prod_ativo') == 1 ? 'selected' : '' }}>{{ __('Ativo') }}</option>
                         <option value="0" {{ old('prod_ativo') === '0' ? 'selected' : '' }}>{{ __('Inativo') }}</option>

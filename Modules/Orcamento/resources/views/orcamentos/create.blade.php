@@ -28,15 +28,9 @@
         </div>
         <div class="card-body">
             <div class="row g-3">
-                <div class="col-md-6">
-                    <label class="form-label">Pesquisar Cliente <span class="text-danger">*</span></label>
-                    <input type="text" id="clienteBusca" class="form-control" placeholder="Digite nome, email ou telefone">
-                    <small class="text-muted">Filtro rapido para localizar cliente no select abaixo.</small>
-                </div>
-
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label class="form-label">Cliente <span class="text-danger">*</span></label>
-                    <select name="cli_id" id="cli_id" class="form-select @error('cli_id') is-invalid @enderror" required>
+                    <select name="cli_id" id="cli_id" class="form-select @error('cli_id') is-invalid @enderror" data-tom-select="true" data-tom-select-placeholder="Selecione um cliente" required>
                         <option value="">Selecione...</option>
                         @foreach($clientes as $cliente)
                             <option value="{{ $cliente->cli_id }}" {{ (string) old('cli_id', $orcamento?->cli_id) === (string) $cliente->cli_id ? 'selected' : '' }}>
@@ -334,20 +328,6 @@
         });
 
         document.getElementById('orc_desconto_percentual').addEventListener('input', atualizarTotais);
-
-        document.getElementById('clienteBusca').addEventListener('input', function (event) {
-            const termo = event.target.value.toLowerCase();
-            const select = document.getElementById('cli_id');
-
-            Array.from(select.options).forEach((option) => {
-                if (!option.value) {
-                    option.hidden = false;
-                    return;
-                }
-
-                option.hidden = !option.text.toLowerCase().includes(termo);
-            });
-        });
 
         document.addEventListener('input', function (event) {
             const linha = event.target.closest('#tabelaItens tbody tr');

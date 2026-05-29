@@ -6,7 +6,7 @@
                 @method('PUT')
                 <input type="hidden" name="_dataType" value="json" />
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Editar Privilegio') }}</h5>
+                    <h5 class="modal-title">{{ __('Editar Privilégio') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>    
                 </div>
 
@@ -64,7 +64,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" style="text-align: center">Nenhuma Dependências cadastrada.</td>
+                                        <td colspan="4" style="text-align: center">Nenhuma dependência cadastrada.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

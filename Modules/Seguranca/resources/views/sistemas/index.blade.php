@@ -23,8 +23,8 @@
                     @enderror
                 </div>
                 <div class="col">
-                    <label>{{ __('Nome do icone:') }}</label>
-                    <input class="form-control @error('sis_icone') is-invalid @enderror type="text" name="sis_icone" placeholder="{{ __('Nome do icone:') }}" value="{{ old('sis_icone') }}" />
+                    <label>{{ __('Nome do ícone:') }}</label>
+                    <input class="form-control @error('sis_icone') is-invalid @enderror" type="text" name="sis_icone" placeholder="{{ __('Nome do ícone:') }}" value="{{ old('sis_icone') }}" />
                     @error('sis_icone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
 
 <div class="card card-default" >
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">{{ __('Lista de Sistema') }}</h5>
+        <h5 class="card-title">{{ __('Lista de Sistemas') }}</h5>
     </div>
 
     <div class="card-body">

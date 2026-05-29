@@ -1,4 +1,4 @@
-<select name="sis_id" {{ $attributes->merge(['class' => 'form-select']) }}  @error('sis_id') is-invalid @enderror>
+<select name="sis_id" {{ $attributes->merge(['class' => 'form-select', 'data-tom-select' => 'true', 'data-tom-select-placeholder' => __('Selecione um sistema')]) }}  @error('sis_id') is-invalid @enderror>
 <option value="">{{ __('Selecione um sistema') }}</option>
 @foreach($sistemas as $id => $nome)
 

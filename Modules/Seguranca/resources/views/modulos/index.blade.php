@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col">
                     <label>{{ __('Nome do Módulo:') }} <span class="text-danger">*</span></label>
-                    <input class="form-control @error('mod_nome') is-invalid @enderror" type="text" name="mod_nome" required  placeholder="{{ __('Nome do modulo:') }}" value="{{ old('mod_nome') }}" />
+                    <input class="form-control @error('mod_nome') is-invalid @enderror" type="text" name="mod_nome" required  placeholder="{{ __('Nome do módulo:') }}" value="{{ old('mod_nome') }}" />
                     @error('mod_nome')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -40,8 +40,8 @@
                     />
                 </div>
                 <div class="col">
-                    <label>{{ __('Nome do icone:') }}</label>
-                    <input class="form-control @error('mod_icone') is-invalid @enderror" type="text" name="mod_icone" placeholder="{{ __('Nome do icone:') }}" value="{{ old('mod_icone') }}" />
+                    <label>{{ __('Nome do ícone:') }}</label>
+                    <input class="form-control @error('mod_icone') is-invalid @enderror" type="text" name="mod_icone" placeholder="{{ __('Nome do ícone:') }}" value="{{ old('mod_icone') }}" />
                     @error('mod_icone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -167,8 +167,8 @@
 
     function excluirModulo(action) {
         App.confirm({
-            title: "Excluir modulo",
-            message: "Deseja realmente excluir este modulo?",
+            title: "Excluir módulo",
+            message: "Deseja realmente excluir este módulo?",
             url: action.dataset.url,
             table: "gridTable"
         });

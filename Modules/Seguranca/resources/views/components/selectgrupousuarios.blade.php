@@ -1,4 +1,4 @@
-<select name="perfil" {{ $attributes->merge(['class' => 'form-select']) }}  @error('perfil') is-invalid @enderror>
+<select name="perfil" {{ $attributes->merge(['class' => 'form-select', 'data-tom-select' => 'true', 'data-tom-select-placeholder' => __('Selecione um perfil')]) }}  @error('perfil') is-invalid @enderror>
 <option value="">{{ __('Selecione um perfil') }}</option>
 @foreach($papeis as $id => $nome)
 

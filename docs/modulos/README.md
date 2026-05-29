@@ -20,4 +20,11 @@ Ao alterar um modulo:
 1. atualizar o README do modulo
 2. registrar novas rotas/permissoes
 3. registrar impactos em testes
-4. ajustar referencias cruzadas quando necessario
+4. registrar impacto em padroes frontend quando houver componentes compartilhados
+5. ajustar referencias cruzadas quando necessario
+
+## Referencias Cruzadas Importantes
+
+- docs/arquitetura.md
+- docs/padroes-frontend.md
+- docs/testes.md

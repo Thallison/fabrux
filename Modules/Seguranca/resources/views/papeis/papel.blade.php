@@ -1,10 +1,13 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('perfil','Plano acesso: <span class="text-danger">*</span>', [], false) }}
+            {{ Form::label('perfil','Plano de acesso: <span class="text-danger">*</span>', [], false) }}
 
             {{ Form::select('perfil', $papeis, null, [
+                'id' => 'perfil',
                 'class' => 'form-control',
+                'data-tom-select' => 'true',
+                'data-tom-select-placeholder' => __('Selecione um plano'),
                 'required' => true ])
             }}
             @error('func_tipo')
@@ -68,10 +71,6 @@
             }
         });
 
-        /*$('#perfil').select2({
-            minimumResultsForSearch: Infinity,
-        });*/
-
         $(document).on('click', 'a[id^=adicionar_perfil]', function(){
             let perfil_val;
 
@@ -99,7 +98,7 @@
             indice = arr_perfil.indexOf($(this).data('perfil'));
 
             if(indice == '-1'){
-                $.alert('Ocorreu erro ao remover o plano', 'danger');
+                $.alert('Ocorreu um erro ao remover o plano', 'danger');
                 return;
             }
 

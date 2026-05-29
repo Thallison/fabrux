@@ -80,7 +80,7 @@
                     @csrf
                     <div class="col-md-7 px-0 px-md-2">
                         <label class="form-label">Alterar Status</label>
-                        <select name="orc_status" class="form-select" required>
+                        <select name="orc_status" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione um status" required>
                             @foreach($statusPermitidos as $status)
                                 <option value="{{ $status }}" {{ $orcamento->orc_status === $status ? 'selected' : '' }}>{{ $status }}</option>
                             @endforeach
@@ -127,7 +127,7 @@
 
 <div class="card card-default mb-4">
     <div class="card-header">
-        <h5 class="mb-0">Historico de Status</h5>
+        <h5 class="mb-0">Histórico de Status</h5>
     </div>
     <div class="card-body table-responsive">
         <table class="table align-middle mb-0">
@@ -136,7 +136,7 @@
                     <th>Data</th>
                     <th>De</th>
                     <th>Para</th>
-                    <th>Usuario</th>
+                    <th>Usuário</th>
                     <th>Motivo</th>
                 </tr>
             </thead>
@@ -151,7 +151,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center text-muted">Sem movimentacoes registradas.</td>
+                        <td colspan="5" class="text-center text-muted">Sem movimentações registradas.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -167,7 +167,7 @@
         <table class="table align-middle">
             <thead>
                 <tr>
-                    <th>Codigo</th>
+                    <th>Código</th>
                     <th>Produto</th>
                     <th class="text-end">Qtd</th>
                     <th class="text-end">Valor Unitário</th>

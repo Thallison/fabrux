@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('page-title', 'Configuracao do Cabecalho')
+@section('page-title', 'Configuração do Cabeçalho')
 
 @section('content')
 <div class="card border-0 shadow-sm mb-4" style="background: linear-gradient(130deg, #fff7ed, #f0f9ff);">
@@ -73,7 +73,7 @@
         </div>
         <div class="card-footer text-end">
             <button type="submit" class="btn btn-primary">
-                <i class="bi bi-floppy"></i> Salvar Configuracao
+                <i class="bi bi-floppy"></i> Salvar Configuração
             </button>
         </div>
     </form>

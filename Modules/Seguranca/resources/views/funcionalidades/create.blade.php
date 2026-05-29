@@ -7,8 +7,8 @@
 @if (!$modulos)
     <div class="alert alert-info alert-styled-left alert-dismissible alert-important">
         <span class="font-weight-semibold">Aviso</span>
-            Para cadastrar uma funcionalidade é necessário ter pelo menos um modulo cadastrado,
-        <a href="{{ route('seguranca::modulos.index') }}" class="alert-link">Clique aqui para cadastrar um modulo.</a>
+            Para cadastrar uma funcionalidade é necessário ter pelo menos um módulo cadastrado,
+        <a href="{{ route('seguranca::modulos.index') }}" class="alert-link">Clique aqui para cadastrar um módulo.</a>
     </div>
 @else
     
@@ -65,6 +65,7 @@
                     <x-seguranca::select-modulos
                         :modulos="$modulos"
                         :selected="old('mod_id') ?? null"
+                        id="mod_id"
                         class="filter"
                         required
                     />
@@ -72,7 +73,7 @@
                 <div class="col-md-4">
                     <label class="form-label">{{ __($model->getAttributeLabel('func_id_pai')) }} : </label>
 
-                    <select name="func_id_pai" class="form-select"  @error('func_id_pai') is-invalid @enderror>
+                    <select name="func_id_pai" id="func_id_pai" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione a funcionalidade pai"  @error('func_id_pai') is-invalid @enderror>
                     <option value="">{{ __('Selecione...') }}</option>
                     @foreach($funcAll as $id => $nome)
 
@@ -105,7 +106,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label class="form-label">{{ __($model->getAttributeLabel('func_acesso_menu')) }} : <span class="text-danger">*</span> </label>
-                    <select name="func_acesso_menu" class="form-select"  @error('func_acesso_menu') is-invalid @enderror>
+                    <select name="func_acesso_menu" id="func_acesso_menu" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione uma opção"  @error('func_acesso_menu') is-invalid @enderror>
                         <option value="">{{ __('Selecione...') }}</option>
                         <option value="1"
                             {{ old('func_acesso_menu') == 1 ? 'selected' : '' }}>
@@ -124,7 +125,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">{{ __($model->getAttributeLabel('func_tipo')) }} : <span class="text-danger">*</span> </label>
-                    <select name="func_tipo" class="form-select"  @error('func_tipo') is-invalid @enderror>
+                    <select name="func_tipo" id="func_tipo" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione um tipo"  @error('func_tipo') is-invalid @enderror>
                         <option value="">{{ __('Selecione...') }}</option>
                         <option value="Controller"
                             {{ old('func_tipo') == 'Controller' ? 'selected' : '' }}>
@@ -156,8 +157,8 @@
                         <input type="text" id="privLabel_0" name="privilegios[0][priv_label]" placeholder="Nome do Privilégio" class="form-control" required="required" value="{{ old('privilegios.0.priv_label') }}" >
                     </div>
                     <div class="col-md-3 form-group">
-                        <label class="form-label">Action do Privilégio: <span class="text-danger">*</span></label>
-                        <input type="text" id="privAction_0" name="privilegios[0][priv_action]" placeholder="Action do Privilégio" class="form-control" required="required" value="{{ old('privilegios.0.priv_action') }}" >
+                        <label class="form-label">Ação do Privilégio: <span class="text-danger">*</span></label>
+                        <input type="text" id="privAction_0" name="privilegios[0][priv_action]" placeholder="Ação do Privilégio" class="form-control" required="required" value="{{ old('privilegios.0.priv_action') }}" >
                     </div>
                 </div>
             </div>
@@ -203,7 +204,7 @@
                         <input type="text"
                             id="privAction_${index}"
                             name="privilegios[${index}][priv_action]"
-                            placeholder="Action do Privilégio"
+                            placeholder="Ação do Privilégio"
                             class="form-control"
                             required>
                     </div>

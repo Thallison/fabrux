@@ -4,11 +4,11 @@
 
 @section('content')
 
-@if (!$modulos))
+@if (!$modulos)
     <div class="alert alert-info alert-styled-left alert-dismissible alert-important">
         <span class="font-weight-semibold">Aviso</span>
-            Para cadastrar uma funcionalidade é necessário ter pelo menos um modulo cadastrado,
-        <a href="{{ route('seguranca::modulos.index') }}" class="alert-link">Clique aqui para cadastrar um modulo.</a>
+            Para cadastrar uma funcionalidade é necessário ter pelo menos um módulo cadastrado,
+        <a href="{{ route('seguranca::modulos.index') }}" class="alert-link">Clique aqui para cadastrar um módulo.</a>
     </div>
 @else
 

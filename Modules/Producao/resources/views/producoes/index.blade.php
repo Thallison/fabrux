@@ -16,7 +16,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-label">{{ $model->getAttributeLabel('fun_id') }} <span class="text-danger">*</span></label>
-                        <select name="fun_id" class="form-select @error('fun_id') is-invalid @enderror" required>
+                        <select name="fun_id" id="fun_id" class="form-select @error('fun_id') is-invalid @enderror" data-tom-select="true" data-tom-select-placeholder="Selecione um funcionário" required>
                             <option value="">{{ __('Selecione...') }}</option>
                             @foreach($funcionarios as $funcionario)
                                 <option value="{{ $funcionario->fun_id }}" {{ old('fun_id') == $funcionario->fun_id ? 'selected' : '' }}>
@@ -35,7 +35,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form-label">{{ $model->getAttributeLabel('prod_id') }} <span class="text-danger">*</span></label>
-                        <select name="prod_id" class="form-select @error('prod_id') is-invalid @enderror" required>
+                        <select name="prod_id" id="prod_id" class="form-select @error('prod_id') is-invalid @enderror" data-tom-select="true" data-tom-select-placeholder="Selecione um produto" required>
                             <option value="">{{ __('Selecione...') }}</option>
                             @foreach($produtos as $produto)
                                 <option value="{{ $produto->prod_id }}" {{ old('prod_id') == $produto->prod_id ? 'selected' : '' }}>
@@ -253,5 +253,6 @@
                 break;
         }
     });
+
 </script>
 @endpush

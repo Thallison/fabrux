@@ -10,6 +10,8 @@ Centralizar autenticacao, autorizacao e auditoria do sistema.
 - Gestao de privilegios e dependencias de privilegios.
 - Gestao de papeis e usuarios.
 - Consulta de logs.
+- Componentes reutilizaveis para selects de sistema, modulo e perfil.
+- Fluxos de formulario padronizados com selects pesquisaveis e linguagem consistente.
 
 ## Rotas
 
@@ -24,15 +26,27 @@ Prefixo: seguranca
 
 - Middleware acl valida acesso por controller + action.
 - Privilegios e dependencias determinam se rota pode ser executada.
+- Toda mudanca em nome de action, rota adicional ou fluxo complementar deve ser refletida em privilegios e dependencias.
 
 ## Regras de Negocio
 
 - Toda nova rota protegida deve ter privilegio correspondente.
 - Dependencias devem cobrir acoes complementares (store/update etc.).
 - Alteracoes em permissao precisam ser refletidas em seed e testes.
+- Usuarios devem possuir ao menos um perfil associado nos fluxos de criacao/edicao.
+- Funcionalidades devem possuir ao menos um privilegio quando editadas no fluxo administrativo.
+- Modulos dependem da existencia de sistemas; papeis dependem da existencia de funcionalidades com privilegios.
+
+## Padroes de Interface
+
+- Selects reutilizaveis de sistema, modulo e perfil usam o padrao global `data-tom-select`.
+- Telas de administracao devem manter mensagens e labels consistentes entre grid, modal e formulario.
+- Modais de edicao devem ser compativeis com o evento global `modal:loaded` para inicializacao de componentes.
 
 ## Testes Recomendados
 
 - Acesso autorizado e nao autorizado por papel.
 - Fluxos de usuario (senha, login, perfil).
 - Integridade de vinculos papel x privilegio.
+- Validacao de login disponivel/indisponivel.
+- Integridade das dependencias de privilegio em funcionalidades.

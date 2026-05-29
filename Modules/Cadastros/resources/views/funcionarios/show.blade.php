@@ -52,7 +52,7 @@
                         <div class="col">
                             <div class='form-group'>
                                 <label class="form-label">{{ $model->getAttributeLabel('fun_ativo') }} <span class="text-danger">*</span></label>
-                                <select name="fun_ativo" class="form-select" required  @error('fun_ativo') is-invalid @enderror>
+                                <select name="fun_ativo" id="fun_ativo_edit" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione um status" required  @error('fun_ativo') is-invalid @enderror>
                                     <option value="">{{ __('Selecione...') }}</option>
                                     <option value="1"
                                         {{ $dados->fun_ativo == 1 ? 'selected' : '' }}>

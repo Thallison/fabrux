@@ -9,6 +9,8 @@ Gerenciar entidades mestres usadas por outros fluxos: funcionarios, produtos e c
 - CRUD de funcionarios.
 - CRUD de produtos.
 - CRUD de clientes.
+- Busca de CEP com preenchimento automatico de endereco no cadastro de clientes.
+- Formularios com padrao visual unificado e selects de status com componente pesquisavel.
 
 ## Rotas
 
@@ -32,9 +34,20 @@ Permissoes mapeadas por seed:
 - Campos obrigatorios e unicidade definidos nas rules() dos models.
 - Formularios devem seguir padrao visual dos cadastros existentes.
 - Grids usam Bootstrap Table e formatters JS globais.
+- Clientes suportam mascara e validacao de CPF/CNPJ conforme tipo de pessoa.
+- Busca de CEP deve preencher logradouro, bairro, cidade e estado quando o endpoint responder com sucesso.
+- Selects de status usam o padrao global documentado em docs/padroes-frontend.md.
+
+## Experiencia de Uso
+
+- Clientes: formulario completo com validacao progressiva, mascara, CEP e status.
+- Funcionarios: cadastro e edicao via modal com status padronizado.
+- Produtos: cadastro e edicao via modal com status padronizado e valor monetario formatado.
 
 ## Testes Recomendados
 
 - Fluxo CRUD completo por entidade.
 - Validacoes obrigatorias e unicidade.
 - Comportamento de acoes de grid (editar/excluir).
+- CEP: resposta bem-sucedida, CEP invalido e falha de consulta.
+- Clientes: validacao de CPF/CNPJ por tipo de pessoa.
