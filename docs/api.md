@@ -17,6 +17,7 @@ Mapear endpoints relevantes para integracoes e uso interno.
 As rotas principais dos modulos estao em:
 
 - Modules/Cadastros/routes/web.php
+- Modules/Orcamento/routes/web.php
 - Modules/Producao/routes/web.php
 - Modules/Relatorios/routes/web.php
 - Modules/Seguranca/routes/web.php

@@ -8,6 +8,7 @@ Organizar regras e funcionalidades por contexto de negocio para facilitar manute
 
 - base/README.md
 - cadastros/README.md
+- orcamento/README.md
 - Producao/README.md
 - relatorios/README.md
 - seguranca/README.md

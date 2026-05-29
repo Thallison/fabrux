@@ -3,5 +3,6 @@
     "Seguranca": true,
     "Cadastros": true,
     "Relatorios": true,
-    "Producao": true
+    "Producao": true,
+    "Orcamento": true
 }
