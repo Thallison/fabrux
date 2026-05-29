@@ -18,6 +18,19 @@
             <a href="{{ route('orcamento::orcamentos.download-pdf', $orcamento->orc_id) }}" class="btn btn-outline-primary">
                 <i class="bi bi-download"></i> Baixar PDF
             </a>
+            @can('Editar Orcamentos')
+            <a href="{{ route('orcamento::orcamentos.edit', $orcamento->orc_id) }}" class="btn btn-outline-info">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
+            @endcan
+            @can('Duplicar Orcamentos')
+            <form method="POST" action="{{ route('orcamento::orcamentos.duplicate', $orcamento->orc_id) }}" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-outline-secondary">
+                    <i class="bi bi-files"></i> Duplicar
+                </button>
+            </form>
+            @endcan
             <a href="{{ route('orcamento::orcamentos.send-whatsapp', $orcamento->orc_id) }}" target="_blank" class="btn btn-outline-success">
                 <i class="bi bi-whatsapp"></i> Enviar WhatsApp
             </a>
@@ -60,6 +73,30 @@
                     </div>
                 </div>
             </div>
+
+            @can('Alterar Status Orcamentos')
+            <hr>
+            <form method="POST" action="{{ route('orcamento::orcamentos.update-status', $orcamento->orc_id) }}" class="row g-2 align-items-end">
+                @csrf
+                <div class="col-md-7">
+                    <label class="form-label">Alterar Status</label>
+                    <select name="orc_status" class="form-select" required>
+                        @foreach($statusPermitidos as $status)
+                            <option value="{{ $status }}" {{ $orcamento->orc_status === $status ? 'selected' : '' }}>{{ $status }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Motivo</label>
+                    <input type="text" name="motivo_status" class="form-control" maxlength="500" placeholder="Opcional">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-outline-primary w-100">
+                        <i class="bi bi-arrow-repeat"></i> Atualizar Status
+                    </button>
+                </div>
+            </form>
+            @endcan
         </div>
     </div>
 
@@ -84,6 +121,40 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="card card-default mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">Historico de Status</h5>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>De</th>
+                    <th>Para</th>
+                    <th>Usuario</th>
+                    <th>Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($orcamento->historicoStatus as $evento)
+                    <tr>
+                        <td>{{ $evento->created_at?->format('d/m/Y H:i') }}</td>
+                        <td>{{ $evento->osh_status_anterior ?: '-' }}</td>
+                        <td>{{ $evento->osh_status_novo }}</td>
+                        <td>{{ $evento->usuario?->usr_name ?: '-' }}</td>
+                        <td>{{ $evento->osh_motivo ?: '-' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">Sem movimentacoes registradas.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </div>
 

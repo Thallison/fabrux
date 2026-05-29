@@ -1,13 +1,13 @@
 @extends('layouts.default')
 
-@section('page-title', 'Novo Orcamento')
+@section('page-title', isset($orcamento) && $orcamento ? 'Editar Orcamento' : 'Novo Orcamento')
 
 @section('content')
 <div class="card border-0 shadow-sm mb-4" style="background: linear-gradient(135deg, #0d6efd0d, #20c99714);">
     <div class="card-body">
         <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
             <div>
-                <h3 class="mb-1">Criar Orcamento</h3>
+                <h3 class="mb-1">{{ isset($orcamento) && $orcamento ? 'Editar Orcamento' : 'Criar Orcamento' }}</h3>
                 <p class="text-muted mb-0">Selecione seu cliente, monte os itens, aplique desconto e finalize em segundos.</p>
             </div>
             <a href="{{ route('orcamento::orcamentos.index') }}" class="btn btn-outline-secondary">
@@ -17,8 +17,11 @@
     </div>
 </div>
 
-<form action="{{ route('orcamento::orcamentos.store') }}" method="POST" id="formOrcamento">
+<form action="{{ isset($orcamento) && $orcamento ? route('orcamento::orcamentos.update', $orcamento->orc_id) : route('orcamento::orcamentos.store') }}" method="POST" id="formOrcamento">
     @csrf
+    @if(isset($orcamento) && $orcamento)
+        @method('PUT')
+    @endif
     <div class="card card-default mb-4">
         <div class="card-header">
             <h5 class="mb-0">Dados Gerais</h5>
@@ -36,7 +39,7 @@
                     <select name="cli_id" id="cli_id" class="form-select @error('cli_id') is-invalid @enderror" required>
                         <option value="">Selecione...</option>
                         @foreach($clientes as $cliente)
-                            <option value="{{ $cliente->cli_id }}" {{ (string) old('cli_id') === (string) $cliente->cli_id ? 'selected' : '' }}>
+                            <option value="{{ $cliente->cli_id }}" {{ (string) old('cli_id', $orcamento?->cli_id) === (string) $cliente->cli_id ? 'selected' : '' }}>
                                 {{ $cliente->cli_nome }} | {{ $cliente->cli_email }} | {{ $cliente->cli_celular ?: $cliente->cli_telefone }}
                             </option>
                         @endforeach
@@ -48,7 +51,7 @@
 
                 <div class="col-md-4">
                     <label class="form-label">Data de Criacao <span class="text-danger">*</span></label>
-                    <input type="date" name="orc_data_emissao" class="form-control @error('orc_data_emissao') is-invalid @enderror" value="{{ old('orc_data_emissao', $dataCriacaoPadrao) }}" required>
+                    <input type="date" name="orc_data_emissao" class="form-control @error('orc_data_emissao') is-invalid @enderror" value="{{ old('orc_data_emissao', $dataCriacaoPadrao) }}" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()" required>
                     @error('orc_data_emissao')
                     <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
                     @enderror
@@ -56,7 +59,7 @@
 
                 <div class="col-md-4">
                     <label class="form-label">Validade <span class="text-danger">*</span></label>
-                    <input type="date" name="orc_data_validade" class="form-control @error('orc_data_validade') is-invalid @enderror" value="{{ old('orc_data_validade', $dataValidadePadrao) }}" required>
+                    <input type="date" name="orc_data_validade" class="form-control @error('orc_data_validade') is-invalid @enderror" value="{{ old('orc_data_validade', $dataValidadePadrao) }}" onclick="this.showPicker && this.showPicker()" onfocus="this.showPicker && this.showPicker()" required>
                     @error('orc_data_validade')
                     <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
                     @enderror
@@ -64,7 +67,7 @@
 
                 <div class="col-md-4">
                     <label class="form-label">Desconto (%)</label>
-                    <input type="text" name="orc_desconto_percentual" id="orc_desconto_percentual" class="form-control @error('orc_desconto_percentual') is-invalid @enderror" value="{{ old('orc_desconto_percentual', '0') }}" placeholder="0,00">
+                    <input type="text" name="orc_desconto_percentual" id="orc_desconto_percentual" class="form-control @error('orc_desconto_percentual') is-invalid @enderror" value="{{ old('orc_desconto_percentual', number_format((float) ($orcamento?->orc_desconto_percentual ?? 0), 2, ',', '.')) }}" placeholder="0,00">
                     @error('orc_desconto_percentual')
                     <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
                     @enderror
@@ -72,7 +75,7 @@
 
                 <div class="col-12">
                     <label class="form-label">Observacoes</label>
-                    <textarea name="orc_observacoes" rows="3" class="form-control @error('orc_observacoes') is-invalid @enderror" placeholder="Condições comerciais, prazo de entrega, garantia, etc.">{{ old('orc_observacoes') }}</textarea>
+                    <textarea name="orc_observacoes" rows="3" class="form-control @error('orc_observacoes') is-invalid @enderror" placeholder="Condições comerciais, prazo de entrega, garantia, etc.">{{ old('orc_observacoes', $orcamento?->orc_observacoes) }}</textarea>
                     @error('orc_observacoes')
                     <span class="invalid-feedback d-block"><strong>{{ $message }}</strong></span>
                     @enderror
@@ -132,7 +135,7 @@
         </div>
         <div class="card-footer text-end">
             <button type="submit" class="btn btn-success">
-                <i class="bi bi-check-circle"></i> Salvar Orcamento
+                <i class="bi bi-check-circle"></i> {{ isset($orcamento) && $orcamento ? 'Atualizar Orcamento' : 'Salvar Orcamento' }}
             </button>
         </div>
     </div>
@@ -155,7 +158,7 @@
 <script>
     const produtosOrcamento = @json($produtosOrcamento);
 
-    const oldItems = @json(old('itens', []));
+    const oldItems = @json(old('itens', $itensIniciais ?? []));
 
     function moneyFromString(value) {
         const raw = String(value || '').trim();

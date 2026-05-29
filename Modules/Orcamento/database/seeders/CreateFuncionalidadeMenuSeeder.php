@@ -53,8 +53,11 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
             ['label' => 'Listar Orcamentos', 'action' => 'index'],
             ['label' => 'Cadastrar Orcamentos', 'action' => 'create'],
             ['label' => 'Visualizar Orcamentos', 'action' => 'show'],
+            ['label' => 'Editar Orcamentos', 'action' => 'edit'],
+            ['label' => 'Duplicar Orcamentos', 'action' => 'duplicate'],
             ['label' => 'Excluir Orcamentos', 'action' => 'destroy'],
             ['label' => 'Enviar Orcamentos', 'action' => 'sendEmail'],
+            ['label' => 'Alterar Status Orcamentos', 'action' => 'updateStatus'],
             ['label' => 'Configurar Cabecalho Orcamentos', 'action' => 'headerConfig'],
         ];
 
@@ -86,6 +89,8 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
             ['priv_action' => 'Visualizar Orcamentos', 'action' => 'previewPdf'],
             ['priv_action' => 'Visualizar Orcamentos', 'action' => 'downloadPdf'],
             ['priv_action' => 'Visualizar Orcamentos', 'action' => 'redirectWhatsapp'],
+            ['priv_action' => 'Editar Orcamentos', 'action' => 'update'],
+            ['priv_action' => 'Alterar Status Orcamentos', 'action' => 'updateStatus'],
             ['priv_action' => 'Configurar Cabecalho Orcamentos', 'action' => 'saveHeaderConfig'],
         ];
 
@@ -102,6 +107,14 @@ class CreateFuncionalidadeMenuSeeder extends Seeder
 
             if ($dependencia['priv_action'] === 'Configurar Cabecalho Orcamentos') {
                 $privId = $mapaPrivilegios['headerConfig'] ?? null;
+            }
+
+            if ($dependencia['priv_action'] === 'Editar Orcamentos') {
+                $privId = $mapaPrivilegios['edit'] ?? null;
+            }
+
+            if ($dependencia['priv_action'] === 'Alterar Status Orcamentos') {
+                $privId = $mapaPrivilegios['updateStatus'] ?? null;
             }
 
             if (! $privId) {

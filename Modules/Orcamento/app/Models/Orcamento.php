@@ -49,6 +49,11 @@ class Orcamento extends BaseModel
         return $this->hasMany(OrcamentoItem::class, 'orc_id', 'orc_id');
     }
 
+    public function historicoStatus()
+    {
+        return $this->hasMany(OrcamentoStatusHistorico::class, 'orc_id', 'orc_id')->orderByDesc('osh_id');
+    }
+
     public function atribbutesLabel()
     {
         return [

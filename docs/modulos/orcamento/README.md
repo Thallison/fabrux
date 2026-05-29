@@ -16,6 +16,7 @@ Gerenciar a criacao, consulta, envio e exportacao de orcamentos comerciais com b
 - Enviar orcamento por e-mail com PDF anexado.
 - Compartilhar orcamento por WhatsApp com link assinado para PDF publico.
 - Configurar cabecalho de PDF (empresa que emite o orcamento).
+- Filtrar listagem por texto, status, cliente, periodo de criacao e periodo de validade.
 
 ## Entidades e Tabelas
 
@@ -64,8 +65,12 @@ Middleware principal: auth, verified, acl
 - GET orcamento/orcamentos -> orcamento::orcamentos.index
 - GET orcamento/orcamentos/create -> orcamento::orcamentos.create
 - POST orcamento/orcamentos -> orcamento::orcamentos.store
+- GET orcamento/orcamentos/{id}/edit -> orcamento::orcamentos.edit
+- PUT orcamento/orcamentos/{id} -> orcamento::orcamentos.update
+- POST orcamento/orcamentos/{id}/duplicate -> orcamento::orcamentos.duplicate
 - GET orcamento/orcamentos/{id} -> orcamento::orcamentos.show
 - DELETE orcamento/orcamentos/{id} -> orcamento::orcamentos.destroy
+- POST orcamento/orcamentos/{id}/status -> orcamento::orcamentos.update-status
 - GET orcamento/orcamentos/{id}/pdf -> orcamento::orcamentos.preview-pdf
 - GET orcamento/orcamentos/{id}/pdf/download -> orcamento::orcamentos.download-pdf
 - POST orcamento/orcamentos/{id}/send-email -> orcamento::orcamentos.send-email
@@ -90,15 +95,51 @@ Privilegios cadastrados:
 - Listar Orcamentos (index)
 - Cadastrar Orcamentos (create)
 - Visualizar Orcamentos (show)
+- Editar Orcamentos (edit)
+- Duplicar Orcamentos (duplicate)
 - Excluir Orcamentos (destroy)
 - Enviar Orcamentos (sendEmail)
+- Alterar Status Orcamentos (updateStatus)
 - Configurar Cabecalho Orcamentos (headerConfig)
 
 Dependencias de privilegios:
 
 - create -> store
+- edit -> update
 - show -> previewPdf, downloadPdf, redirectWhatsapp
 - headerConfig -> saveHeaderConfig
+
+## Transicoes de Status
+
+Regras de transicao implementadas:
+
+- Rascunho -> Enviado, Aprovado, Rejeitado, Expirado
+- Enviado -> Aprovado, Rejeitado, Expirado
+- Aprovado -> Expirado
+- Rejeitado -> Rascunho, Enviado
+- Expirado -> Rascunho, Enviado
+
+Tentativas de transicao fora dessas regras sao bloqueadas por validacao.
+
+## Historico de Status
+
+Tabela dedicada:
+
+- orc_status_historicos
+	- orc_id
+	- usr_id
+	- osh_status_anterior
+	- osh_status_novo
+	- osh_motivo
+	- timestamps
+
+Eventos registrados:
+
+- criacao do orcamento (status inicial)
+- alteracao manual de status
+- envio por e-mail (status Enviado)
+- envio por WhatsApp (status Enviado)
+- duplicacao (status inicial do novo orcamento)
 
 ## Regras de Negocio
 
@@ -117,13 +158,16 @@ Dependencias de privilegios:
 ## Fluxo de Uso
 
 1. Acessar lista de orcamentos.
+	- Opcionalmente filtrar por texto, status, cliente, periodo de criacao e periodo de validade.
 2. Abrir Novo Orcamento.
 3. Selecionar cliente e preencher datas.
 4. Adicionar itens e ajustar valores quando necessario.
 5. Definir desconto percentual.
 6. Salvar orcamento.
-7. Visualizar, baixar PDF e enviar para o cliente.
-8. Ajustar cabecalho do PDF em Configuracoes quando necessario.
+7. Ajustar itens e dados pelo fluxo de edicao quando necessario.
+8. Atualizar status (Rascunho, Enviado, Aprovado, Rejeitado, Expirado).
+9. Visualizar, baixar PDF e enviar para o cliente.
+10. Ajustar cabecalho do PDF em Configuracoes quando necessario.
 
 ## Arquivos Principais do Modulo
 

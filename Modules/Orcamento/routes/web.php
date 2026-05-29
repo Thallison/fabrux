@@ -8,8 +8,12 @@ Route::prefix('orcamento')->name('orcamento::')->group(function () {
         Route::get('orcamentos', [OrcamentosController::class, 'index'])->name('orcamentos.index');
         Route::get('orcamentos/create', [OrcamentosController::class, 'create'])->name('orcamentos.create');
         Route::post('orcamentos', [OrcamentosController::class, 'store'])->name('orcamentos.store');
+        Route::get('orcamentos/{id}/edit', [OrcamentosController::class, 'edit'])->name('orcamentos.edit');
+        Route::put('orcamentos/{id}', [OrcamentosController::class, 'update'])->name('orcamentos.update');
+        Route::post('orcamentos/{id}/duplicate', [OrcamentosController::class, 'duplicate'])->name('orcamentos.duplicate');
         Route::get('orcamentos/{id}', [OrcamentosController::class, 'show'])->name('orcamentos.show');
         Route::delete('orcamentos/{id}', [OrcamentosController::class, 'destroy'])->name('orcamentos.destroy');
+        Route::post('orcamentos/{id}/status', [OrcamentosController::class, 'updateStatus'])->name('orcamentos.update-status');
 
         Route::get('orcamentos/{id}/pdf', [OrcamentosController::class, 'previewPdf'])->name('orcamentos.preview-pdf');
         Route::get('orcamentos/{id}/pdf/download', [OrcamentosController::class, 'downloadPdf'])->name('orcamentos.download-pdf');
