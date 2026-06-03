@@ -34,7 +34,7 @@ return new class extends Migration
             // Contatos
             $table->string('cli_telefone')->nullable();
             $table->string('cli_celular')->nullable();
-            $table->string('cli_email')->unique();
+            $table->string('cli_email', 191)->unique();
 
             // Status
             $table->boolean('cli_ativo')->default(true);
