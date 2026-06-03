@@ -11,7 +11,7 @@
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-semibold">{{ config('app.name', 'Laravel') }}</span>
+            <span class="brand-text fw-semibold">Fabrux</span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->

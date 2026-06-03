@@ -21,11 +21,11 @@ Route::prefix('seguranca')->name('seguranca::')->group(function () {
 
         Route::prefix('usuarios')->name('usuarios.')->group( function(){
             Route::post('/validalogin',  [Controllers\UsuariosController::class, 'validaLogin'])->name('validaLogin');
-            Route::post('/atualizaSenha', [Controllers\UsuariosController::class, 'atualizaSenha'])->name('atualizaSenha');
         });
     });
 
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/configUsuario', [Controllers\UsuariosController::class, 'configuracaoShow'])->name('configUsuario');
+        Route::post('/atualizaSenha', [Controllers\UsuariosController::class, 'atualizaSenha'])->name('atualizaSenha');
     });
 });

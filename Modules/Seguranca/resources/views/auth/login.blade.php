@@ -4,7 +4,7 @@
 <div class="login-box fabrux-auth-box">
     <div class="login-logo mb-3">
         <span class="fabrux-auth-title">Fabrux</span>
-        <p class="fabrux-auth-subtitle mb-0">Backoffice MES</p>
+        <p class="fabrux-auth-subtitle mb-0">{{ config('app.name') }}</p>
     </div>
 
     <div class="card fabrux-auth-card">
