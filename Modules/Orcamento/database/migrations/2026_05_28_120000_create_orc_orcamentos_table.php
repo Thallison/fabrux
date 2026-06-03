@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('orc_orcamentos', function (Blueprint $table) {
             $table->id('orc_id');
-            $table->string('orc_numero')->unique();
+            $table->string('orc_numero', 200)->unique();
             $table->foreignId('cli_id')->constrained('cad_clientes', 'cli_id')->onDelete('restrict');
             $table->date('orc_data_emissao');
             $table->date('orc_data_validade');
