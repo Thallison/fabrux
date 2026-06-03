@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cad_funcionarios', function (Blueprint $table) {
             $table->id('fun_id');
-            $table->string('fun_codigo')->unique();
+            $table->string('fun_codigo', 200)->unique();
             $table->string('fun_nome');
             $table->integer('fun_carga_horaria'); // segundos
             $table->boolean('fun_ativo')->default(true);
