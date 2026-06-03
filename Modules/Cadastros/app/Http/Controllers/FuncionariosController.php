@@ -4,6 +4,7 @@ namespace Modules\Cadastros\Http\Controllers;
 
 use Modules\Base\Http\Controllers\BaseController;
 use Modules\Base\Traits\BaseUtils;
+use Modules\Cadastros\Models\Setores;
 
 class FuncionariosController extends BaseController
 {
@@ -32,6 +33,10 @@ class FuncionariosController extends BaseController
     {
         return array(
             'e' => $this,
+            'setores' => Setores::query()
+                ->where('set_ativo', true)
+                ->orderBy('set_nome')
+                ->get(),
         );
     } 
     

@@ -51,6 +51,25 @@
 
                         <div class="col">
                             <div class='form-group'>
+                                <label class="form-label">{{ $model->getAttributeLabel('fun_set_id') }} <span class="text-danger">*</span></label>
+                                <select name="fun_set_id" id="fun_set_id_edit" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione um setor" required @error('fun_set_id') is-invalid @enderror>
+                                    <option value="">{{ __('Selecione...') }}</option>
+                                    @foreach ($setores as $setor)
+                                        <option value="{{ $setor->set_id }}" {{ (string) $dados->fun_set_id === (string) $setor->set_id ? 'selected' : '' }}>
+                                            {{ $setor->set_nome }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('fun_set_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class='form-group'>
                                 <label class="form-label">{{ $model->getAttributeLabel('fun_ativo') }} <span class="text-danger">*</span></label>
                                 <select name="fun_ativo" id="fun_ativo_edit" class="form-select" data-tom-select="true" data-tom-select-placeholder="Selecione um status" required  @error('fun_ativo') is-invalid @enderror>
                                     <option value="">{{ __('Selecione...') }}</option>

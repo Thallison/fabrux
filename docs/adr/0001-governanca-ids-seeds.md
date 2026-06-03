@@ -27,6 +27,12 @@ O projeto usa seeds modulares com IDs fixos para funcionalidades, privilegios e 
 - Exige disciplina de atualizacao documental.
 - Pode aumentar custo inicial de criacao de seed.
 
+## Atualizacao de Contexto
+
+- Em evolucoes recentes, alguns recursos novos passaram a usar seed idempotente sem IDs fixos (ex.: funcionalidade Setores em Cadastros).
+- O projeto ainda opera em estrategia hibrida (partes legadas com IDs fixos + partes novas idempotentes).
+- Diretriz atual: priorizar seed idempotente em novos recursos e evitar criar novos IDs fixos sem necessidade.
+
 ## Alternativas Consideradas
 
 - Migrar imediatamente para seeds sem IDs fixos.

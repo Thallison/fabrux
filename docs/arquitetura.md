@@ -6,7 +6,7 @@ O Fabrux e um sistema modular de MES baseado em Laravel 12, com responsabilidade
 
 - Base: infraestrutura reutilizavel (BaseController, BaseModel, servicos comuns).
 - Seguranca: autenticacao, autorizacao (ACL), papeis, privilegios, logs.
-- Cadastros: entidades de referencia (funcionarios, produtos, clientes).
+- Cadastros: entidades de referencia (setores, funcionarios, produtos, clientes).
 - Producao: operacao de producao e dashboard.
 - Relatorios: consultas gerenciais e analiticas.
 
@@ -48,7 +48,7 @@ O Fabrux e um sistema modular de MES baseado em Laravel 12, com responsabilidade
 
 ## Riscos Tecnicos Conhecidos
 
-- Seeds com IDs fixos exigem governanca entre modulos.
+- Seeds legadas com IDs fixos exigem governanca entre modulos.
 - Mudancas em ACL exigem sincronia entre rotas, privilegios e dependencias.
 - Alteracoes em JS global podem impactar multiplas telas.
 - Padroes de frontend nao documentados tendem a gerar inicializacoes duplicadas e regressao visual entre modulos.
@@ -58,3 +58,4 @@ O Fabrux e um sistema modular de MES baseado em Laravel 12, com responsabilidade
 - Migrar seeds para estrategia idempotente (upsert/check por chave funcional).
 - Criar matriz de permissoes por modulo em documentacao dedicada.
 - Padronizar checklist de PR para rotas + privilegios + testes.
+- Em novos recursos (ex.: Setores em Cadastros), priorizar seeds idempotentes para evitar colisao de IDs entre modulos.

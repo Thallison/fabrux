@@ -2,22 +2,25 @@
 
 ## Objetivo
 
-Gerenciar entidades mestres usadas por outros fluxos: funcionarios, produtos e clientes.
+Gerenciar entidades mestres usadas por outros fluxos: setores, funcionarios, produtos e clientes.
 
 ## Funcionalidades
 
+- CRUD de setores.
 - CRUD de funcionarios.
 - CRUD de produtos.
 - CRUD de clientes.
 - Busca de CEP com preenchimento automatico de endereco no cadastro de clientes.
 - Formularios com padrao visual unificado e selects de status com componente pesquisavel.
 - Listagens e formularios alinhados ao tema global do backoffice, com foco em consistencia entre grids, acoes e feedback visual.
+- Vinculo de setor no cadastro/edicao de funcionarios.
 
 ## Rotas
 
 Prefixo: cadastros
 
 - resource funcionarios
+- resource setores
 - resource produtos
 - resource clientes
 
@@ -33,6 +36,7 @@ Permissoes mapeadas por seed:
 ## Regras de Negocio Relevantes
 
 - Campos obrigatorios e unicidade definidos nas rules() dos models.
+- Funcionarios devem estar vinculados a um setor valido (fun_set_id).
 - Formularios devem seguir padrao visual dos cadastros existentes.
 - Grids usam Bootstrap Table e formatters JS globais.
 - Clientes suportam mascara e validacao de CPF/CNPJ conforme tipo de pessoa.
@@ -42,10 +46,17 @@ Permissoes mapeadas por seed:
 
 ## Experiencia de Uso
 
+- Setores: cadastro e edicao via modal com status padronizado.
 - Clientes: formulario completo com validacao progressiva, mascara, CEP e status.
-- Funcionarios: cadastro e edicao via modal com status padronizado.
+- Funcionarios: cadastro e edicao via modal com status padronizado e selecao obrigatoria de setor.
 - Produtos: cadastro e edicao via modal com status padronizado e valor monetario formatado.
 - As listagens usam acabamento compartilhado para toolbar, empty state, paginacao e botoes de acao.
+
+## Seeds e ACL
+
+- Para Setores, a seed de ACL foi implementada em modo idempotente (busca por chave funcional + insert quando necessario).
+- Comando recomendado para inserir apenas a funcionalidade de Setores:
+	- php artisan db:seed --class="Modules\\Cadastros\\Database\\Seeders\\CreateFuncionalidadeSetoresMenuSeeder"
 
 ## Testes Recomendados
 
