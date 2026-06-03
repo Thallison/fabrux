@@ -7,7 +7,7 @@
     <div class="card-header">
         <h5 class="card-title">{{ __('Configuração Usuário') }}</h5>
     </div>
-    <form action="{{ route('seguranca::usuarios.atualizaSenha') }}" method="POST" name="formUser">
+    <form action="{{ route('seguranca::atualizaSenha') }}" method="POST" name="formUser">
         <div class="card-body">
             @csrf
 
