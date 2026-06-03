@@ -116,8 +116,174 @@ App.initDataTableUx = function(root = document) {
             window.$(table).on('post-body.bs.table page-change.bs.table load-error.bs.table', refreshEmptyState);
         }
 
+        App.bindBootstrapTableFullscreen(table);
+
         setTimeout(refreshEmptyState, 250);
     });
+};
+
+App.bindBootstrapTableFullscreen = function(table) {
+    if (!table || table.dataset.fullscreenBound === '1') {
+        return;
+    }
+
+    table.dataset.fullscreenBound = '1';
+
+    const cleanupStyles = function(wrapper, touchedAncestors) {
+        document.body.classList.remove('fabrux-table-fullscreen-open');
+
+        if (wrapper) {
+            wrapper.style.removeProperty('position');
+            wrapper.style.removeProperty('inset');
+            wrapper.style.removeProperty('z-index');
+            wrapper.style.removeProperty('width');
+            wrapper.style.removeProperty('height');
+            wrapper.style.removeProperty('margin');
+            wrapper.style.removeProperty('padding');
+            wrapper.style.removeProperty('background');
+            wrapper.style.removeProperty('overflow');
+        }
+
+        touchedAncestors.forEach((item) => {
+            if (!item || !item.element) {
+                return;
+            }
+
+            if (item.transform === null) {
+                item.element.style.removeProperty('transform');
+            } else {
+                item.element.style.setProperty('transform', item.transform, 'important');
+            }
+        });
+
+        touchedAncestors.length = 0;
+    };
+
+    const startBinding = function() {
+        const wrapper = table.closest('.bootstrap-table') || table.parentElement;
+
+        if (!wrapper || wrapper.dataset.fullscreenObserverReady === '1') {
+            return;
+        }
+
+        wrapper.dataset.fullscreenObserverReady = '1';
+        const touchedAncestors = [];
+
+        const applyFullscreen = function() {
+            const isFullscreen = wrapper.classList.contains('fullscreen');
+
+            if (!isFullscreen) {
+                cleanupStyles(wrapper, touchedAncestors);
+                return;
+            }
+
+            document.body.classList.add('fabrux-table-fullscreen-open');
+            wrapper.style.setProperty('position', 'fixed', 'important');
+            wrapper.style.setProperty('inset', '0', 'important');
+            wrapper.style.setProperty('z-index', '3000', 'important');
+            wrapper.style.setProperty('width', '100vw', 'important');
+            wrapper.style.setProperty('height', '100vh', 'important');
+            wrapper.style.setProperty('margin', '0', 'important');
+            wrapper.style.setProperty('padding', '1rem', 'important');
+            wrapper.style.setProperty('background', '#ffffff', 'important');
+            wrapper.style.setProperty('overflow', 'auto', 'important');
+
+            if (touchedAncestors.length === 0) {
+                let ancestor = wrapper.parentElement;
+
+                while (ancestor && ancestor !== document.body) {
+                    const computedStyle = window.getComputedStyle(ancestor);
+
+                    if (computedStyle.transform && computedStyle.transform !== 'none') {
+                        touchedAncestors.push({
+                            element: ancestor,
+                            transform: ancestor.style.transform || null,
+                        });
+                        ancestor.style.setProperty('transform', 'none', 'important');
+                    }
+
+                    ancestor = ancestor.parentElement;
+                }
+            }
+
+            if (window.$) {
+                window.$(table).bootstrapTable('resetView');
+            }
+        };
+
+        const toggleNativeFullscreen = function() {
+            const supportsNativeFullscreen = document.fullscreenEnabled && typeof wrapper.requestFullscreen === 'function';
+
+            if (!supportsNativeFullscreen) {
+                return false;
+            }
+
+            if (document.fullscreenElement === wrapper) {
+                document.exitFullscreen();
+                return true;
+            }
+
+            if (document.fullscreenElement) {
+                return false;
+            }
+
+            wrapper.requestFullscreen();
+            return true;
+        };
+
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    applyFullscreen();
+                    break;
+                }
+            }
+        });
+
+        observer.observe(wrapper, {
+            attributes: true,
+            attributeFilter: ['class'],
+        });
+
+        wrapper.addEventListener('click', function(event) {
+            const trigger = event.target.closest('button[name="fullscreen"], .btn[name="fullscreen"]');
+
+            if (!trigger) {
+                return;
+            }
+
+            if (toggleNativeFullscreen()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            setTimeout(applyFullscreen, 0);
+        }, true);
+
+        document.addEventListener('fullscreenchange', function() {
+            const isNativeFullscreen = document.fullscreenElement === wrapper;
+
+            if (!isNativeFullscreen) {
+                cleanupStyles(wrapper, touchedAncestors);
+            }
+
+            if (window.$) {
+                window.$(table).bootstrapTable('resetView');
+            }
+        });
+
+        window.addEventListener('resize', function() {
+            if (!wrapper.classList.contains('fullscreen') && document.fullscreenElement !== wrapper) {
+                return;
+            }
+
+            if (window.$) {
+                window.$(table).bootstrapTable('resetView');
+            }
+        });
+    };
+
+    setTimeout(startBinding, 150);
 };
 
 App.refreshBootstrapTableEmptyState = function(table) {

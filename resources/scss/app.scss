@@ -157,7 +157,6 @@ body.fabrux-backoffice {
 }
 
 .fabrux-backoffice .card:hover {
-	transform: translateY(-1px);
 	box-shadow: 0 14px 32px rgba(17, 24, 39, 0.12);
 }
 
@@ -791,10 +790,26 @@ body.fabrux-backoffice {
 	animation-delay: var(--fabrux-enter-delay, 0ms);
 }
 
+body.fabrux-table-fullscreen-open {
+	overflow: hidden;
+}
+
+.bootstrap-table:fullscreen {
+	position: fixed !important;
+	inset: 0 !important;
+	z-index: 4000 !important;
+	width: 100vw !important;
+	height: 100vh !important;
+	margin: 0 !important;
+	padding: 1rem !important;
+	background: #ffffff !important;
+	overflow: auto !important;
+}
+
 @keyframes fabrux-enter-up {
 	to {
 		opacity: 1;
-		transform: translateY(0);
+		transform: none;
 	}
 }
 
