@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cad_produtos', function (Blueprint $table) {
             $table->id('prod_id');
-            $table->string('prod_codigo')->unique();
+            $table->string('prod_codigo', 100)->unique();
             $table->string('prod_nome');
             $table->integer('prod_tempo_estimado'); // segundos por peça
             $table->boolean('prod_ativo')->default(true);

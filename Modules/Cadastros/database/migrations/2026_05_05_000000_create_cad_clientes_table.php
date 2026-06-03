@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('cad_clientes', function (Blueprint $table) {
             $table->id('cli_id');
-            $table->string('cli_codigo')->unique();
+            $table->string('cli_codigo', 200)->unique();
 
             // Dados básicos
             $table->string('cli_nome'); // Nome ou Razão Social
             $table->enum('cli_tipo', ['F', 'J']); // F = Pessoa Física, J = Pessoa Jurídica
-            $table->string('cli_cpf_cnpj')->unique();
+            $table->string('cli_cpf_cnpj', 20)->unique();
             $table->string('cli_ie')->nullable(); // Inscrição Estadual
             $table->string('cli_im')->nullable(); // Inscrição Municipal
 
