@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('usr_login',50);
             $table->string('password');
             $table->string('usr_name',100);
-            $table->string('email')->unique();
+            $table->string('email',191)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('remember_token', 100)->nullable();
             $table->boolean('usr_status')->default(false);
