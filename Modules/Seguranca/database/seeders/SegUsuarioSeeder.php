@@ -13,6 +13,10 @@ class SegUsuarioSeeder extends Seeder
      */
     public function run(): void
     {
+        if (app()->environment('production')) {
+            return;
+        }
+
         DB::table('seg_usuarios')->insert([
             'usr_login' => 'admin.gestor',
             'password' => Hash::make('123456'),

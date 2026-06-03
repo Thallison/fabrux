@@ -13,6 +13,7 @@ Route::prefix('seguranca')->name('seguranca::')->group(function () {
         Route::resource('papeis', Controllers\PapeisController::class);
         Route::resource('usuarios', Controllers\UsuariosController::class);
         Route::resource('logs',  Controllers\LogsController::class);
+        Route::get('/configUsuario', [Controllers\UsuariosController::class, 'configuracaoShow'])->name('configUsuario');
 
         Route::prefix('privilegios')->name('privilegios.')->group( function(){
             Route::delete('/destroydep/{dependencia}', [Controllers\PrivilegiosController::class, 'destroyDep'])->name('destroydep');
@@ -24,5 +25,7 @@ Route::prefix('seguranca')->name('seguranca::')->group(function () {
         });
     });
 
-    Route::get('/configUsuario', [Controllers\UsuariosController::class, 'configuracaoShow'])->name('configUsuario');
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/configUsuario', [Controllers\UsuariosController::class, 'configuracaoShow'])->name('configUsuario');
+    });
 });

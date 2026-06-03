@@ -78,7 +78,7 @@
                 <div class="col-md-4">
                     <div class='form-group'>
                         <label class="form-label">{{ __($model->getAttributeLabel('password')) }} : <span class="text-danger">*</span></label>
-                        <input class="form-control @error('senha') is-invalid @enderror" type="password" name="senha" required  placeholder="{{ __($model->getAttributeLabel('password')) }}" value="{{ old('senha') }}" />
+                        <input class="form-control @error('senha') is-invalid @enderror" type="password" name="senha" required  placeholder="{{ __($model->getAttributeLabel('password')) }}" value="" />
                         @error('senha')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
                 <div class="col-md-4">
                     <div class='form-group'>
                         <label class="form-label">{{ __('Confirmar Senha') }} : <span class="text-danger">*</span></label>
-                        <input class="form-control @error('repeat_senha') is-invalid @enderror" type="password" name="repeat_senha" required  placeholder="{{ __('Confirmar Senha') }}" value="{{ old('repeat_senha') }}" />
+                        <input class="form-control @error('repeat_senha') is-invalid @enderror" type="password" name="repeat_senha" required  placeholder="{{ __('Confirmar Senha') }}" value="" />
                         @error('repeat_senha')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

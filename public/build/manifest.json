@@ -1,0 +1,32 @@
+{
+  "resources/fonts/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons-BeopsB42.woff",
+    "src": "resources/fonts/bootstrap-icons.woff"
+  },
+  "resources/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-mSm7cUeB.woff2",
+    "src": "resources/fonts/bootstrap-icons.woff2"
+  },
+  "resources/images/AdminLTELogo.png": {
+    "file": "assets/AdminLTELogo-uzpte6X3.png",
+    "src": "resources/images/AdminLTELogo.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-BQb8Hlaw.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-BRgfz_dz.css"
+    ]
+  },
+  "resources/scss/app.scss": {
+    "file": "assets/app-DGfs3Wy0.css",
+    "src": "resources/scss/app.scss",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  }
+}

@@ -92,7 +92,7 @@ class BaseController extends Controller
         
         $this->getModel()->create($dados);
 
-        BaseLog::info($request, json_encode($dados) );
+        BaseLog::info($request, json_encode($this->sanitizeSensitiveData($dados)) );
         
         return redirect()->route($this->getRota().'.index')->with('message', [
             'type' => 'success',
@@ -153,7 +153,7 @@ class BaseController extends Controller
             'Novo' => $dados
         ];
 
-        BaseLog::info($request, json_encode($log) );
+        BaseLog::info($request, json_encode($this->sanitizeSensitiveData($log)) );
 
         if($request->input('_dataType') == 'json'){
             return $this->getResponseJson([
@@ -211,6 +211,37 @@ class BaseController extends Controller
         $merge = array_merge($default, $data);
 
         return response()->json($merge);
+    }
+
+    /**
+     * Mascara campos sensiveis para evitar vazamento em logs/sessoes.
+     *
+     * @param mixed $data
+     * @return mixed
+     */
+    protected function sanitizeSensitiveData($data)
+    {
+        $sensitiveKeys = [
+            'senha',
+            'repeat_senha',
+            'senhaAtual',
+            'password',
+            'password_confirmation',
+            'current_password',
+        ];
+
+        if (is_array($data)) {
+            foreach ($data as $key => $value) {
+                if (in_array((string) $key, $sensitiveKeys, true)) {
+                    $data[$key] = '[REDACTED]';
+                    continue;
+                }
+
+                $data[$key] = $this->sanitizeSensitiveData($value);
+            }
+        }
+
+        return $data;
     }
 
     /**

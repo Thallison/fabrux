@@ -18,11 +18,12 @@ class UsuariosController extends BaseController
     public function store(Request $request)
     {
         $dados = $request->all();
+        $oldInput = $request->except(['senha', 'repeat_senha', 'password', 'password_confirmation', 'senhaAtual', 'current_password']);
 
         $this->validaRoles($request, $this->getModel());
 
         if($this->validaSenha($dados['senha'], $dados['repeat_senha'])){
-            return redirect()->back()->withInput($dados)->with('message', [
+            return redirect()->back()->withInput($oldInput)->with('message', [
                 'type' => 'danger',
                 'text' => 'Senhas não conferem'
             ]);
@@ -30,7 +31,7 @@ class UsuariosController extends BaseController
 
         list($papeis, $sistemas) = $this->verificaPapeisSistema($dados);
         if(!is_array($papeis)){
-            return redirect()->back()->withInput($dados)->with('message', [
+            return redirect()->back()->withInput($oldInput)->with('message', [
                 'type' => 'danger',
                 'text' => 'Seleciona um perfil para o usuário.'
             ]);
@@ -42,7 +43,7 @@ class UsuariosController extends BaseController
 
         $this->getModel()->cadastraUsuario($dados);
 
-        BaseLog::info($request, json_encode($dados) );
+        BaseLog::info($request, json_encode($this->sanitizeSensitiveData($dados)) );
 
         return redirect()->route($this->getRota().'.index')->with('message', [
             'type' => 'success',
@@ -58,9 +59,10 @@ class UsuariosController extends BaseController
         $this->validaRoles($request, $retEntity);
 
         $dados = $request->all();
+        $oldInput = $request->except(['senha', 'repeat_senha', 'password', 'password_confirmation', 'senhaAtual', 'current_password']);
 
         if($this->validaSenha($dados['senha'], $dados['repeat_senha'])){
-            return redirect()->back()->withInput($dados)->with('message', [
+            return redirect()->back()->withInput($oldInput)->with('message', [
                 'type' => 'danger',
                 'text' => 'Senhas não conferem.'
             ]);
@@ -68,7 +70,7 @@ class UsuariosController extends BaseController
 
         list($papeis, $sistemas) = $this->verificaPapeisSistema($dados);
         if(!is_array($papeis)){
-            return redirect()->back()->withInput($dados)->with('message', [
+            return redirect()->back()->withInput($oldInput)->with('message', [
                 'type' => 'danger',
                 'text' => 'Seleciona um perfil para o usuário.'
             ]);
@@ -87,7 +89,7 @@ class UsuariosController extends BaseController
             'Novo' => $request->all()
         ];
 
-        BaseLog::info($request, json_encode($log) );
+        BaseLog::info($request, json_encode($this->sanitizeSensitiveData($log)) );
 
         return redirect()->route($this->getRota().'.index')->with('message', [
             'type' => 'success',
@@ -127,16 +129,17 @@ class UsuariosController extends BaseController
         /** @var \Modules\Seguranca\Models\Usuarios $usuario */
         $usuario = Auth::user();
         $dados = $request->all();
+        $oldInput = $request->except(['senha', 'repeat_senha', 'password', 'password_confirmation', 'senhaAtual', 'current_password']);
 
         if(!Hash::check($dados['senhaAtual'], $usuario->password)){
-            return redirect()->back()->withInput($dados)->with('message', [
+            return redirect()->back()->withInput($oldInput)->with('message', [
                 'type' => 'danger',
                 'text' => 'Senha atual não confere.'
             ]);
         }
 
         if($this->validaSenha($dados['senha'], $dados['repeat_senha'])){
-            return redirect()->back()->withInput($dados)->with('message', [
+            return redirect()->back()->withInput($oldInput)->with('message', [
                 'type' => 'danger',
                 'text' => 'Senhas não conferem.'
             ]);
