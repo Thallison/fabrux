@@ -8,7 +8,7 @@
     "src": "resources/fonts/bootstrap-icons.woff2"
   },
   "resources/images/AdminLTELogo.png": {
-    "file": "assets/AdminLTELogo-uzpte6X3.png",
+    "file": "assets/AdminLTELogo-D8NFlZMT.png",
     "src": "resources/images/AdminLTELogo.png"
   },
   "resources/js/app.js": {
@@ -21,7 +21,7 @@
     ]
   },
   "resources/scss/app.scss": {
-    "file": "assets/app-DGfs3Wy0.css",
+    "file": "assets/app-fBsJ9wYJ.css",
     "src": "resources/scss/app.scss",
     "isEntry": true,
     "name": "app",

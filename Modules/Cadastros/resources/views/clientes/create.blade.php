@@ -4,10 +4,10 @@
 
 @section('content')
 <div class="card card-default mb-5">
-    <div class="card-header">
+    <div class="card-header header-elements-inline">
         <h5 class="card-title">{{ __('Novo Cliente') }}</h5>
-        <div class="text-end">
-            <a href="{{ route('cadastros::clientes.index') }}" class="btn btn-sm btn-info">
+        <div class="text-end header-elements ms-auto">
+            <a href="{{ route('cadastros::clientes.index') }}" class="btn btn-info">
                 <i class="bi bi-arrow-left"></i> {{ __('Voltar') }}
             </a>
         </div>

@@ -5,9 +5,9 @@
 @section('content')
     
 <div class="card card-default mb-5">
-    <div class="card-header">
+    <div class="card-header header-elements-inline">
         <h5 class="card-title">{{ __('Cadastrar Usuário') }}</h5>
-        <div class="text-end">
+        <div class="text-end header-elements ms-auto">
             <a href="{{ route('seguranca::usuarios.index') }}" class="btn btn-info"><i class="bi bi-plus"></i> {{ __('Listar Usuários') }}</a>
             <a class="list-icons-item" data-action="collapse"></a>
         </div>
