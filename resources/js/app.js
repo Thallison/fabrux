@@ -13,6 +13,9 @@ import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.bootstrap5.min.css';
 window.TomSelect = TomSelect;
 
+import Chart from 'chart.js/auto';
+window.Chart = Chart;
+
 import 'admin-lte';
 import 'bootstrap-table';
 
