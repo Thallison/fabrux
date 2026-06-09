@@ -61,6 +61,8 @@
                 </div>
             </div>
 
+            <span class="d-none fs-6 textoSenha"></span>
+
             <div class="alert alert-info mb-0">
                 {{ __('Use esta tela para alterar a senha do seu próprio usuário com segurança.') }}
             </div>
@@ -79,13 +81,23 @@
 <script>
     document.querySelectorAll('.gerarPassword').forEach(btn => {
         btn.addEventListener('click', () => {
-            
             const pass = generatePassword(10);
 
-            document.querySelector('input[name="senha"]').value = pass;
-            document.querySelector('input[name="repeat_senha"]').value = pass;
+            const senhaInput = document.querySelector('input[name="senha"]');
+            const repetirSenhaInput = document.querySelector('input[name="repeat_senha"]');
+
+            if (!senhaInput || !repetirSenhaInput) {
+                return;
+            }
+
+            senhaInput.value = pass;
+            repetirSenhaInput.value = pass;
 
             const textoSenha = document.querySelector('.textoSenha');
+            if (!textoSenha) {
+                return;
+            }
+
             textoSenha.innerHTML = `
                 <strong class="fw-semibold text-uppercase text-primary">
                     Senha gerada:
