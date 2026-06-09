@@ -103,6 +103,67 @@
 
         <div class="row mb-3">
             <div class="col-md-4">
+                <p class="text-muted mb-0">{{ $model->getAttributeLabel('cli_nao_contribuinte') }}</p>
+                <h6>
+                    @if($dados->cli_nao_contribuinte)
+                        <span class="badge bg-success">{{ __('Sim') }}</span>
+                    @else
+                        <span class="badge bg-secondary">{{ __('Não') }}</span>
+                    @endif
+                </h6>
+            </div>
+
+            <div class="col-md-4">
+                <p class="text-muted mb-0">{{ $model->getAttributeLabel('cli_substituto_tributario_iss') }}</p>
+                <h6>
+                    @if($dados->cli_substituto_tributario_iss)
+                        <span class="badge bg-success">{{ __('Sim') }}</span>
+                    @else
+                        <span class="badge bg-secondary">{{ __('Não') }}</span>
+                    @endif
+                </h6>
+            </div>
+
+            <div class="col-md-4">
+                <p class="text-muted mb-0">{{ $model->getAttributeLabel('cli_nao_calcula_diferimento_icms') }}</p>
+                <h6>
+                    @if($dados->cli_nao_calcula_diferimento_icms)
+                        <span class="badge bg-success">{{ __('Sim') }}</span>
+                    @else
+                        <span class="badge bg-secondary">{{ __('Não') }}</span>
+                    @endif
+                </h6>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <p class="text-muted mb-0">{{ $model->getAttributeLabel('cli_apura_icms') }}</p>
+                <h6>
+                    @if($dados->cli_apura_icms)
+                        <span class="badge bg-success">{{ __('Sim') }}</span>
+                    @else
+                        <span class="badge bg-secondary">{{ __('Não') }}</span>
+                    @endif
+                </h6>
+            </div>
+
+            <div class="col-md-4">
+                <p class="text-muted mb-0">{{ $model->getAttributeLabel('cli_aliquota_icms_diferenciada_contribuinte') }}</p>
+                <h6>
+                    @if($dados->cli_aliquota_icms_diferenciada_contribuinte)
+                        <span class="badge bg-success">{{ __('Sim') }}</span>
+                    @else
+                        <span class="badge bg-secondary">{{ __('Não') }}</span>
+                    @endif
+                </h6>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
                 <p class="text-muted mb-0">{{ $model->getAttributeLabel('cli_ativo') }}</p>
                 <h6>
                     @if($dados->cli_ativo)

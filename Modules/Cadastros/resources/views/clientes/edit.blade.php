@@ -174,6 +174,44 @@
             </div>
 
             <div class="row mb-3">
+                <div class="col-md-12">
+                    <h6 class="mb-3 text-muted text-uppercase">
+                        <i class="bi bi-receipt"></i> {{ __('Informações Fiscais') }}
+                    </h6>
+
+                    <div class="form-check mb-2">
+                        <input type="hidden" name="cli_nao_contribuinte" value="0">
+                        <input class="form-check-input" type="checkbox" id="cli_nao_contribuinte" name="cli_nao_contribuinte" value="1" {{ old('cli_nao_contribuinte', (string) $dados->cli_nao_contribuinte) === '1' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cli_nao_contribuinte">{{ $model->getAttributeLabel('cli_nao_contribuinte') }}</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input type="hidden" name="cli_substituto_tributario_iss" value="0">
+                        <input class="form-check-input" type="checkbox" id="cli_substituto_tributario_iss" name="cli_substituto_tributario_iss" value="1" {{ old('cli_substituto_tributario_iss', (string) $dados->cli_substituto_tributario_iss) === '1' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cli_substituto_tributario_iss">{{ $model->getAttributeLabel('cli_substituto_tributario_iss') }}</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input type="hidden" name="cli_nao_calcula_diferimento_icms" value="0">
+                        <input class="form-check-input" type="checkbox" id="cli_nao_calcula_diferimento_icms" name="cli_nao_calcula_diferimento_icms" value="1" {{ old('cli_nao_calcula_diferimento_icms', (string) $dados->cli_nao_calcula_diferimento_icms) === '1' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cli_nao_calcula_diferimento_icms">{{ $model->getAttributeLabel('cli_nao_calcula_diferimento_icms') }}</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input type="hidden" name="cli_apura_icms" value="0">
+                        <input class="form-check-input" type="checkbox" id="cli_apura_icms" name="cli_apura_icms" value="1" {{ old('cli_apura_icms', (string) $dados->cli_apura_icms) === '1' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cli_apura_icms">{{ $model->getAttributeLabel('cli_apura_icms') }}</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input type="hidden" name="cli_aliquota_icms_diferenciada_contribuinte" value="0">
+                        <input class="form-check-input" type="checkbox" id="cli_aliquota_icms_diferenciada_contribuinte" name="cli_aliquota_icms_diferenciada_contribuinte" value="1" {{ old('cli_aliquota_icms_diferenciada_contribuinte', (string) $dados->cli_aliquota_icms_diferenciada_contribuinte) === '1' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="cli_aliquota_icms_diferenciada_contribuinte">{{ $model->getAttributeLabel('cli_aliquota_icms_diferenciada_contribuinte') }}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="cli_ativo" class="form-label">{{ $model->getAttributeLabel('cli_ativo') }} <span class="text-danger">*</span></label>
                     <select id="cli_ativo" name="cli_ativo" class="form-select {{ $errors->has('cli_ativo') ? 'is-invalid' : '' }}" data-tom-select="true" data-tom-select-placeholder="Selecione um status" required>
